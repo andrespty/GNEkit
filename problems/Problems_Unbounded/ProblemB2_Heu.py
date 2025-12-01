@@ -41,67 +41,68 @@ class B2dev:
         return [B2dev.obj_func_1_der, B2dev.obj_func_2_der]
         # return [A3U.obj_func_der_1, A3U.obj_func_der_2, A3U.obj_func_der_3]
 
-    @staticmethod
-    def cost_a(x):
+    def cost_a(self, xA):
         # xA is np.array shape (5,1)
         # xA1 = xA[0]
-        xA, xB = x
         xA1, xA2, xA3, xA4, yA = xA
-        e1, e2, e3, e4 = e
-        cost = (cA * np.sum(xA[:4]) + e1 * xA1
+        e1, e2, e3, e4 = self.e
+        cost = (self.cA * np.sum(xA[:4]) + e1 * xA1
                 + e2 * (xA4 + yA)
                 + e3 * (xA3 - yA)
                 + e4 * yA)
         return cost
 
-    @staticmethod
-    def cost_a_der(x):
-        xA, xB = x
+    def cost_a_der(self, xA):
         xA1 = xA[0]
         xA2 = xA[1]
         xA3 = xA[2]
         xA4 = xA[3]
         yA = xA[4]
-        e1 = e[0]
-        e2 = e[1]
-        e3 = e[2]
-        e4 = e[3]
-        return np.array([cA + e1, cA, cA + e3, cA + e2, e2 -e3 + e4])
+        e1 = self.e[0]
+        e2 = self.e[1]
+        e3 = self.e[2]
+        e4 = self.e[3]
+        return np.array([self.cA + e1, self.cA, self.cA + e3, self.cA + e2, e2 -e3 + e4])
 
-    @staticmethod
-    def cost_b(x):
-        xA, xB = x
+    def cost_b(self, xB):
         xB1, xB2, xB3, xB4, yB = xB
-        e1, e2, e3, e4 = e
-        cost = (cB * np.sum(xB[:4]) + e1 * xB1
+        e1, e2, e3, e4 = self.e
+        cost = (self.cB * np.sum(xB[:4]) + e1 * xB1
                 + e2 * (xB1 + xB2 + xB3 - yB)
                 + e3 * (xB3 - yB)
                 + e4 * yB)
         return cost
 
-    @staticmethod
-    def cost_b_der(x):
-        xA, xB = x
+    def cost_b_der(self, xB):
         xB1 = xB[0]
         xB2 = xB[1]
         xB3 = xB[2]
         xB4 = xB[3]
         yB = xB[4]
+        e = self.e
         e1 = e[0]
         e2 = e[1]
         e3 = e[2]
         e4 = e[3]
+        cA = self.c[0]
+        cB = self.c[1]
         return np.array([cB +e1 + e2, cB + e2, cB + e2 + e3, cB, -e2 -e3 +e4])
 
-    @staticmethod
-    def price_vector(xA, xB, Ci, gamma):
-        C1, C2, C3, C4 = Ci
+    def price_vector(self, xA, xB):
+
+        Ci = self.Ci
+        C1 = Ci[0]
+        C2 = Ci[1]
+        C3 = Ci[2]
+        C4 = Ci[3]
+
         xB1, xB2, xB3, xB4, yB = xB
         xA1, xA2, xA3, xA4, yA = xA
-        return (Ci[:4] ** gamma) / ((xA[:4] + xB[:4]) ** gamma)
+        return (self.Ci[:4] ** self.gamma) / ((xA[:4] + xB[:4]) ** self.gamma)
 
-    def a_price_vector_der(xA, xB, Ci, gamma):
-        C1, C2, C3, C4 = Ci
+    def a_price_vector_der(self, xA, xB):
+        Ci = self.Ci
+        gamma = self.gamma
         C1 = Ci[0]
         C2 = Ci[1]
         C3 = Ci[2]
@@ -113,8 +114,10 @@ class B2dev:
         price_gradient = np.array([der1, der2, der3, der4])
         return price_gradient
 
-    def b_price_vector_der(xA, xB, Ci, gamma):
-        C1, C2, C3, C4 = Ci
+    def b_price_vector_der(self, x):
+        xA, xB = x
+        Ci = self.Ci
+        gamma = self.gamma
         C1 = Ci[0]
         C2 = Ci[1]
         C3 = Ci[2]
@@ -127,15 +130,14 @@ class B2dev:
 
         return np.array([der1, der2, der3, der4])
 
-
-    @staticmethod
-    def objective_function_player(x):
+    def objective_function_player_1(self, x):
         p1 = x[0]
         p2 = x[1]
-
-        p = B2dev.price_vector(p1, p2, B2dev.Ci, B2dev.gamma)
+        Ci = self.Ci
+        gamma = self.gamma
+        p = B2dev.price_vector(x)
         revenue = float(np.dot(p, p1[:4]))
-        return revenue - B2dev.cost_A(p1, B2dev.e, B2dev.cA)
+        return revenue - B2dev.cost_A(p1)
 
     @staticmethod
     def obj_func_1( xA, xB, Ci, gamma, cA, e):
@@ -143,8 +145,7 @@ class B2dev:
         r = float(np.dot(p, xA[:4]))
         return r - xA.cost_A(xA, e, cA)
 
-    @staticmethod
-    def obj_func_1_der(x):
+    def obj_func_1_der(self, x):
         xA, xB =x[0], x[1]
         xA1 = xA[0]
         xA2 = xA[1]
@@ -157,10 +158,10 @@ class B2dev:
         e3 = B2dev.e[2]
         e4 = B2dev.e[3]
 
-        C1 = Ci[0]
-        C2 = Ci[1]
-        C3 = Ci[2]
-        C4 = Ci[3]
+        C1 = self.Ci[0]
+        C2 = self.Ci[1]
+        C3 = self.Ci[2]
+        C4 = self.Ci[3]
 
         p = B2dev.price_vector(xA, xB, Ci, gamma)
         dp_A = B2dev.a_price_vector_der(xA, xB, Ci, gamma)
@@ -179,24 +180,26 @@ class B2dev:
         return r - xB.cost_B(xB, e, cB)
 
 
-    @staticmethod
-    def obj_func_2_der(x):
+    def obj_func_2_der(self, x):
+        xA, xB = x[0], x[1]
         xB1 = xB[0]
         xB2 = xB[1]
         xB3 = xB[2]
         xB4 = xB[3]
         yB = xB[4]
-
+        e= self.e
         e1 = e[0]
         e2 = e[1]
         e3 = e[2]
         e4 = e[3]
 
+        Ci = self.Ci
         C1 = Ci[0]
         C2 = Ci[1]
         C3 = Ci[2]
         C4 = Ci[3]
 
+        gamma = self.gamma
 
         p = B2dev.price_vector(xA, xB, Ci, gamma)
         dp_B = B2dev.b_price_vector_der(xA, xB, Ci, gamma)
