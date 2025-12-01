@@ -9,19 +9,21 @@ from typing import List, Tuple, Dict, Optional, Callable
 import numpy.typing as npt
 from gne_solver.misc import *
 # Variable DEFS
-e = (5, 2, 2, 2)
-k = (300, 300, 300, 300)
-Ci = (30000, 50000, 40000, 30000)
-c = (28, 26)
-cA = c[0]
-cB = c[1]
-gamma = 1/1.1
+
 # xA = np.array [xA1, xA2, xA3, xA4, yA
 # xB = np.array[xB1, xB2, xB3, xB4, yB]
 # x = [xA, xB] 2 arrays of 5 elements
 
 
 class B2dev:
+    e = (5, 2, 2, 2)
+    k = (300, 300, 300, 300)
+    Ci = (30000, 50000, 40000, 30000)
+    c = (28, 26)
+    cA = c[0]
+    cB = c[1]
+    gamma = 1 / 1.1
+
     @staticmethod
     def define_players():
         player_vector_sizes = [5, 5]
@@ -40,9 +42,10 @@ class B2dev:
         # return [A3U.obj_func_der_1, A3U.obj_func_der_2, A3U.obj_func_der_3]
 
     @staticmethod
-    def cost_a(xA, e, cA):
+    def cost_a(x):
         # xA is np.array shape (5,1)
         # xA1 = xA[0]
+        xA, xB = x
         xA1, xA2, xA3, xA4, yA = xA
         e1, e2, e3, e4 = e
         cost = (cA * np.sum(xA[:4]) + e1 * xA1
@@ -52,7 +55,8 @@ class B2dev:
         return cost
 
     @staticmethod
-    def cost_a_der(xA, e, cA):
+    def cost_a_der(x):
+        xA, xB = x
         xA1 = xA[0]
         xA2 = xA[1]
         xA3 = xA[2]
@@ -65,7 +69,8 @@ class B2dev:
         return np.array([cA + e1, cA, cA + e3, cA + e2, e2 -e3 + e4])
 
     @staticmethod
-    def cost_b(xB, e, cB):
+    def cost_b(x):
+        xA, xB = x
         xB1, xB2, xB3, xB4, yB = xB
         e1, e2, e3, e4 = e
         cost = (cB * np.sum(xB[:4]) + e1 * xB1
@@ -75,7 +80,8 @@ class B2dev:
         return cost
 
     @staticmethod
-    def cost_b_der(xB, e, cB):
+    def cost_b_der(x):
+        xA, xB = x
         xB1 = xB[0]
         xB2 = xB[1]
         xB3 = xB[2]
@@ -127,9 +133,9 @@ class B2dev:
         p1 = x[0]
         p2 = x[1]
 
-        p = B2dev.price_vector(p1, p2, Ci, gamma)
+        p = B2dev.price_vector(p1, p2, B2dev.Ci, B2dev.gamma)
         revenue = float(np.dot(p, p1[:4]))
-        return revenue - B2dev.cost_A(p1, e, cA)
+        return revenue - B2dev.cost_A(p1, B2dev.e, B2dev.cA)
 
     @staticmethod
     def obj_func_1( xA, xB, Ci, gamma, cA, e):
@@ -138,17 +144,18 @@ class B2dev:
         return r - xA.cost_A(xA, e, cA)
 
     @staticmethod
-    def obj_func_1_der(xA,xB, Ci, e, gamma, cA):
+    def obj_func_1_der(x):
+        xA, xB =x[0], x[1]
         xA1 = xA[0]
         xA2 = xA[1]
         xA3 = xA[2]
         xA4 = xA[3]
         yA = xA[4]
 
-        e1 = e[0]
-        e2 = e[1]
-        e3 = e[2]
-        e4 = e[3]
+        e1 = B2dev.e[0]
+        e2 = B2dev.e[1]
+        e3 = B2dev.e[2]
+        e4 = B2dev.e[3]
 
         C1 = Ci[0]
         C2 = Ci[1]
@@ -173,7 +180,7 @@ class B2dev:
 
 
     @staticmethod
-    def obj_func_2_der(xA, xB, Ci, e, gamma, cB):
+    def obj_func_2_der(x):
         xB1 = xB[0]
         xB2 = xB[1]
         xB3 = xB[2]
@@ -211,35 +218,39 @@ class B2dev:
 
     @staticmethod
     def constraint_der():
-        return [B2dev.constraints_a_der, B2dev.constraints_b_derivatives]
+        return [B2dev.g0_der, B2dev.g1_der, B2dev.g2_der, B2dev.g3_der, B2dev.g4_der,B2dev.g5_der(), B2dev.g6_der(), B2dev.g7_der(), B2dev.g8_der()]
 
 
-    @staticmethod
-    def constraint_a_derivatives():
-        g0_der = np.array([1, 0, 0, 0, 0])
-        g1_der = np.array([0, 0, 0, 1, 1])
-        g2_der = np.array([0, 0, 0, -1, -1])
-        g3_der = np.array([0, 0, 1, 0, -1])
-        g4_der = np.array([0, 0, 0, 0, 1])
-        g5_der = np.array([-1, -1, -1, -1, 0])
-        g6_der = np.array([0, 0, 0, 0, 0])
-        g7_der = np.array([0, 0, -1, 0, 1])
-        g8_der = np.array([0, 0, 0, 0, 0])
-        derivatives = np.array [g0_der, g1_der, g2_der, g3_der, g4_der, g5_der, g6_der, g7_der, g8_der]
-        return derivatives
 
     @staticmethod
-    def constraint_b_derivatives():
-        g0_der = np.array([1, 0, 0, 0, 0])
-        g1_der = np.array([-1, -1, -1, 0, 1])
-        g2_der = np.array([1, 1, 1, 0, -1])
-        g3_der = np.array([0, 0, 1, 0, -1])
-        g4_der = np.array([0, 0, 0, 0, 1])
-        g5_der = np.array([0, 0, 0, 0, 0])
-        g6_der = np.array([-1, -1, -1, -1, 0])
-        g7_der = np.array([0, 0, 0, 0, 0])
-        g8_der = np.array([0, 0, -1, 0, 1])
-        derivatives = np.array([g0_der, g1_der, g2_der, g3_der, g4_der, g5_der, g6_der, g7_der, g8_der])
+    def g0_der():
+        return np.array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0])
+    @staticmethod
+    def g1_der():
+        return np.array([0, 0, 0, 1, 1, -1, -1, -1, 0, 1])
+    @staticmethod
+    def g2_der():
+        return np.array([0, 0, 0, -1, -1, 1, 1, 1, 0, -1])
+    @staticmethod
+    def g3_der():
+        return np.array([0, 0, 1, 0, -1, 0, 0, 1, 0, -1])
+    @staticmethod
+    def g4_der():
+        return np.array([0, 0, 0, 0, 1, 0, 0, 0, 0, 1])
+    @staticmethod
+    def g5_der():
+        return np.array([-1, -1, -1, -1, -1,  0, 0, 0, 0, 0])
+    @staticmethod
+    def g6_der():
+        return np.array([0, 0, 0, 0, 0, -1, -1, -1, -1, -1])
+    @staticmethod
+    def g7_der():
+        return np.array([0, 0, -1, 0, 1, 0, 0, 0, 0, 0])
+    @staticmethod
+    def g8_der():
+        return np.array([0, 0, 0, 0, 0, 0, 0, -1, 0, 1])
+
+
 
     @staticmethod
     def g0(x: tuple[NDArray[np.float64], NDArray[np.float64]], k: tuple[float, float, float, float]) -> float:
