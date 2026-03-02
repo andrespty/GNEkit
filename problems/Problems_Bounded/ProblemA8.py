@@ -106,4 +106,4 @@ class A8:
 
     @staticmethod
     def g1_der(x1):
-        return np.array([[-1, -1, 0]]).reshape(-1, 1)
+        return np.array([[-1, -1, 1]]).reshape(-1, 1)

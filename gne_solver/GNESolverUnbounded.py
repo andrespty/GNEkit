@@ -168,10 +168,13 @@ class GNEP_Solver_Unbounded:
         """
         if isDual:
             # dual_eng = np.square((actions ** 2 / (1 + actions ** 2)) * (gradient ** 2 / (1 + gradient ** 2)) + np.exp(-actions ** 2) * (np.maximum(0, -gradient) ** 2 / (1 + np.maximum(0, -gradient) ** 2)))
-            dual_eng = np.square( np.sqrt(actions**2 + gradient**2) - (actions + gradient) )
-            return dual_eng
+            # dual_eng = np.square( np.sqrt(actions**2 + gradient**2) - (actions + gradient) )
+            eps = 1e-5
+            fb = np.sqrt(actions ** 2 + gradient ** 2 + eps**2) - (actions + gradient)
+            return fb**2
         else:
-            return np.square(gradient)
+            mu = 1e-3
+            return (mu**2) * (np.sqrt(1 + (gradient **2)/(mu ** 2) ) - 1)
 
     def primal_energy_function(self, actions: Vector, dual_actions: Vector) -> Vector:
         """
@@ -319,7 +322,7 @@ class GNEP_Solver_Unbounded:
         >>> print("Optimal actions and duals:", result.x)
         >>> print("Computation time:", elapsed_time)
        """
-        minimizer_kwargs = dict(method="trust-constr")
+        minimizer_kwargs = dict(method="SLSQP")
         start = timeit.default_timer()
         result = basinhopping(
             self.wrapper,

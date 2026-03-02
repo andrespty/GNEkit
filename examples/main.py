@@ -1,13 +1,12 @@
-
 from gne_solver import *
 from gne_solver.NashCheck import *
 from problems import *
 
 if __name__ == '__main__':
     # Testing: Change the next line to test a problem
-    problem_n = B1U
+    problem_n = A4U
     bounded = False
-    single_obj_vector = True
+    single_obj_vector = False
     # Github
 
     if bounded:
@@ -26,15 +25,18 @@ if __name__ == '__main__':
             bounds_training,
             player_vector_sizes,
         )
+        print(player_vector_sizes)
 
         # Set Initial Point
         primal, dual = get_initial_point(
             player_vector_sizes,
             problem["constraints"],
-            primal_ip=0.01,
-            dual_ip=10
+            primal_ip=1,
+            dual_ip=1
         )
+        print("Initial Points")
         print(flatten_variables(primal, dual))
+        print(bounds_training)
         # # Solve Problem
         sol = solver1.solve_game(flatten_variables(primal, dual),bounds=bounds_training )
         print('\n\n')
@@ -60,7 +62,7 @@ if __name__ == '__main__':
             player_vector_sizes,
         )
         # Set Initial Point
-        primal, dual = get_initial_point(player_vector_sizes, problem['constraints'], primal_ip=0.01, dual_ip=1)
+        primal, dual = get_initial_point(player_vector_sizes, problem['constraints'], primal_ip=1, dual_ip=1)
         print(flatten_variables(primal, dual))
         # # Solve Problem
         ip1 = flatten_variables(primal, dual)

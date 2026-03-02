@@ -45,7 +45,7 @@ class GNEP_Solver_Bounded:
         self.constraint_derivatives =           derivative_constraints           # list of functions
         self.player_objective_function =        np.array(player_obj_func)        # which obj function is used for each player
         self.player_constraints =               one_hot_encoding(player_constraints, player_vector_sizes, len(derivative_constraints))     # which constraints are used for each player
-        self.action_sizes =                     np.array(player_vector_sizes)    # size of each player's action vector
+        self.action_sizes =                     player_vector_sizes    # size of each player's action vector
         self.N =                                len(player_obj_func)
         self.bounds =                           np.array(bounds)
 
@@ -74,6 +74,9 @@ class GNEP_Solver_Bounded:
         dual_players_energy = self.calculate_energy_dual(actions, dual_actions)
         return np.sum(primal_players_energy) + np.sum(dual_players_energy)
 
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
     def energy_handler(self, gradient: npt.NDArray[np.float64], actions: npt.NDArray[np.float64], isDual=False):
         """
         Input:
@@ -84,6 +87,8 @@ class GNEP_Solver_Bounded:
         N_d = len(self.constraints)
         if isDual:
             bounds = self.bounds[-N_d:]
+            actions = np.tile(actions, (N_d, 1))
+            gradient = np.tile(gradient, (N_d, 1))
         else:
             if N_d == 0:
                 bounds = self.bounds
@@ -93,10 +98,18 @@ class GNEP_Solver_Bounded:
         ub = bounds[:, 1].reshape(-1, 1)
         # print(bounds)
         # print(gradient)
+        # Original
         engval = np.where(
             gradient <= 0,
             (ub - actions) * np.log(1 - gradient),
             (actions - lb) * np.log(1 + gradient)
+        )
+        # Experiments
+        ## Better than original
+        engval = np.where(
+            gradient <= 0,
+            np.abs(ub - actions) * (gradient**2)/(1-gradient),
+            np.abs(actions - lb) * (gradient**2)/(1 + gradient)
         )
         return engval
 
@@ -110,7 +123,6 @@ class GNEP_Solver_Bounded:
         """
         gradient = self.calculate_gradient(actions, dual_actions)
         return self.energy_handler(gradient, actions)
-
 
     # Gradient of primal player
     def calculate_gradient(self, actions: npt.NDArray[np.float64], dual_actions: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
@@ -145,8 +157,6 @@ class GNEP_Solver_Bounded:
         for c_idx, p_vector in enumerate(self.player_constraints.T):
             result += p_vector.reshape(-1,1) * dual_actions[c_idx] * self.constraint_derivatives[c_idx](actions)
         return result
-
-
     # Gradient of dual player
     def calculate_energy_dual(self, actions: npt.NDArray[np.float64], dual_actions: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
         """
@@ -166,7 +176,7 @@ class GNEP_Solver_Bounded:
             grad_dual.append(g.flatten())
         g_dual = np.concatenate(grad_dual).reshape(-1, 1)
         return g_dual
-    @classmethod
+
     def solve_game(self, initial_guess: List[float],bounds: List[Tuple[float, float]], disp=True):
         """
         Input:
@@ -216,22 +226,3 @@ class GNEP_Solver_Bounded:
                 calculated_obj = self.calculate_main_objective(construct_vectors(computed_actions, self.action_sizes))
                 paper_obj = self.calculate_main_objective(construct_vectors(paper, self.action_sizes))
                 print('Difference: ', sum(deconstruct_vectors(calculated_obj)) - sum(deconstruct_vectors(paper_obj)))
-
-    # def nash_check(self, epsilon=1e-3):
-    #     if not self.result:
-    #         print('No solution found')
-    #         return
-    #     print("Checking Nash Equilibrium")
-    #     computed_NE = np.array(self.result.x[:sum(self.action_sizes)]).reshape(-1,1)
-    #     check_nash_equillibrium(
-    #       computed_NE,
-    #       self.action_sizes,
-    #       self.player_objective_function,
-    #       self.objective_functions,
-    #       self.constraints,
-    #       self.player_constraints,
-    #       self.bounds,
-    #       paper_res=self.result.x[:sum(self.action_sizes)] if self.result.x is not None else None
-    #     )
-    #     print('Check finished')
-    #     return

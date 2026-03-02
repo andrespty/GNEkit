@@ -86,7 +86,7 @@ class A9aU:
         interference = total_hx - signal  # shape: (N, K, 1)
 
         # Compute constraint
-        constraint = np.log2(1 + (signal / (sigma ** 2 + interference))) - L  # shape: (N, K, 1)
+        constraint = L - np.log2(1 + (signal / (sigma ** 2 + interference)))   # shape: (N, K, 1)
 
         # Sum over K dimensions per player
         return np.sum(constraint, axis=1).reshape(-1,1)  # shape: (N,)

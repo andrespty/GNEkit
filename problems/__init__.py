@@ -4,11 +4,16 @@ Generalized Nash Equilibrium problems Solver
 
 
 """
+from .Problems_Bounded.ProblemA1 import A1
+from .Problems_Bounded.ProblemA2 import A2
+from .Problems_Bounded.ProblemA3 import A3
+from .Problems_Bounded.ProblemA4 import A4
+from .Problems_Bounded.ProblemA5 import A5
 from .Problems_Bounded.ProblemA6 import A6
+from .Problems_Bounded.ProblemA7 import A7
+from .Problems_Bounded.ProblemA8 import A8
 from .Problems_Unbounded.ProblemA12U import A12U
 from .Problems_Unbounded.ProblemA13U import A13U
-
-
 from .Problems_Unbounded.ProblemA1U import A1U
 from .Problems_Unbounded.ProblemA2U import A2U
 from .Problems_Unbounded.ProblemA3U import A3U
@@ -32,7 +37,6 @@ from .Problems_Unbounded.ProblemA15U import A15U
 from .Problems_Unbounded.ProblemA16U import A16U
 from .Problems_Unbounded.ProblemA17U import A17U
 from .Problems_Unbounded.ProblemA18U import A18U
-from .Problems_Bounded import *
 from .Problems_Unbounded.ProblemB1_Harker import B1U
 
 __all__ = [
@@ -59,7 +63,16 @@ __all__ = [
     'A16U',
     'A17U',
     'A18U',
-    'B1U'
+    'B1U',
+    'A4',
+    'A1',
+    'A2',
+    'A3',
+    'A4',
+    'A5',
+    'A6',
+    'A7',
+    'A8',
 ]
 
 
