@@ -72,6 +72,8 @@ class GNEP_Solver_Bounded:
         """
         primal_players_energy = self.primal_energy_function(actions, dual_actions)
         dual_players_energy = self.calculate_energy_dual(actions, dual_actions)
+        # print(primal_players_energy)
+        # print(dual_players_energy)
         return np.sum(primal_players_energy) + np.sum(dual_players_energy)
 
     def sigmoid(self, x):
@@ -151,7 +153,6 @@ class GNEP_Solver_Bounded:
                     size = end_idx - start_idx
                     result[start_idx:end_idx] = o#[offset:offset + size]
                     offset += size
-        # print(result)
         # Add constraints
         # constraints should be vectors with same size of result
         for c_idx, p_vector in enumerate(self.player_constraints.T):

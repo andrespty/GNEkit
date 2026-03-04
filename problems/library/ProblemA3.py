@@ -1,15 +1,7 @@
-import numpy as np
-from scipy.optimize import Bounds
-from scipy.optimize import minimize
-from scipy.optimize import LinearConstraint
-from scipy.optimize import basinhopping
-import timeit
-from typing import List, Tuple, Dict, Optional, Callable
-import numpy.typing as npt
 import jax.numpy as jnp
 from gnep_solver import Vector, VectorList
 
-class A3U:
+class A3:
     # --- Matrix Constants
     A1 = jnp.array([[20, 5, 3], [5, 5, -5], [3, -5, 15]])
     A2 = jnp.array([[11, -1], [-1, 9]])
@@ -40,11 +32,11 @@ class A3U:
 
     @staticmethod
     def objective_functions():
-        return [A3U.obj_func_1, A3U.obj_func_2, A3U.obj_func_3]
+        return [A3.obj_func_1, A3.obj_func_2, A3.obj_func_3]
 
     @staticmethod
     def constraints():
-        return [A3U.g0, A3U.g1, A3U.g2, A3U.g3]
+        return [A3.g0, A3.g1, A3.g2, A3.g3]
 
     # Define Functions below
     @staticmethod
@@ -57,19 +49,19 @@ class A3U:
         x1 = x[0].reshape(-1, 1)
         x_n1 = jnp.concatenate([x[1].ravel(), x[2].ravel()]).reshape(-1, 1)
         # Using jnp.reshape to ensure we return a 0-dim array (scalar)
-        return jnp.squeeze(A3U.obj_func(x1, x_n1, A3U.A1, A3U.B1, A3U.b1))
+        return jnp.squeeze(A3.obj_func(x1, x_n1, A3.A1, A3.B1, A3.b1))
 
     @staticmethod
     def obj_func_2(x: VectorList) -> jnp.ndarray:
         x2 = x[1].reshape(-1, 1)
         x_n2 = jnp.concatenate([x[0].ravel(), x[2].ravel()]).reshape(-1, 1)
-        return jnp.squeeze(A3U.obj_func(x2, x_n2, A3U.A2, A3U.B2, A3U.b2))
+        return jnp.squeeze(A3.obj_func(x2, x_n2, A3.A2, A3.B2, A3.b2))
 
     @staticmethod
     def obj_func_3(x: VectorList) -> jnp.ndarray:
         x3 = x[2].reshape(-1, 1)
         x_n3 = jnp.concatenate([x[0].ravel(), x[1].ravel()]).reshape(-1, 1)
-        return jnp.squeeze(A3U.obj_func(x3, x_n3, A3U.A3, A3U.B3, A3U.b3))
+        return jnp.squeeze(A3.obj_func(x3, x_n3, A3.A3, A3.B3, A3.b3))
 
     # --- JAX-Native Constraints ---
     @staticmethod

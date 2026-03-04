@@ -40,3 +40,6 @@ urllib3==2.5.0
 watchdog==6.0.0
 wcmatch==10.1
 zipp==3.23.0
+
+jax~=0.4.30
+matplotlib~=3.9.4

@@ -157,7 +157,7 @@ class A3:
     @staticmethod
     def g2(x):
         x1, x2, x3 = x
-        return (x2[0] + x2[1] - x1[1] - x1[2] + x3[0] - 7)[0]
+        return (x2[0] - x2[1] - x1[1] - x1[2] + x3[0] - 7)[0]
 
     @staticmethod
     def g3(x):
@@ -177,13 +177,13 @@ class A3:
     # partial g1 / partial x2 [1,0]
     # partial g1 / partial x3 [0,1]
     def g1_der(x1):
-        return np.array([[1, 1, -1, 1, 0, 0, 1]]).reshape(-1, 1)
+        return np.array([[1, 1, -1, -1, 0, 0, 1]]).reshape(-1, 1)
         # return np.array([[1, 1, -1]]).reshape(-1, 1)
 
     @staticmethod
     # partial g2 / partial x2
     def g2_der(x1):
-        return np.array([[0, -1, -1, 1, 1, 1, 0]]).reshape(-1, 1)
+        return np.array([[0, -1, -1, 1, -1, 1, 0]]).reshape(-1, 1)
         # return np.array([[1, 1]]).reshape(-1, 1)
 
     @staticmethod

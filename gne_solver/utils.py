@@ -107,7 +107,6 @@ def one_hot_encoding(funcs_idx: List[Union[int, PlayerConstraint]], sizes: List[
 
     for var_idx, funcs in enumerate(funcs_idx):
         # Treat [None] as "uses no functions"
-        print(funcs)
         if funcs is None or funcs == [None]:
             continue
         start = offsets[var_idx]

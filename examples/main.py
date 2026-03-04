@@ -4,8 +4,8 @@ from problems import *
 
 if __name__ == '__main__':
     # Testing: Change the next line to test a problem
-    problem_n = A4U
-    bounded = False
+    problem_n = A3
+    bounded = True
     single_obj_vector = False
     # Github
 
@@ -38,11 +38,12 @@ if __name__ == '__main__':
         print(flatten_variables(primal, dual))
         print(bounds_training)
         # # Solve Problem
-        sol = solver1.solve_game(flatten_variables(primal, dual),bounds=bounds_training )
+        # sol = solver1.wrapper(flatten_variables(primal, dual),bounds=bounds_training )
+        sol = solver1.wrapper(flatten_variables(primal, dual))
         print('\n\n')
         # solver1.summary(problem.paper_solution()[0])
-        solver1.summary()
-        # print(sol)
+        # solver1.summary()
+        print(sol)
         print('\n\n')
 
         # solver1.nash_check()
