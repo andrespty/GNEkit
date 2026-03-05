@@ -4,7 +4,7 @@ from typing import List, Optional
 import jax.numpy as jnp
 from jax import Array
 jax.config.update("jax_enable_x64", True)
-from .utils import construct_vectors
+from .utils import construct_vectors, one_hot_encoding
 from .schema import Vector
 from functools import partial
 
@@ -14,8 +14,8 @@ class EnergyMethod:
                  obj_derivatives,
                  constraints,
                  constraint_derivatives,
-                 player_obj_idx,
-                 player_constraints,
+                 player_obj_idx: List[int],
+                 player_const_idx: List[List[int]],
                  bounds: List[tuple[float, float]]
                  ):
         self.action_sizes = action_sizes
@@ -23,8 +23,12 @@ class EnergyMethod:
         self.constraints = constraints
         self.constraint_derivatives = constraint_derivatives
 
-        self.player_obj_idx = [int(x) for x in player_obj_idx]
-        self.player_const_idx_matrix = player_constraints
+        self.player_obj_idx = player_obj_idx
+        self.player_const_idx_matrix = one_hot_encoding(
+            player_const_idx,
+            self.action_sizes,
+            len(constraints)
+        )
 
         # Pre calculations
         action_splits = jnp.cumsum(jnp.array([0] + action_sizes))

@@ -9,7 +9,7 @@ Generalized Nash Equilibrium problems Solver
 # from .misc import flatten_variables
 from .schema import *
 from .EnergyMethod import EnergyMethod
-from .Game import GeneralizedGame
+from .GeneralizedGame import GeneralizedGame
 from .Player import Player
 from .utils import *
 
