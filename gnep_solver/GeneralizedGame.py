@@ -103,6 +103,83 @@ class GeneralizedGame:
                 f"Got shape {out_shape.shape}"
             )
 
+    def check_kkt(self, actions: jnp.ndarray, lambdas: jnp.ndarray, tol: float = 1e-6):
+        """
+        Computes KKT residuals where 'lambdas' is a global array of multipliers.
+        Each player.constraints contains the indices mapping into 'lambdas'.
+        """
+        x_flat = jnp.array(actions)
+        x_structured = construct_vectors(x_flat, self.action_sizes)
+
+        kkt_report = {}
+
+        for i, player in enumerate(self.players):
+            # --- 1. Objective Gradient ---
+            # Grad of f_i w.r.t player i's actions (x_i)
+            grad_fi = self.obj_derivatives[player.f_index](x_structured)[i]
+
+            # --- 2. Lagrangian Stationarity ---
+            # We sum: grad_fi + sum(lambda_j * grad_gj) for all j in player.constraints
+            l_grad_sum = jnp.zeros_like(grad_fi)
+            g_vals = []
+            p_lambdas = []
+
+            for c_idx in player.constraints:
+                if c_idx is not None:
+                    # Get the specific multiplier for this constraint
+                    l_val = lambdas[c_idx]
+                    p_lambdas.append(l_val)
+
+                    # Get the constraint value
+                    g_val = self.const[c_idx](x_structured)
+                    g_vals.append(g_val)
+
+                    # Get the gradient of constraint j w.r.t player i's actions
+                    grad_gj = self.const_derivatives[c_idx](x_structured)[i]
+                    l_grad_sum += l_val * grad_gj
+
+            # Convert to arrays for vectorized residual math
+            g_vals = jnp.array(g_vals)
+            p_lambdas = jnp.array(p_lambdas)
+
+            # Residuals
+            # Stationarity: || grad_L_i ||
+            stat_res = jnp.linalg.norm(grad_fi + l_grad_sum)
+
+            # Primal Feasibility: max(0, g_j)
+            # If 0, constraint is satisfied
+            primal_res = jnp.max(jnp.maximum(0, g_vals)) if g_vals.size > 0 else 0.0
+
+            # Dual Feasibility: max(0, -lambda_j)
+            # If 0, constraint is active, lambda is compensating
+            dual_res = jnp.max(jnp.maximum(0, -p_lambdas)) if p_lambdas.size > 0 else 0.0
+
+            # Complementary Slackness: || lambda_j * g_j ||
+            # Must be 0 for KKT to be satisfied
+            slack_res = jnp.linalg.norm(p_lambdas * g_vals) if g_vals.size > 0 else 0.0
+
+            kkt_report[player.name] = {
+                "stationarity": float(stat_res),
+                "primal_feas": float(primal_res),
+                "dual_feas": float(dual_res),
+                "comp_slack": float(slack_res),
+                "is_kkt": all(r < tol for r in [stat_res, primal_res, dual_res, slack_res])
+            }
+
+        self._print_kkt_report(kkt_report)
+        return kkt_report
+
+    @staticmethod
+    def _print_kkt_report(report):
+        print(f"\n{'=' * 20} KKT VALIDATION {'=' * 20}")
+        for name, metrics in report.items():
+            print(f"PLAYER: {name}")
+            print(f"  Stationarity: {metrics['stationarity']:.2e}")
+            print(f"  Primal Feasibility:  {metrics['primal_feas']:.2e}")
+            print(f"  Dual Feasibility:   {metrics['dual_feas']:.2e}")
+            print(f"  Complementary Slackness:   {metrics['comp_slack']:.2e}")
+        print("=" * 56)
+
     def summary(self):
         print("=" * 60)
         print("GENERALIZED GAME SUMMARY")
