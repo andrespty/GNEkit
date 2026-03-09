@@ -1,6 +1,6 @@
 import jax
 import numpy as np
-from typing import List, Optional
+from typing import List, Optional, Callable
 import jax.numpy as jnp
 from jax import Array
 jax.config.update("jax_enable_x64", True)
@@ -13,7 +13,7 @@ class EnergyMethod:
                  action_sizes: List[int],
                  obj_derivatives,
                  constraints,
-                 constraint_derivatives,
+                 constraint_derivatives: List[Callable],
                  player_obj_idx: List[int],
                  player_const_idx: List[List[int]],
                  bounds: List[tuple[float, float]]
@@ -47,6 +47,8 @@ class EnergyMethod:
         self.lb_vector = jnp.concatenate(lb_list).reshape(-1, 1)
         self.ub_vector = jnp.concatenate(ub_list).reshape(-1, 1)
 
+        self._grad_func_jit = jax.jit(jax.grad(self._jit_min_func))
+
     @partial(jax.jit, static_argnums=(0,))
     def _jit_min_func(self, x):
         # Move ALL the math from your current min_func into here
@@ -74,6 +76,9 @@ class EnergyMethod:
         """
         x_jax = jnp.asarray(x)
         return np.float32(self._jit_min_func(x_jax))
+
+    def grad_min_func(self, x: jnp.ndarray) -> jnp.ndarray:
+        return np.array(self._grad_func_jit(x))
 
     @staticmethod
     def energy_handler(gradient: jnp.ndarray,
