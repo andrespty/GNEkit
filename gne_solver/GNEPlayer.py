@@ -1,11 +1,11 @@
 from typing import List, Optional, Tuple
-import numpy as np
+
 from dataclasses import dataclass, field
 from typing import Optional, List, Tuple
-import jax.numpy as jnp
+import numpy as np
 
 @dataclass(frozen=True)
-class Player:
+class GNEPlayer:
     name: Optional[str]
     size: int
     f_index: int
@@ -70,26 +70,20 @@ class Player:
         if lower >= upper:
             raise ValueError(f"Lower bound {lower} must be less than upper bound {upper}.")
 
-    def get_full_bounds(self):
+    def get_full_bounds(self) -> Tuple[np.ndarray, np.ndarray]:
         """Returns (lower_bounds, upper_bounds) as arrays of length self.size."""
         if self.bounds is None:
             # Default to large values if no bounds provided
-            lb_arr = np.full((self.size,), -np.inf)
-            ub_arr = np.full((self.size,), np.inf)
+            return np.full((self.size,), -np.inf), np.full((self.size,), np.inf)
 
-        elif isinstance(self.bounds, tuple):
+        if isinstance(self.bounds, tuple):
             lb, ub = self.bounds
-            # Ensure lb/ub are scalars or compatible with np.full
-            lb_arr = np.full((self.size,), float(lb))
-            ub_arr = np.full((self.size,), float(ub))
+            return np.full((self.size,), lb), np.full((self.size,), ub)
 
-        else:
-            # Case where self.bounds is already an array/list of bounds
-            # Ensure it is a NumPy array to avoid JAX leakage
-            bounds_np = np.asarray(self.bounds)
-            lb_arr, ub_arr = bounds_np[:, 0], bounds_np[:, 1]
-
-        return list(zip(lb_arr.tolist(), ub_arr.tolist()))
+        # List case
+        lbs = np.array([b[0] for b in self.bounds]).reshape(-1, )
+        ubs = np.array([b[1] for b in self.bounds]).reshape(-1, )
+        return lbs, ubs
 
     # -------------------
     # Helper constructor
@@ -118,12 +112,12 @@ class Player:
             in zip(names, sizes, objectives, constraints, bounds)
         ]
 
-def players_to_lists(players: List[Player]):
+def players_to_lists(players: List[GNEPlayer]):
     return {
         "sizes": [p.size for p in players],
         "objectives": [p.f_index for p in players],
-        "constraints": [p.constraints for p in players], # nested list of int
-        "bounds": [bound for p in players for bound in p.get_full_bounds()], # list of tuples
+        "constraints": [p.constraints for p in players],
+        "bounds": [p.get_full_bounds() for p in players],
         "names": [p.name for p in players],
     }
 

@@ -71,7 +71,7 @@ class ProblemA9a(BaseProblem):
 
     def define_players(self):
         player_vector_sizes = [self.K for _ in range(self.N)]
-        player_objective_functions = [0 for _ in range(self.N)]  # change to all 0s
+        player_objective_functions = [i for i in range(self.N)]  # change to all 0s
         player_constraints = [[i] for i in range(self.N)]
         bounds = [(0, 100) for _ in range(self.N)]
         return Player.batch_create(
@@ -82,11 +82,11 @@ class ProblemA9a(BaseProblem):
         )
 
     def objectives(self):
-        def obj_func(x):
-            x = jnp.stack(x)
-            return jnp.sum(x)
+        def obj_func(x, i):
+            x1, x2, x3, x4, x5, x6, x7 = x
+            return jnp.sum(x[i])
 
-        return [obj_func]
+        return [lambda x: obj_func(x, i) for i in range(self.N)]
 
     def constraints(self):
         def get_h_v(vu):

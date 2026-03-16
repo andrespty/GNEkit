@@ -35,7 +35,7 @@ class ProblemA1_Manual(ManualBaseProblem):
         def obj_func(x):
             actions = jnp.concatenate(x)
             S_total = jnp.sum(actions)
-            return jnp.reshape((-actions / (S_total + 1e-9)) * (1 - S_total), (-1,))
+            return jnp.reshape((-actions / S_total) * (1 - S_total), (-1,))
 
         return [lambda x, i=i: obj_func(x)[i] for i in range(len(self.players))]
 

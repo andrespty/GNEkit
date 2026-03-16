@@ -8,7 +8,7 @@ Generalized Nash Equilibrium problems Solver
 # from .utils import construct_vectors
 # from .misc import flatten_variables
 from .schema import *
-from .EnergyMethod import EnergyMethod
+from gnep_solver.algorithms.EnergyMethod import EnergyMethod
 from .GeneralizedGame import GeneralizedGame
 from .Player import Player
 from .utils import *

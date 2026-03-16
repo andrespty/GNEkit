@@ -27,7 +27,8 @@ class ProblemA13(BaseProblem):
             d1 = 3
             d2 = 0.01
             obj = x * (c1 + c2 * x - d1 + d2 * S)
-            return obj
+            return jnp.reshape(obj, ())
+
         def obj_func_1(x: VectorList) -> jnp.array:
             x1 = x[0]
             x2 = x[1]
@@ -62,11 +63,11 @@ class ProblemA13(BaseProblem):
             x1 = x[0]
             x2 = x[1]
             x3 = x[2]
-            return 3.25 * x1 + 1.25 * x2 + 4.125 * x3 - 100
+            return jnp.reshape(3.25 * x1 + 1.25 * x2 + 4.125 * x3 - 100, ())
 
         def g1(x: VectorList):
             x1 = x[0]
             x2 = x[1]
             x3 = x[2]
-            return 2.2915 * x1 + 1.5625 * x2 + 2.814 * x3 - 100
+            return jnp.reshape(2.2915 * x1 + 1.5625 * x2 + 2.814 * x3 - 100, ())
         return [g0, g1]

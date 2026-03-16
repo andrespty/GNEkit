@@ -1,19 +1,22 @@
 from abc import ABC, abstractmethod
-import jax.numpy as jnp
-from .schema import *
-from typing import List, Optional, Type
-from .Player import Player
-from .GeneralizedGame import GeneralizedGame
+import numpy as np
+from typing import List
+from .GNEPlayer import GNEPlayer
+from .GNESolver import GNESolver
 from .validation import validate_problem_functions
-from .algorithms.BaseAlgorithm import BaseAlgorithm
-from gnep_solver import *
 
-class BaseProblem(ABC):
-    def __init__(self, players: List[Player] = None):
+class GNEProblem(ABC):
+    def __init__(self, players: List[GNEPlayer] = None):
         self.players = players if players is not None else self.define_players()
         self.primal_ip = None
         self.dual_ip = None
-        self.algorithm = None
+        self.engine = GNESolver(
+            self.objectives(),
+            self.objectives_der(),
+            self.constraints(),
+            self.constraints_der(),
+            self.players
+        )
 
     @property
     def players(self):
@@ -32,7 +35,7 @@ class BaseProblem(ABC):
         if self.players is None:
             raise ValueError("Cannot set primal_ip before players are defined.")
 
-        value_arr = jnp.asarray(value)
+        value_arr = np.asarray(value)
         total_vars = sum(p.size for p in self.players)
 
         if value_arr.size != total_vars:
@@ -53,7 +56,7 @@ class BaseProblem(ABC):
             self._dual_ip = None
             return
 
-        value_arr = jnp.asarray(value)
+        value_arr = np.asarray(value)
         num_constraints = len(self.constraints())
 
         if value_arr.size != num_constraints:
@@ -77,7 +80,7 @@ class BaseProblem(ABC):
 
         # 3. Validate every item in the list
         for i, p in enumerate(value):
-            if not isinstance(p, Player):
+            if not isinstance(p, GNEPlayer):
                 raise TypeError(
                     f"Item at index {i} is a {type(p).__name__}, "
                     f"but it must be a Player object."
@@ -97,7 +100,19 @@ class BaseProblem(ABC):
         pass
 
     @abstractmethod
-    def define_players(self) -> List[Player]:
+    @validate_problem_functions(derivative=True)
+    def objectives_der(self):
+        """Return a list of the objectives of the problem."""
+        pass
+
+    @abstractmethod
+    @validate_problem_functions(derivative=True)
+    def constraints_der(self):
+        """Return a list of the constraints of the problem."""
+        pass
+
+    @abstractmethod
+    def define_players(self) -> List[GNEPlayer]:
         """
         Override this to define players inside the subclass.
         Return None or an empty list if players must be added externally.
@@ -128,15 +143,27 @@ class BaseProblem(ABC):
 
         return self.primal_ip, self.dual_ip
 
-    def solve(self, Algorithm:Type[BaseAlgorithm] = None):
+    def summary(self):
+        """Return a string summary of the problem."""
+        return self.engine.summary()
+
+    def check_gradient(self, actions: np.ndarray) -> List[np.ndarray]:
+        return self.engine.grad_val(actions)
+
+    def check_energy(self, actions: np.ndarray) -> float:
+        return self.engine.energy_val(actions)
+
+    def check_kkt(self, primal, dual, tol=1e-6):
+        return self.engine.check_kkt(np.array(primal), np.array(dual), tol)
+
+    def solve(self):
         """Solve the problem."""
-        if Algorithm is None:
-            algorithm = EnergyMethod(self.objectives(), self.constraints(), self.define_players())
-        else:
-            algorithm = Algorithm(self.objectives(), self.constraints(), self.players)
-        ip = jnp.array(self.primal_ip + self.dual_ip)
-        res, time = algorithm.solve(ip)
-        primal_vars = sum(algorithm.action_sizes)
+        ip = np.array(self.primal_ip + self.dual_ip)
+        res, time = self.engine.solve_game(ip)
+        primal_vars = sum(self.engine.action_sizes)
         primal_x = res.x[:primal_vars]
         dual_x = res.x[primal_vars:]
         return primal_x, dual_x
+
+    def get_solver(self):
+        return self.engine

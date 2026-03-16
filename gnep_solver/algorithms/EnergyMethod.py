@@ -4,59 +4,15 @@ from typing import List, Optional, Callable
 import jax.numpy as jnp
 from jax import Array
 jax.config.update("jax_enable_x64", True)
-from .utils import construct_vectors, one_hot_encoding
-from .schema import Vector
+from gnep_solver.utils import construct_vectors, one_hot_encoding
+from gnep_solver.schema import Vector
 from functools import partial
+from .BaseAlgorithm import BaseAlgorithm
 
-class EnergyMethod:
-    def __init__(self,
-                 action_sizes: List[int],
-                 obj_derivatives,
-                 constraints,
-                 constraint_derivatives: List[Callable],
-                 player_obj_idx: List[int],
-                 player_const_idx: List[List[int]],
-                 bounds: List[tuple[float, float]]
-                 ):
-        self.action_sizes = action_sizes
-        self.obj_derivatives = obj_derivatives
-        self.constraints = constraints
-        self.constraint_derivatives = constraint_derivatives
-
-        self.player_obj_idx = player_obj_idx
-        self.player_const_idx_matrix = one_hot_encoding(
-            player_const_idx,
-            self.action_sizes,
-            len(constraints)
-        )
-
-        # Pre calculations
-        action_splits = jnp.cumsum(jnp.array([0] + action_sizes))
-        self.action_splits = [int(x) for x in action_splits]
-        self.total_actions = sum(action_sizes)
-
-        # Bounds
-        lb_list = []
-        ub_list = []
-        for i, (lb, ub) in enumerate(bounds):
-            # Repeat the bounds for each decision variable the player owns
-            lb_list.append(lb)
-            ub_list.append(ub)
-
-        # Store these as JAX arrays for the energy_handler to use
-        self.lb_vector = jnp.concatenate(lb_list).reshape(-1, 1)
-        self.ub_vector = jnp.concatenate(ub_list).reshape(-1, 1)
-
+class EnergyMethod(BaseAlgorithm):
+    def __init__(self, obj, const, players):
+        super().__init__(obj, const, players)
         self._grad_func_jit = jax.jit(jax.grad(self._jit_min_func))
-
-    @partial(jax.jit, static_argnums=(0,))
-    def _jit_min_func(self, x):
-        actions = x[:self.total_actions].reshape(-1, 1)
-        dual_actions = x[self.total_actions:].reshape(-1, 1)
-
-        primal = self.primal_energy_function(actions, dual_actions)
-        dual = self.dual_energy_function(actions, dual_actions)
-        return jnp.sum(primal) + jnp.sum(dual)
 
     def min_func(self, x: List[float]) -> float:
         """
@@ -74,6 +30,15 @@ class EnergyMethod:
         """
         x_jax = jnp.asarray(x)
         return np.float64(self._jit_min_func(x_jax))
+
+    @partial(jax.jit, static_argnums=(0,))
+    def _jit_min_func(self, x):
+        actions = x[:self.total_actions].reshape(-1, 1)
+        dual_actions = x[self.total_actions:].reshape(-1, 1)
+
+        primal = self.lagrange_gradient(actions, dual_actions)
+        dual = self.gradient_dual(actions, dual_actions)
+        return jnp.sum(primal) + jnp.sum(dual)
 
     def grad_min_func(self, x: jnp.ndarray):
         return np.array(self._grad_func_jit(x))
@@ -94,45 +59,6 @@ class EnergyMethod:
             jnp.abs(ub - actions) * (gradient ** 2) / denom_neg,
             jnp.abs(actions - lb) * (gradient ** 2) / denom_pos
         )
-
-
-    def primal_energy_function(self, actions: Vector, dual_actions: Vector):
-        """
-        Compute the energy contribution of primal players.
-
-        Parameters
-        ----------
-        actions : vector of shape (sum(action_sizes), 1)
-            Player action vectors.
-        dual_actions : vector of shape (N_d, 1)
-            Dual variables.
-
-        Returns
-        -------
-        vector of shape (sum(action_sizes), 1)
-            Energy contribution per primal player action.
-        """
-        gradient = self.lagrange_gradient(actions, dual_actions)
-        return self.energy_handler(gradient, actions, self.lb_vector, self.ub_vector)
-
-    def dual_energy_function(self, actions: Vector, dual_actions: Vector) -> Vector:
-        """
-        Compute the energy contribution of dual players.
-
-        Parameters
-        ----------
-        actions : vector of shape (sum(action_sizes), 1)
-            Player action vectors.
-        dual_actions : vector of shape (N_d, 1)
-            Dual variables.
-
-        Returns
-        -------
-        vector of shape (N_d, 1)
-            Energy contribution per dual variable.
-        """
-        eng_dual = self.gradient_dual(actions, dual_actions)
-        return eng_dual
 
     def lagrange_gradient(self, actions: Vector, dual_actions: Vector) -> Vector:
         """
@@ -162,9 +88,9 @@ class EnergyMethod:
         # Combine primal gradients into one vector
         result = jnp.concatenate(primal_grads)
 
-        if self.constraint_derivatives:
+        if self.const_derivatives:
             all_c_grads = []
-            for const_der in self.constraint_derivatives:
+            for const_der in self.const_derivatives:
                 c_grad_list = const_der(vector_actions)
                 # Flatten to a single column for this specific constraint
                 all_c_grads.append(jnp.concatenate([g.ravel() for g in c_grad_list]))
@@ -174,8 +100,7 @@ class EnergyMethod:
             weighted_multipliers = self.player_const_idx_matrix * dual_actions.ravel() # (Total_actions, Num_constraints)
             constraint_contribution = jnp.sum(jacobian_matrix * weighted_multipliers, axis=1)
             result += constraint_contribution.reshape(-1, 1)
-
-        return result
+        return self.energy_handler(result, actions, self.lb_vector, self.ub_vector)
 
     def gradient_dual(self, actions: Vector, dual_actions: Vector) -> Vector:
         """
@@ -193,11 +118,11 @@ class EnergyMethod:
         vector of shape (N_d, 1)
             Gradient of dual energy with respect to constraints.
         """
-        if not self.constraints:
+        if not self.const:
             return jnp.zeros((1, 1))
 
         actions_vectors = construct_vectors(actions, self.action_sizes)
-        g_values = jnp.array([-c(actions_vectors) for c in self.constraints])
+        g_values = jnp.array([-c(actions_vectors) for c in self.const])
 
         # Ensure dual_actions is flat for the handler
         lambdas = dual_actions.ravel()
@@ -213,3 +138,4 @@ class EnergyMethod:
 
         # 5. Return as the expected column vector
         return grad_dual_vec.reshape(-1, 1)
+

@@ -24,12 +24,12 @@ class ProblemA12(BaseProblem):
         def obj_func_1(x: VectorList) -> jnp.array:
             x1 = x[0]
             x2 = x[1]
-            return x1 * (x1 + x2 - 16)
+            return jnp.reshape(x1 * (x1 + x2 - 16), ())
 
         def obj_func_2(x: VectorList) -> jnp.ndarray:
             x1 = x[0]
             x2 = x[1]
-            return x2 * (x1 + x2 - 16)
+            return jnp.reshape(x2 * (x1 + x2 - 16), ())
 
         return [obj_func_1, obj_func_2]
 

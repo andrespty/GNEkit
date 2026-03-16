@@ -7,10 +7,15 @@ from scipy.optimize import basinhopping
 import timeit
 from typing import List, Tuple, Dict, Optional, Callable
 import numpy.typing as npt
+
+from gnep_solver import Player
+from .GNEPlayer import GNEPlayer
 from .misc import *
 from .utils import *
+from .GNEPlayer import players_to_lists
+from .validation import validate_player_list
 
-class GNEP_Solver_Bounded:
+class GNESolver:
     """
         <span style="background-color:#7B68EE; color:white; padding:2px 6px; border-radius:4px;">Class</span>
 
@@ -30,79 +35,85 @@ class GNEP_Solver_Bounded:
     """
     def __init__(self,
                  obj_funcs:                     List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
-                 derivative_obj_funcs:          List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
+                 obj_funcs_der:                 List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
                  constraints:                   List[Callable[[npt.NDArray[np.float64]], np.float64]],
-                 derivative_constraints:        List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
-                 player_obj_func:               List[int],
-                 player_constraints:            List[List[int]],
-                 bounds:                        List[Tuple[float, float]],
-                 player_vector_sizes:           List[int] = None,
+                 constraints_der:               List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
+                 player_list:                   List[GNEPlayer]
                  ):
-        self.objective_functions =              obj_funcs                        # list of functions
-        self.player_obj_func =                  one_hot_encoding(player_obj_func, player_vector_sizes, len(derivative_obj_funcs))
-        self.objective_function_derivatives =   derivative_obj_funcs             # list of functions
-        self.constraints =                      constraints                      # list of functions
-        self.constraint_derivatives =           derivative_constraints           # list of functions
-        self.player_objective_function =        np.array(player_obj_func)        # which obj function is used for each player
-        self.player_constraints =               one_hot_encoding(player_constraints, player_vector_sizes, len(derivative_constraints))     # which constraints are used for each player
-        self.action_sizes =                     player_vector_sizes    # size of each player's action vector
-        self.N =                                len(player_obj_func)
-        self.bounds =                           np.array(bounds)
+
+        validate_player_list(player_list)
+        player_info = players_to_lists(player_list)
+        self.action_sizes = player_info["sizes"]
+        self.bounds_primal = player_info["bounds"]
+        self.bounds_dual = [(0,100) for _ in constraints_der]
+        self.bounds_all = self.bounds_primal + self.bounds_dual
+
+        # Functions
+        self.objective_functions =              obj_funcs
+        self.constraints =                      constraints
+        self.obj_derivatives =                  obj_funcs_der
+        self.const_derivatives =                constraints_der
+
+        # Indices
+        self.player_obj_idx = player_info["objectives"]
+        self.player_const_idx = player_info["constraints"]
+        self.players = player_list
+
+        # Pre calculations
+        action_splits = np.cumsum(np.array([0] + self.action_sizes))
+        self.action_splits = [int(x) for x in action_splits]
+        self.total_actions = sum(self.action_sizes)
+        self.player_const_idx_matrix =           one_hot_encoding(self.player_const_idx, self.action_sizes, len(self.const_derivatives))     # which constraints are used for each player
+        self.player_obj_idx_matrix =             one_hot_encoding(self.player_obj_idx, self.action_sizes, len(self.obj_derivatives))
+
+        lb_list = []
+        ub_list = []
+        lb_list_d = []
+        ub_list_d = []
+
+        for i, (lb, ub) in enumerate(self.bounds_primal):
+            # Repeat the bounds for each decision variable the player owns
+            lb_list.append(lb)
+            ub_list.append(ub)
+
+        for i, (lb, ub) in enumerate(self.bounds_dual):
+            # Repeat the bounds for each decision variable the player owns
+            lb_list_d.append(lb)
+            ub_list_d.append(ub)
+
+        self.lb_vector = np.concatenate(lb_list).reshape(-1, 1)
+        self.ub_vector = np.concatenate(ub_list).reshape(-1, 1)
+        self.lb_vector_d = np.array(lb_list_d).reshape(-1,1)
+        self.ub_vector_d = np.array(ub_list_d).reshape(-1,1)
 
 
-    def wrapper(self, initial_actions: List[float]) -> float:
+    def min_func(self, x: List[float]) -> float:
         """
         Input:
-          initial_actions: python list of all players' actions
+          x: python list of all players' actions
         Output:
           total energy: float value
         """
-        actions_count = sum(self.action_sizes)
-        actions = np.array(initial_actions[:actions_count]).reshape(-1,1)
-        dual_actions = np.array(initial_actions[actions_count:]).reshape(-1,1)
-        return self.energy_function(actions, dual_actions)
+        actions = np.array(x[:self.total_actions]).reshape(-1,1)
+        dual_actions = np.array(x[self.total_actions:]).reshape(-1,1)
 
-    def energy_function(self, actions: npt.NDArray[np.float64], dual_actions: npt.NDArray[np.float64]) -> float:
-        """
-        Input:
-          actions: 2d np.array shape (sum(number of actions),1)   i.e. [[1], [2], [3], ..., [number of actions]]
-          dual_actions: 2d np.array shape (N_d,1)                 i.e. [[1], [2], [3], ..., [N_d]]
-        Output:
-          total energy: float value
-        """
         primal_players_energy = self.primal_energy_function(actions, dual_actions)
         dual_players_energy = self.calculate_energy_dual(actions, dual_actions)
-        # print(primal_players_energy)
-        # print(dual_players_energy)
+
         return np.sum(primal_players_energy) + np.sum(dual_players_energy)
 
-    def energy_handler(self, gradient: npt.NDArray[np.float64], actions: npt.NDArray[np.float64], isDual=False):
+    def energy_handler(self, gradient: npt.NDArray[np.float64], actions: npt.NDArray[np.float64], lb, ub):
         """
         Input:
           gradient: 2d np.array shape (sum(number of actions),1)
         Output:
           total energy: float value
         """
-        N_d = len(self.constraints)
-        if isDual:
-            bounds = self.bounds[-N_d:]
-            actions = np.tile(actions, (N_d, 1))
-            gradient = np.tile(gradient, (N_d, 1))
-        else:
-            if N_d == 0:
-                bounds = self.bounds
-            else:
-                bounds = self.bounds[:-N_d]
-        lb = bounds[:, 0].reshape(-1, 1)
-        ub = bounds[:, 1].reshape(-1, 1)
-        # print(bounds)
-        # print(gradient)
-        # Original
-        engval = np.where(
-            gradient <= 0,
-            (ub - actions) * np.log(1 - gradient),
-            (actions - lb) * np.log(1 + gradient)
-        )
+        # engval = np.where(
+        #     gradient <= 0,
+        #     (ub - actions) * np.log(1 - gradient),
+        #     (actions - lb) * np.log(1 + gradient)
+        # )
         # Experiments
         ## Better than original
         engval = np.where(
@@ -121,7 +132,7 @@ class GNEP_Solver_Bounded:
           (sum(number of actions),1) vector with the energy of each players' action
         """
         gradient = self.calculate_gradient(actions, dual_actions)
-        return self.energy_handler(gradient, actions)
+        return self.energy_handler(gradient, actions, self.lb_vector, self.ub_vector)
 
     # Gradient of primal player
     def calculate_gradient(self, actions: npt.NDArray[np.float64], dual_actions: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
@@ -135,15 +146,15 @@ class GNEP_Solver_Bounded:
         result = np.zeros_like(actions)
         # Track action indices per player
         action_splits = np.cumsum(np.insert(self.action_sizes, 0, 0) )  # Start and end indices for each player
-        for obj_idx, mask in enumerate(self.player_obj_func.T):
+        for obj_idx, mask in enumerate(self.player_obj_idx_matrix.T):
             player_indices = np.where(mask)[0]
-            o = self.objective_function_derivatives[obj_idx](construct_vectors(actions, self.action_sizes))
+            o = self.obj_derivatives[obj_idx](construct_vectors(actions, self.action_sizes))
             if o.shape == result.shape:
                 # Case 1: objective returns full (a,1) vector
                 result += mask.reshape(-1,1) * o
             else:
                 offset = 0
-                mask = (self.player_objective_function == obj_idx)
+                mask = (self.player_obj_idx == obj_idx)
                 player_indices = np.where(mask)[0]
                 for player in player_indices:
                     start_idx, end_idx = action_splits[player], action_splits[player + 1]
@@ -152,8 +163,8 @@ class GNEP_Solver_Bounded:
                     offset += size
         # Add constraints
         # constraints should be vectors with same size of result
-        for c_idx, p_vector in enumerate(self.player_constraints.T):
-            result += p_vector.reshape(-1,1) * dual_actions[c_idx] * self.constraint_derivatives[c_idx](actions)
+        for c_idx, p_vector in enumerate(self.player_const_idx_matrix.T):
+            result += p_vector.reshape(-1,1) * dual_actions[c_idx] * self.const_derivatives[c_idx](actions)
         return result
     # Gradient of dual player
     def calculate_energy_dual(self, actions: npt.NDArray[np.float64], dual_actions: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
@@ -168,14 +179,12 @@ class GNEP_Solver_Bounded:
             return 0
         grad_dual = []
         actions_vectors = construct_vectors(actions, self.action_sizes)
-        for jdx, constraint in enumerate(self.constraints):
-            g = -constraint(actions_vectors)
-            g = self.energy_handler(g, dual_actions[jdx], isDual=True)
-            grad_dual.append(g.flatten())
-        g_dual = np.concatenate(grad_dual).reshape(-1, 1)
-        return g_dual
+        g_values = np.array([-c(actions_vectors) for c in self.constraints]).reshape(-1,1)
+        lambdas = dual_actions.ravel().reshape(-1, 1)
+        g = self.energy_handler(g_values, lambdas, self.lb_vector_d, self.ub_vector_d)
+        return g.reshape(-1, 1)
 
-    def solve_game(self, initial_guess: List[float],bounds: List[Tuple[float, float]], disp=True):
+    def solve_game(self, initial_guess: List[float], disp=True):
         """
         Input:
           initial_guess: python list of all players' actions
@@ -184,10 +193,11 @@ class GNEP_Solver_Bounded:
           result: scipy.optimize.optimize.OptimizeResult object
           time: float
         """
-        minimizer_kwargs = dict(method="SLSQP", bounds=bounds)
+        print("BOUNDS ALL: ",self.bounds_all)
+        minimizer_kwargs = dict(method="SLSQP", bounds=self.bounds_all)
         start = timeit.default_timer()
         result = basinhopping(
-            self.wrapper,
+            self.min_func,
             initial_guess,
             stepsize=0.01,
             niter=1000,

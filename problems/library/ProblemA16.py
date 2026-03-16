@@ -7,7 +7,7 @@ from gnep_solver.Player import Player
 class ProblemA16(BaseProblem):
     def __init__(self):
         super().__init__()
-        self.P = 200
+        self.P = 75 # [75, 100, 150, 200]
         self.gamma = 1.1
 
     def known_solution(self):
@@ -35,7 +35,7 @@ class ProblemA16(BaseProblem):
             return c_i * x_i + (delta_i/(1+delta_i)) * K_i**(-1/delta_i) * x_i ** ((1+delta_i)/delta_i)
 
         def obj_func(x_i, c_i, delta_i, K_i, S):
-            return f_func(x_i, c_i, delta_i, K_i) - 5000 ** (1/self.gamma) * x_i * S ** (-1/self.gamma)
+            return jnp.reshape(f_func(x_i, c_i, delta_i, K_i) - 5000 ** (1/self.gamma) * x_i * S ** (-1/self.gamma), ())
 
         def obj_func_1(x: VectorList) -> jnp.ndarray:
             x1 = x[0]
@@ -112,5 +112,5 @@ class ProblemA16(BaseProblem):
             x4 = x[3]
             x5 = x[4]
 
-            return x1 + x2 + x3 + x4 + x5 - self.P
-        return []
+            return jnp.reshape(x1 + x2 + x3 + x4 + x5 - self.P, ())
+        return [g0]
