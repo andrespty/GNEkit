@@ -9,10 +9,10 @@ from typing import List, Tuple, Dict, Optional, Callable
 import numpy.typing as npt
 
 from gnep_solver import Player
-from .GNEPlayer import GNEPlayer
+from gnep_solver import Player
 from .misc import *
 from .utils import *
-from .GNEPlayer import players_to_lists
+from gnep_solver.Player import players_to_lists
 from .validation import validate_player_list
 
 class GNESolver:
@@ -38,7 +38,7 @@ class GNESolver:
                  obj_funcs_der:                 List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
                  constraints:                   List[Callable[[npt.NDArray[np.float64]], np.float64]],
                  constraints_der:               List[Callable[[npt.NDArray[np.float64]], npt.NDArray[np.float64]]],
-                 player_list:                   List[GNEPlayer]
+                 player_list:                   List[Player]
                  ):
 
         validate_player_list(player_list)

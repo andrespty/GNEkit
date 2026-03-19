@@ -13,7 +13,8 @@ class BaseAlgorithm(ABC):
     def __init__(self,
                  obj_funcs: List[ObjFunction],
                  constraints: List[ConsFunction],
-                 player_list: List[Player]
+                 player_list: List[Player],
+                 validate = True
                  ):
         validate_player_list(player_list)
         player_info = players_to_lists(player_list)
@@ -23,8 +24,8 @@ class BaseAlgorithm(ABC):
         self.bounds_all = self.bounds + self.bounds_dual
 
         # Validate objective and constraint functions
-        self.obj_functions = validate_obj_funcs(obj_funcs, self.action_sizes)
-        self.const = validate_constraint_funcs(constraints)
+        self.obj_functions = validate_obj_funcs(obj_funcs, self.action_sizes) if validate else obj_funcs
+        self.const = validate_constraint_funcs(constraints) if validate else constraints
 
         # Player function indices validation
         validate_player_functions(player_list, self.obj_functions, self.const)
