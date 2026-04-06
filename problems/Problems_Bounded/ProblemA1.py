@@ -1,8 +1,8 @@
 import numpy as np
-from gne_solver.GNEProblem import GNEProblem
-from gne_solver.GNEPlayer import GNEPlayer
+from solvers.gnep_solver import BaseProblem
+from solvers.gnep_solver.BasePlayer import Player
 
-class A1(GNEProblem):
+class A1(BaseProblem):
     def known_solution(self):
         value_1 = [0.29923815223336,
                    0.06951127617805,
@@ -22,7 +22,7 @@ class A1(GNEProblem):
         player_objective_functions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         player_constraints = [[None], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
         bounds = [(0.3, 0.5), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B)]
-        return GNEPlayer.batch_create(player_vector_sizes, player_objective_functions, player_constraints, bounds)
+        return Player.batch_create(player_vector_sizes, player_objective_functions, player_constraints, bounds)
 
     def objectives(self):
         def obj_func(x):

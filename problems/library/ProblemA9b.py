@@ -1,9 +1,7 @@
 import jax.numpy as jnp
-from gnep_solver import Vector, VectorList
-from gnep_solver.BaseProblem import BaseProblem
-from gnep_solver.Player import Player
-from typing import List
-from jax import debug
+from solvers.gnep_solver.BaseProblem import BaseProblem
+from solvers.gnep_solver.BasePlayer import Player
+
 
 class ProblemA9b(BaseProblem):
     def __init__(self):

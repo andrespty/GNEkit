@@ -1,11 +1,11 @@
 import jax
 import numpy as np
-from typing import List, Optional, Callable
+from typing import List
 import jax.numpy as jnp
-from jax import Array
+
 jax.config.update("jax_enable_x64", True)
-from gnep_solver.utils import construct_vectors, one_hot_encoding
-from gnep_solver.schema import Vector
+from solvers.utils import construct_vectors, one_hot_encoding
+from solvers.schema import Vector
 from functools import partial
 from .BaseAlgorithm import BaseAlgorithm
 

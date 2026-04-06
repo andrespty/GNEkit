@@ -1,12 +1,9 @@
-from abc import ABC, abstractmethod
-import jax.numpy as jnp
-from gnep_solver.schema import *
+from abc import abstractmethod
 from typing import List
-from gnep_solver.Player import Player
-from gnep_solver.GeneralizedGame import GeneralizedGame
+from solvers.gnep_solver.BasePlayer import Player
 from .ManualGeneralizedGame import ManualGeneralizedGame
-from gnep_solver.validation import validate_problem_functions
-from gnep_solver.BaseProblem import BaseProblem
+from solvers.gnep_solver import validate_problem_functions
+from solvers.gnep_solver.BaseProblem import BaseProblem
 
 class ManualBaseProblem(BaseProblem):
     def __init__(self, players: List[Player] = None):

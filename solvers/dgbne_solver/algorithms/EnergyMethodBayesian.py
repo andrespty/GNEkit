@@ -1,15 +1,15 @@
 import jax
 import numpy as np
-from typing import List, Optional, Callable
+from typing import List
 import jax.numpy as jnp
-from jax import Array
-jax.config.update("jax_enable_x64", True)
-from gnep_solver.utils import construct_vectors, one_hot_encoding
-from gnep_solver.schema import Vector
-from functools import partial
-from .BaseAlgorithm import BaseAlgorithm
 
-class EnergyMethod(BaseAlgorithm):
+jax.config.update("jax_enable_x64", True)
+from solvers.utils import construct_vectors
+from solvers.schema import Vector
+from functools import partial
+from .BayesianAlgorithm import BayesianAlgorithm
+
+class EnergyMethodBayesian(BayesianAlgorithm):
     def __init__(self, obj, const, players):
         super().__init__(obj, const, players)
         self._grad_func_jit = jax.jit(jax.grad(self._jit_min_func))

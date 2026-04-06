@@ -1,12 +1,9 @@
 from abc import ABC, abstractmethod
 import jax.numpy as jnp
-from .schema import *
-from typing import List, Optional, Type
-from .Player import Player
-from .GeneralizedGame import GeneralizedGame
-from .validation import validate_problem_functions
+from typing import List, Type
+from solvers.validation import validate_problem_functions
 from .algorithms.BaseAlgorithm import BaseAlgorithm
-from gnep_solver import *
+from solvers.gnep_solver import *
 
 class BaseProblem(ABC):
     def __init__(self, players: List[Player] = None):
@@ -18,6 +15,26 @@ class BaseProblem(ABC):
     @property
     def players(self):
         return self._players
+
+    @players.setter
+    def players(self, value):
+        # 1. Allow None (if the user hasn't provided them yet)
+        if value is None:
+            self._players = None
+            return
+
+        # 2. Ensure it is a list
+        if not isinstance(value, list):
+            raise TypeError("Players must be provided as a list.")
+
+        self._validate_player_type(value)
+        self._players = value
+
+    def _validate_player_type(self, player_list):
+        """Default validation for BaseProblem."""
+        for i, p in enumerate(player_list):
+            if not isinstance(p, Player):
+                raise TypeError(f"Item at index {i} must be a Player object, got {type(p)}")
 
     @property
     def primal_ip(self):
@@ -64,25 +81,7 @@ class BaseProblem(ABC):
 
         self._dual_ip = value
 
-    @players.setter
-    def players(self, value):
-        # 1. Allow None (if the user hasn't provided them yet)
-        if value is None:
-            self._players = None
-            return
 
-        # 2. Ensure it is a list
-        if not isinstance(value, list):
-            raise TypeError("Players must be provided as a list.")
-
-        # 3. Validate every item in the list
-        for i, p in enumerate(value):
-            if not isinstance(p, Player):
-                raise TypeError(
-                    f"Item at index {i} is a {type(p).__name__}, "
-                    f"but it must be a Player object."
-                )
-        self._players = value
 
     @abstractmethod
     @validate_problem_functions(derivative=False)
@@ -130,12 +129,12 @@ class BaseProblem(ABC):
 
     def solve(self, Algorithm:Type[BaseAlgorithm] = None):
         """Solve the problem."""
-        if Algorithm is None:
-            algorithm = EnergyMethod(self.objectives(), self.constraints(), self.define_players())
-        else:
-            algorithm = Algorithm(self.objectives(), self.constraints(), self.players)
+        alg = Algorithm if Algorithm else EnergyMethod
+        algorithm = alg(self.objectives(), self.constraints(), self.players)
+
         ip = jnp.array(self.primal_ip + self.dual_ip)
         res, time = algorithm.solve(ip)
+
         primal_vars = sum(algorithm.action_sizes)
         primal_x = res.x[:primal_vars]
         dual_x = res.x[primal_vars:]

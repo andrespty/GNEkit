@@ -1,10 +1,9 @@
 import inspect
 from functools import wraps
-from typing import List, Callable
-import jax.numpy as jnp
-from .Player import Player
-from .utils import *
+from solvers.gnep_solver.BasePlayer import Player
+from solvers.utils import *
 from jax import eval_shape
+from typing import Any, Type
 
 def validate_scalar_output(func: Callable, action_sizes: List[int]):
     dims = sum(action_sizes)
@@ -45,15 +44,15 @@ def validate_constraint_funcs(constraint_funcs: List[Callable]) -> List[Callable
             raise TypeError("All constraint functions must be callable.")
     return constraint_funcs
 
-def validate_player_list(player_list: List[Player]):
+def validate_player_list(player_list: List[Any], expected_class: Type = Player):
     if not isinstance(player_list, list) or len(player_list) == 0:
         raise ValueError("player_list must be a non-empty list of Player.")
     for p in player_list:
-        if not isinstance(p, Player):
+        if not isinstance(p, expected_class):
             raise TypeError("player_list must contain Player objects.")
 
-def validate_player_functions(player_list: List[Player], obj_funcs: List[Callable], constraints: List[Callable]):
-    validate_player_list(player_list)
+def validate_player_functions(player_list: List[Any], obj_funcs: List[Callable], constraints: List[Callable], expected_class: Type = Player):
+    validate_player_list(player_list, expected_class)
     for p in player_list:
         # Validate objective index
         if p.f_index >= len(obj_funcs):

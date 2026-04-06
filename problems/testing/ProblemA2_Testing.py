@@ -1,8 +1,8 @@
 import jax.numpy as jnp
-from gnep_solver import Vector, VectorList
+from solvers.gnep_solver import VectorList
 from tester_solver.ManualBaseProblem import ManualBaseProblem
-from gnep_solver.Player import Player
-from typing import List
+from solvers.gnep_solver.BasePlayer import Player
+
 
 class ProblemA2_Manual(ManualBaseProblem):
     def known_solution(self):

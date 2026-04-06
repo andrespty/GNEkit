@@ -1,10 +1,10 @@
-from gnep_solver import *
+from solvers.gnep_solver import *
 from typing import List, Callable
-from gnep_solver.Player import Player
+from solvers.gnep_solver.BasePlayer import Player
 import jax
 import jax.numpy as jnp
-from gnep_solver.algorithms.EnergyMethod import EnergyMethod
-from gnep_solver.GeneralizedGame import GeneralizedGame
+from solvers.gnep_solver.algorithms.EnergyMethod import EnergyMethod
+from solvers.gnep_solver.GeneralizedGame import GeneralizedGame
 jax.config.update("jax_enable_x64", True)
 
 class ManualGeneralizedGame(GeneralizedGame):

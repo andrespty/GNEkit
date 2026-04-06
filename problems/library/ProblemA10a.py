@@ -1,7 +1,6 @@
 import jax.numpy as jnp
-from gnep_solver import Vector, VectorList
-from gnep_solver.BaseProblem import BaseProblem
-from gnep_solver.Player import Player
+from solvers.gnep_solver.BaseProblem import BaseProblem
+from solvers.gnep_solver.BasePlayer import Player
 
 class ProblemA10a(BaseProblem):
     def __init__(self):

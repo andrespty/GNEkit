@@ -1,8 +1,8 @@
 import inspect
 from functools import wraps
-from typing import List, Callable
+from typing import Callable
 import numpy as jnp
-from gnep_solver import Player
+from solvers.gnep_solver import Player
 from .utils import *
 
 def validate_scalar_output(func: Callable, action_sizes: List[int]):

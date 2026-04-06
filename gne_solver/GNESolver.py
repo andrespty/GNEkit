@@ -1,18 +1,11 @@
-import numpy as np
-from griffe import Parameters
-from scipy.optimize import Bounds
-from scipy.optimize import minimize
-from scipy.optimize import LinearConstraint
 from scipy.optimize import basinhopping
 import timeit
-from typing import List, Tuple, Dict, Optional, Callable
+from typing import Callable
 import numpy.typing as npt
 
-from gnep_solver import Player
-from gnep_solver import Player
-from .misc import *
+from solvers.gnep_solver import Player
 from .utils import *
-from gnep_solver.Player import players_to_lists
+from solvers.gnep_solver.BasePlayer import players_to_lists
 from .validation import validate_player_list
 
 class GNESolver:

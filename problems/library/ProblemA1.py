@@ -1,7 +1,6 @@
 import jax.numpy as jnp
-from gnep_solver import Vector, VectorList, Player
-from gnep_solver.BaseProblem import BaseProblem
-from gnep_solver.Player import players_to_lists
+from solvers.gnep_solver import VectorList, Player
+from solvers.gnep_solver.BaseProblem import BaseProblem
 
 
 class ProblemA1(BaseProblem):
