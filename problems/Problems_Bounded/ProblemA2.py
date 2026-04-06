@@ -74,7 +74,7 @@ class A2:
         B = 1
         x = np.concatenate(x).reshape(-1, 1)
         S = sum(x)
-        obj = (x - S) / S ** 2 + 1 / B
+        obj = (x - S) / (S ** 2) + 1
         return obj
 
     @staticmethod

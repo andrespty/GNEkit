@@ -1,7 +1,6 @@
 import numpy as np
 
-from tests.Problems_Unbounded.ProblemA16 import player_vector_sizes
-from gne_solver.misc import construct_vectors
+from gne_solver.utils import construct_vectors
 
 
 class A9b:

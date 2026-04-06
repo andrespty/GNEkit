@@ -1,15 +1,9 @@
-from gnep_solver import *
-from gnep_solver.utils import one_hot_encoding
-from typing import List
-from scipy.optimize import basinhopping
-import timeit
-from gnep_solver.Player import Player, players_to_lists
+from solvers.gnep_solver import *
+from solvers.gnep_solver.BasePlayer import players_to_lists
 import jax
-import jax.numpy as jnp
-from jax import eval_shape
-from .validation import *
-from gnep_solver.EnergyMethod import EnergyMethod
-from .utils import *
+from solvers.validation import *
+from solvers.utils import *
+
 jax.config.update("jax_enable_x64", True)
 
 class GeneralizedGame:
@@ -19,11 +13,15 @@ class GeneralizedGame:
             constraints: List[ConsFunction],
             player_list: List[Player]
         ):
+
+        print("GENERALIZED GAME")
         # Extract structured info
         validate_player_list(player_list)
         player_info = players_to_lists(player_list)
         self.action_sizes = player_info["sizes"]
         self.bounds = player_info["bounds"]
+        self.bounds_dual = [(0,100) for _ in constraints]
+        self.bounds_all = self.bounds + self.bounds_dual
 
         # Validate objective and constraint functions
         self.obj_functions = validate_obj_funcs(obj_funcs, self.action_sizes)
@@ -45,11 +43,7 @@ class GeneralizedGame:
         self.solver = EnergyMethod(
             self.action_sizes,
             self.obj_derivatives,
-            self.const,
-            self.const_derivatives,
-            self.player_obj_idx,
-            self.player_const_idx,
-            self.bounds
+            self.const
         )
 
     def check_kkt(self, actions: jnp.ndarray, lambdas: jnp.ndarray, tol: float = 1e-6):
@@ -168,32 +162,8 @@ class GeneralizedGame:
 
     def grad_val(self, actions: jnp.ndarray) -> List[jnp.ndarray]:
         x = construct_vectors(jnp.array(actions), self.action_sizes)
-        return [df(x) for df in self.obj_derivatives]
+        grads = [df(x) for df in self.obj_derivatives]
+        return [jnp.concatenate(arr) for arr in grads]
 
     def energy_val(self, actions: jnp.ndarray) -> float:
         return self.solver.min_func(actions)
-
-    def solve_game(self, ip: jnp.ndarray):
-        minimizer_kwargs = dict(
-            method="SLSQP",
-            tol=1e-9,
-            # options={"eps": 1e-6}
-            jac=self.solver.grad_min_func,
-        )
-
-        start = timeit.default_timer()
-        result = basinhopping(
-            self.solver.min_func,
-            ip,
-            stepsize=0.01,
-            niter=1000,
-            minimizer_kwargs=minimizer_kwargs,
-            interval=1,
-            niter_success=100,
-            disp=True,
-            # callback=stopping_criterion
-        )
-        print(self.energy_val(jnp.array(result.x)))
-        stop = timeit.default_timer()
-        elapsed_time = stop - start
-        return result, elapsed_time

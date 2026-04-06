@@ -1,133 +1,13 @@
-import numpy as np
+import jax.numpy as jnp
+from solvers.gnep_solver.BaseProblem import BaseProblem
+from solvers.gnep_solver.BasePlayer import Player
 
 
-class A9bU:
-    K=16
-    N=7
-
-    @staticmethod
-    def define_players():
-        player_vector_sizes = [A9bU.K for _ in range(A9bU.N)]
-        player_objective_functions = [0 for _ in range(A9bU.N)]  # change to all 0s
-        player_constraints = [[0,1] for _ in range(A9bU.N)]
-        return [player_vector_sizes, player_objective_functions, player_constraints]
-
-    @staticmethod
-    def objective_functions():
-        return [A9bU.obj_func]
-
-    @staticmethod
-    def objective_function_derivatives():
-        return [A9bU.obj_func_der]
-
-    @staticmethod
-    def constraints():
-        return [A9bU.g0, A9bU.g1]
-
-    @staticmethod
-    def constraint_derivatives():
-        return [A9bU.g0_der, A9bU.g1_der]
-
-    @staticmethod
-    def obj_func(x):
-        # x: numpy array (N, 1)
-        # B: constant
-        sum_x = np.array([np.sum(x_i) for x_i in x]).reshape(-1, 1)
-        return sum_x
-
-    @staticmethod
-    def obj_func_der(x):
-        return np.array([1 for _ in range(A9bU.N * A9bU.K)]).reshape(-1,1)
-
-    @staticmethod
-    def g0_manual(x):
-        """
-        here for checks only
-        """
-        X = np.concatenate(x).reshape(-1,1)
-        sigma = 0.3162
-        values = []
-        for vu in range(A9bU.N):
-            L = 16
-            H = A9bU.get_h_v(vu).reshape(A9bU.N, A9bU.K)
-            hx = H[vu].reshape(-1, 1) * x[vu]
-
-            H_ni = np.delete(H, vu, axis=0).reshape(-1,1)
-            X_ni = np.delete(X, slice(vu * A9bU.K, (vu + 1) * A9bU.K), axis=0)
-
-            hx_ni = np.sum((H_ni * X_ni).reshape(A9bU.N-1, A9bU.K), axis=0).reshape(-1,1)
-            # print(hx_ni)
-            constraint = np.log2( 1 + (hx/(sigma**2 + hx_ni)) ) - L
-            values.append(np.sum(constraint).flatten())
-        return np.concatenate(values).reshape(-1,1)
-
-    @staticmethod
-    def g0(x):
-        K, N = A9bU.K, A9bU.N
-        sigma = 0.3162
-        L = 16
-
-        # Flatten input
-
-        X = np.concatenate(x).reshape(N * K, 1)  # (K*N, 1)
-        H_all = np.stack([A9bU.get_h_v(vu).reshape(N, K) for vu in range(N)], axis=0)  # shape: (N, N, K)
-
-        # Reshape X to (N, K, 1) for broadcasting
-        X_split = np.concatenate(x).reshape(N, K, 1)  # shape: (N, K, 1)
-
-        # Compute elementwise product: shape (N, N, K, 1)
-        HX_all = H_all[..., :, np.newaxis] * X_split[np.newaxis, ...]
-
-        # Split signal vs interference:
-        # Signal for vu is at H_all[vu, vu] * x[vu] → shape (N, K, 1)
-        signal = np.array([HX_all[i, i] for i in range(N)])  # shape (N, K, 1)
-
-        # Sum all players' contributions (axis=1), then subtract self
-        total_hx = np.sum(HX_all, axis=1)  # shape: (N, K, 1)
-        interference = total_hx - signal  # shape: (N, K, 1)
-
-        # Compute constraint
-        constraint = np.log2(1 + (signal / (sigma ** 2 + interference))) - L  # shape: (N, K, 1)
-
-        # Sum over K dimensions per player
-        return np.sum(constraint, axis=1).reshape(-1,1)  # shape: (N,)
-
-    @staticmethod
-    def g1(x):
-        X = np.concatenate(x).reshape(-1,1)
-        return 0 - X
-
-    @staticmethod
-    def g0_der(x):
-        sigma = 0.3162
-        result = []
-        x = np.concatenate(x).reshape(-1, 1)
-        for vu in range(A9bU.N):
-            H_v = A9bU.get_h_v(vu).reshape(A9bU.N, A9bU.K)
-            players = x.reshape(A9bU.N, A9bU.K)
-            H_vv = H_v[vu].reshape(-1, 1)
-            D = (sigma ** 2) + np.sum(players * H_v, axis=0).reshape(-1,1)
-            grad = (1/np.log(2))*(H_vv / D)
-            result.append(grad.ravel())
-        result = np.concatenate(result).reshape(-1, 1)
-        return result
-
-    @staticmethod
-    def g1_der(x):
-        return -1
-
-    @staticmethod
-    def get_h_v(vu):
-        if vu > A9bU.N - 1:
-            print('Cant be done')
-            return 1
-        H = A9bU.h_matrix()
-        # padding = mu * A9bU.K
-        return H[:, vu].reshape(-1,1)
-
-    @staticmethod
-    def h_matrix():
-        return np.array([
+class ProblemA9b(BaseProblem):
+    def __init__(self):
+        self.K = 16
+        self.N = 7
+        self.h_matrix = jnp.array([
     [0.0129, 0.0010, 0.0015, 0.0008, 0.0005, 0.0088, 0.0048],
     [0.0037, 0.0062, 0.0020, 0.0044, 0.0043, 0.0040, 0.0029],
     [0.0514, 0.0114, 0.0024, 0.0094, 0.0063, 0.0057, 0.0045],
@@ -241,19 +121,69 @@ class A9bU:
     [0.0001, 0.0082, 0.0001, 0.0001, 0.0001, 0.0015, 0.0703],
     [0.0004, 0.0085, 0.0001, 0.0000, 0.0001, 0.0008, 0.0079]
 ])
+        print(self.h_matrix.shape)
+        super().__init__()
 
-# x1 = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]).reshape(-1,1)
-# x2 = np.array([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]).reshape(-1,1)
-# x3 = np.array([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]).reshape(-1,1)
-# x4 = np.array([4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]).reshape(-1,1)
-# x5 = np.array([5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]).reshape(-1,1)
-# x6 = np.array([6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6]).reshape(-1,1)
-# x7 = np.array([7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7]).reshape(-1,1)
-#
-# x = np.vstack([x1,x2,x3,x4,x5,x6,x7]).reshape(-1,1)
-# player_vector_sizes = [A9bU.K for _ in range(A9bU.N)]
-# print("Testing 9bU")
-# print(A9bU.h_matrix().shape)
-# print(A9bU.g0_manual(construct_vectors(x,player_vector_sizes)))
-# print(A9bU.g0(construct_vectors(x,player_vector_sizes)))
-# print(A9bU.obj_func_der(x).shape)
+    def define_players(self):
+        player_vector_sizes = [self.K for _ in range(self.N)]
+        player_objective_functions = [0 for _ in range(self.N)]  # change to all 0s
+        player_constraints = [[i] for i in range(self.N)]
+        bounds = [(0, 100) for _ in range(self.N)]
+        return Player.batch_create(
+            player_vector_sizes,
+            player_objective_functions,
+            player_constraints,
+            bounds
+        )
+
+    def objectives(self):
+        def obj_func(x):
+            x = jnp.stack(x)
+            return jnp.sum(x)
+
+        return [obj_func]
+
+    def constraints(self):
+        def get_h_v(vu):
+            if vu > self.N - 1:
+                print('Cant be done')
+                return 1
+            H = self.h_matrix
+            # padding = mu * A9a.K
+            return H[:, vu].reshape(-1, 1)
+
+        def g0(x):
+            K, N = self.K, self.N
+            sigma = 0.3162
+            L = 16
+
+            # Flatten input
+            H_all = jnp.stack([get_h_v(vu).reshape(N, K) for vu in range(N)], axis=0)  # shape: (N, N, K)
+
+            # Reshape X to (N, K, 1) for broadcasting
+            X_split = jnp.concatenate(x).reshape(N, K, 1)  # shape: (N, K, 1)
+
+            # Compute elementwise product: shape (N, N, K, 1)
+            HX_all = H_all[..., :, jnp.newaxis] * X_split[jnp.newaxis, ...]
+
+            # Split signal vs interference:
+            # Signal for vu is at H_all[vu, vu] * x[vu] → shape (N, K, 1)
+            signal = jnp.array([HX_all[i, i] for i in range(N)])  # shape (N, K, 1)
+
+            # Sum all players' contributions (axis=1), then subtract self
+            total_hx = jnp.sum(HX_all, axis=1)  # shape: (N, K, 1)
+            interference = total_hx - signal  # shape: (N, K, 1)
+
+            # Compute constraint
+            constraint = jnp.log2(1 + (signal / (sigma ** 2 + interference))) - L  # shape: (N, K, 1)
+
+            # Sum over K dimensions per player
+            return jnp.sum(constraint, axis=1).reshape(-1, 1)
+
+        unrolled_constraints = []
+        for i in range(self.N):
+            # Each lambda returns exactly ONE scalar for ONE player
+            unrolled_constraints.append(
+                lambda x, idx=i: jnp.reshape(g0(x)[idx], ())
+            )
+        return unrolled_constraints

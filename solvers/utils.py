@@ -1,7 +1,7 @@
 import numpy as np
 import jax.numpy as jnp
-from typing import List, Union, Tuple, Callable, Optional
-from .schema import VectorList, Vector, Matrix, PlayerConstraint, ObjFunction
+from typing import List, Callable
+from solvers.schema import VectorList, Vector, PlayerConstraint, ObjFunction
 
 def flatten_variables(vectors: VectorList, scalars: List[float]) -> jnp.ndarray:
     """

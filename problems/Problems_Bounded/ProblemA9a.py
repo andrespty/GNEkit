@@ -1,7 +1,7 @@
 import numpy as np
 
-from tests.Problems_Unbounded.ProblemA16 import player_vector_sizes
-from gne_solver.misc import construct_vectors
+# from tests.Problems_Unbounded.ProblemA16 import player_vector_sizes
+from gne_solver.utils import construct_vectors
 
 
 class A9a:
@@ -179,16 +179,11 @@ class A9a:
     [0.0003, 0.0045, 0.0002, 0.0001, 0.0002, 0.0007, 0.0328],
     [0.0005, 0.0035, 0.0006, 0.0000, 0.0008, 0.0008, 0.2950]
 ])
+#
+primal_ip = [1. for _ in range(7*8)]
 
-x1 = np.array([1,1,1,1,1,1,1,1]).reshape(-1,1)
-x2 = np.array([2,2,2,2,2,2,2,2]).reshape(-1,1)
-x3 = np.array([3,3,3,3,3,3,3,3]).reshape(-1,1)
-x4 = np.array([4,4,4,4,4,4,4,4]).reshape(-1,1)
-x5 = np.array([5,5,5,5,5,5,5,5]).reshape(-1,1)
-x6 = np.array([6,6,6,6,6,6,6,6]).reshape(-1,1)
-x7 = np.array([7,7,7,7,7,7,7,7]).reshape(-1,1)
-
-x = np.vstack([x1,x2,x3,x4,x5,x6,x7]).reshape(-1,1)
+x = np.vstack(primal_ip).reshape(-1,1)
 player_vector_sizes = [A9a.K for _ in range(A9a.N)]
 print(A9a.g0_manual(construct_vectors(x,player_vector_sizes)))
-print(A9a.obj_func_der(x).shape)
+print(A9a.g0(construct_vectors(x,player_vector_sizes)))
+print(A9a.g0_manual(x).shape)

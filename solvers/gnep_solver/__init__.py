@@ -7,11 +7,11 @@ Generalized Nash Equilibrium problems Solver
 # from .core import check_NE, get_problem, get_initial_point, summary
 # from .utils import construct_vectors
 # from .misc import flatten_variables
-from .schema import *
-from .EnergyMethod import EnergyMethod
+from solvers.schema import *
+from solvers.gnep_solver.algorithms.EnergyMethod import EnergyMethod
 from .GeneralizedGame import GeneralizedGame
-from .Player import Player
-from .utils import *
+from .BasePlayer import Player
+from solvers.utils import *
 
 __all__ = [
     # "check_NE",

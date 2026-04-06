@@ -1,6 +1,7 @@
 import jax.numpy as jnp
-from gnep_solver import Vector, VectorList, Player
-from gnep_solver.BaseProblem import BaseProblem
+from solvers.gnep_solver import VectorList, Player
+from solvers.gnep_solver.BaseProblem import BaseProblem
+
 
 class ProblemA2(BaseProblem):
     def known_solution(self):
@@ -14,23 +15,32 @@ class ProblemA2(BaseProblem):
     def define_players(self):
         B=1
         player_vector_sizes = [1 for _ in range(10)]
-        player_objective_functions = [0, 1, 1, 1, 1, 0, 0, 0, 0, 0]
+        player_objective_functions = [i for i in range(10)]
         player_constraints = [[None], [0], [0], [0], [0, 1], [0, 1], [0], [0], [0], [0]]
         bounds_training = [(0.3, 0.5), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, B), (0.01, 0.06), (0.01, 0.05)]
         return Player.batch_create(player_vector_sizes, player_objective_functions, player_constraints, bounds_training)
 
     def objectives(self):
-        def obj_func(xi, x_n):
-            # Result of quadratic form is (1, 1). JAX needs a scalar for grad.
-            S = xi + jnp.sum(jnp.concatenate(x_n))
-            return jnp.reshape((-xi/S) * (1 - S), ())
+        def logic_type_0(xi, S_total):
+            return jnp.reshape((-xi / (S_total + 1e-9)) * (1 - S_total), ())
 
-        def obj_func2(xi, x_n):
-            # Result of quadratic form is (1, 1). JAX needs a scalar for grad.
-            S = xi + jnp.sum(jnp.concatenate(x_n))
-            return jnp.reshape((-xi / S) * (1 - S) ** 2, ())
+        def logic_type_1(xi, S_total):
+            return jnp.reshape((-xi / (S_total + 1e-9)) * (1 - S_total)**2, ())
 
-        return [obj_func, obj_func2]
+        def get_player_objective(x_list, p_idx):
+            S_total = jnp.sum(jnp.concatenate(x_list))
+            xi = x_list[p_idx]
+
+            # Use your mapping to decide which logic to run
+            mapping = [0, 1, 1, 1, 1, 0, 0, 0, 0, 0]
+            obj_type = mapping[p_idx]
+
+            if obj_type == 0:
+                return logic_type_0(xi, S_total)
+            else:
+                return logic_type_1(xi, S_total)
+
+        return [lambda x, i=i: get_player_objective(x, i) for i in range(len(self.players))]
 
     def constraints(self):
         def g0(x: VectorList):

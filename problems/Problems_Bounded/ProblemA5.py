@@ -170,7 +170,7 @@ class A5:
     @staticmethod
     def g0(x):
         x1, x2, x3 = x
-        return (sum(x1) + sum(x2) + sum(x3) - 20)[0]
+        return (sum(x1) - 20)[0]
 
     @staticmethod
     def g1(x):

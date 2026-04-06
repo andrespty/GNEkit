@@ -1,13 +1,5 @@
-import numpy as np
-from scipy.optimize import Bounds
-from scipy.optimize import minimize
-from scipy.optimize import LinearConstraint
-from scipy.optimize import basinhopping
-import timeit
-from typing import List, Tuple, Dict, Optional, Callable
-import numpy.typing as npt
 import jax.numpy as jnp
-from gnep_solver import Vector, VectorList
+from solvers.gnep_solver import VectorList
 
 class A3U:
     # --- Matrix Constants

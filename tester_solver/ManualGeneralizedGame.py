@@ -1,14 +1,10 @@
-from gnep_solver import *
-from gnep_solver.utils import one_hot_encoding
+from solvers.gnep_solver import *
 from typing import List, Callable
-from scipy.optimize import basinhopping
-import timeit
-from gnep_solver.Player import Player, players_to_lists
+from solvers.gnep_solver.BasePlayer import Player
 import jax
 import jax.numpy as jnp
-from jax import eval_shape
-from gnep_solver.EnergyMethod import EnergyMethod
-from gnep_solver.GeneralizedGame import GeneralizedGame
+from solvers.gnep_solver.algorithms.EnergyMethod import EnergyMethod
+from solvers.gnep_solver.GeneralizedGame import GeneralizedGame
 jax.config.update("jax_enable_x64", True)
 
 class ManualGeneralizedGame(GeneralizedGame):
@@ -59,11 +55,11 @@ class ManualGeneralizedGame(GeneralizedGame):
                         user_dict_grads[i] if i in user_dict_grads else jnp.zeros((size,))
                         for i, size in enumerate(self.action_sizes)
                     ]
-                # wrapped_funcs.append(jax.jit(padded_grad))
-                wrapped_funcs.append(padded_grad)
+                wrapped_funcs.append(jax.jit(padded_grad))
+                # wrapped_funcs.append(padded_grad)
             else:
-                # wrapped_funcs.append(jax.jit(user_func))
-                wrapped_funcs.append(user_func)
+                wrapped_funcs.append(jax.jit(user_func))
+                # wrapped_funcs.append(user_func)
 
         return wrapped_funcs
 
@@ -80,14 +76,14 @@ class ManualGeneralizedGame(GeneralizedGame):
                 out = der_func(dummy_x)
 
                 if label == "Objective":
-                    # Expecting Sparse Dictionary: {player_idx: grad_array}
-                    if not isinstance(out, dict):
-                        raise TypeError(f"Objective derivative {i} must return a dict of index: grad.")
+                    # # Expecting Sparse Dictionary: {player_idx: grad_array}
+                    # if not isinstance(out, dict):
+                    #     raise TypeError(f"Objective derivative {i} must return a dict of index: grad.")
                     # Check only the provided indices
-                    for p_idx, grad_comp in out.items():
-                        if jnp.shape(grad_comp) != (self.action_sizes[p_idx],):
-                            raise ValueError(f"Obj {i}: Player {p_idx} grad shape mismatch.")
-
+                    # for p_idx, grad_comp in out.items():
+                    #     if jnp.shape(grad_comp) != (self.action_sizes[p_idx],):
+                    #         raise ValueError(f"Obj {i}: Player {p_idx} grad shape mismatch.")
+                    pass
                 else:
                     if not isinstance(out, (list, tuple)) or len(out) != len(self.action_sizes):
                         raise ValueError(f"Constraint {i} must return a list of length {len(self.action_sizes)}.")

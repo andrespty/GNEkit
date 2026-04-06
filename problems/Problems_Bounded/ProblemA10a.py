@@ -177,7 +177,7 @@ class A10a:
 
     @staticmethod
     def g3(x):
-        p = x[-1].reshape(-1, 1)
+        p = x[-1].reshape(-1,   1)
         return -np.sum(p, axis=0) + 1
 
     @staticmethod
