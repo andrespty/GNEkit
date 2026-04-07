@@ -43,7 +43,7 @@ else:
 See the `examples/` directory for more scripts and usage patterns.
 
 ## Project Structure
-- `gne_solver/` — Core solver logic, Nash checking, utilities
+- `solvers/` — Core solver logic, Nash checking, utilities
 - `problems/` — Problem definitions (bounded and unbounded)
 - `examples/` — Example scripts for running and testing problems
 - `docs/` — Documentation (installation, user guide, reference)

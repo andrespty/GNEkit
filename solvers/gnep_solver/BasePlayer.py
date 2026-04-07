@@ -5,33 +5,6 @@ from typing import Optional, List, Tuple
 import jax.numpy as jnp
 from solvers.CorePlayer import PlayerValidator
 
-
-# ex = 0.6 * 0.1 + 2*0.4*0.3 + 3 * 0.5 * 0.5 + 4 * 0.5 * 0.7
-# print(ex)
-#
-test_x = np.array([1,2,3,4]).reshape(-1,1)
-test_t = np.array([1,2]).reshape(-1,1)
-print((test_x.reshape(-1,2) * test_t).reshape(-1,1))
-#
-p1_1 = np.array([0.1,0.2]).reshape(-1,1)
-p1_2 = np.array([0.3,0.4]).reshape(-1,1)
-
-p2_1 = np.array([0.5,0.6]).reshape(-1,1) * 3 * 0.5
-p2_2 = np.array([0.7,0.8]).reshape(-1,1) * 4 * 0.5
-
-p3_1 = np.array([0.9,0.1]).reshape(-1,1) * 5 * 0.8
-p3_2 = np.array([0.11,0.12]).reshape(-1,1) * 6 * 0.2
-
-# delta = p2_1 + p2_2 + p3_1 + p3_2
-# delta = np.vstack((delta,delta))
-# print(delta)
-# exp_load = (delta + np.array([1,1,2,2]).reshape(-1,1))
-# print(exp_load)
-# a = np.array([0.1,0.2,0.3,0.4]).reshape(-1,1)
-# print(np.sum(a * exp_load * np.array([0.6,0.6,0.4,0.4]).reshape(-1,1)))
-
-
-
 @dataclass(frozen=True)
 class Player:
     name: Optional[str]

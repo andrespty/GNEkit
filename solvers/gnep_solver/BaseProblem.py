@@ -2,8 +2,9 @@ from abc import ABC, abstractmethod
 import jax.numpy as jnp
 from typing import List, Type
 from solvers.validation import validate_problem_functions
-from .algorithms.BaseAlgorithm import BaseAlgorithm
+from ..algorithms.BaseAlgorithm import BaseAlgorithm
 from solvers.gnep_solver import *
+from solvers.algorithms import EnergyMethod
 
 class BaseProblem(ABC):
     def __init__(self, players: List[Player] = None):
@@ -112,7 +113,7 @@ class BaseProblem(ABC):
     def set_initial_point(self, primal_x, dual_x):
         if isinstance(primal_x, list):
             self.primal_ip = primal_x
-        if isinstance(primal_x, float):
+        elif isinstance(primal_x, float):
             n_vars = sum(p.size for p in self.players)
             self.primal_ip = [primal_x for _ in range(n_vars)]
         else:

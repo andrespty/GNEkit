@@ -4,76 +4,103 @@ from solvers.CorePlayer import PlayerValidator
 from solvers.gnep_solver import Player
 import numpy as np
 
+from solvers.gnep_solver import Player
+
 @dataclass(frozen=True)
-class BayesianPlayer:
-    name: Optional[str]
-    size: int
-    types: List[int]
-    f_index: int
-    constraints: Tuple[Optional[int], ...] = ()
-    bounds: Optional[Tuple[float, float]] = None
+class BayesianPlayer(Player):
+    type_values: Tuple[float, ...] = ()
+    type_probs: Optional[Tuple[float, ...]] = None
+    action_size_per_type: int = 1
 
     def __post_init__(self):
-        if not isinstance(self.types, list):
-            raise TypeError("Types must be a list.")
-        PlayerValidator().validate(self.name, self.size, self.f_index, self.constraints, self.bounds)
+        super().__post_init__()  # Validate base Player attributes first
 
-    def get_full_bounds(self):
-        """Returns (lower_bounds, upper_bounds) as arrays of length self.size."""
-        if self.bounds is None:
-            # Default to large values if no bounds provided
-            lb_arr = np.full((self.size,), -np.inf)
-            ub_arr = np.full((self.size,), np.inf)
+        if len(self.type_values) == 0:
+            raise ValueError("type_values must be non-empty.")
 
-        elif isinstance(self.bounds, tuple):
-            lb, ub = self.bounds
-            # Ensure lb/ub are scalars or compatible with np.full
-            lb_arr = np.full((self.size,), float(lb))
-            ub_arr = np.full((self.size,), float(ub))
+        if self.action_size_per_type <= 0:
+            raise ValueError("action_size_per_type must be positive.")
 
-        else:
-            # Case where self.bounds is already an array/list of bounds
-            # Ensure it is a NumPy array to avoid JAX leakage
-            bounds_np = np.asarray(self.bounds)
-            lb_arr, ub_arr = bounds_np[:, 0], bounds_np[:, 1]
+        expected_size = len(self.type_values) * self.action_size_per_type
+        if self.size != expected_size:
+            raise ValueError(
+                f"size must equal len(type_values) * action_size_per_type. "
+                f"Got size={self.size}, expected={expected_size}."
+            )
 
-        return list(zip(lb_arr.tolist(), ub_arr.tolist()))
+        if self.type_probs is not None:
+            if len(self.type_probs) != len(self.type_values):
+                raise ValueError(
+                    "type_probs must have the same length as type_values."
+                )
+            if not np.isclose(sum(self.type_probs), 1.0):
+                raise ValueError("type_probs must sum to 1.0.")
+            
+    @property
+    def n_types(self) -> int:
+        return len(self.type_values)
+    
+
 
     @classmethod
-    def batch_create(cls, sizes, types, objectives,constraints,bounds=None,names=None):
+    def batch_create(cls, sizes, type_values, objectives,constraints,bounds=None,names=None, type_probs=None,
+        action_size_per_type=None,):
+        n_var = len(sizes)
+
         if bounds is None:
-            bounds = [None] * len(sizes)
+            bounds = [None] * n_var
 
         if names is None:
-            names = [f"P{i}" for i in range(len(sizes))]
+            names = [f"P{i}" for i in range(n_var)]
 
-        if not (len(sizes)== len(types) == len(objectives) == len(constraints) == len(bounds) == len(names)):
+        if type_probs is None:
+            type_probs = [None] * n_var
+
+        if action_size_per_type is None:
+            action_size_per_type = [1] * n_var
+
+        if not (len(sizes)
+                == len(type_values) 
+                == len(objectives) 
+                == len(constraints) 
+                == len(bounds) 
+                == len(names)
+                == len(type_probs)
+                == len(action_size_per_type)
+            ):
             raise ValueError("All player attribute lists must have the same length.")
-
+        
         return [
-            cls(name, size, player_type, obj, const, bound)
-            for name, size, player_type, obj, const, bound
-            in zip(names, sizes, types, objectives, constraints, bounds)
+            cls(
+                name=name,
+                size=size,
+                f_index=obj,
+                constraints=const,
+                bounds=bound,
+                type_values=tuple(tvals),
+                type_probs=None if probs is None else tuple(probs),
+                action_size_per_type=a_per_type,
+            )
+            for name, size, tvals, obj, const, bound, probs, a_per_type in zip(
+                names,
+                sizes,
+                type_values,
+                objectives,
+                constraints,
+                bounds,
+                type_probs,
+                action_size_per_type,
+            )
         ]
 
-def bayesian_players_to_list(player_list:List[BayesianPlayer]):
+def bayesian_players_to_lists(players):
     return {
-        "sizes": [p.size for p in player_list],
-        "types": [p.types for p in player_list],
-        "objectives": [p.f_index for p in player_list],
-        "constraints": [p.constraints for p in player_list], # nested list of int
-        "bounds": [bound for p in player_list for bound in p.get_full_bounds()], # list of tuples
-        "names": [p.name for p in player_list],
+        "sizes": [p.size for p in players],
+        "type_values": [p.type_values for p in players],
+        "type_probs": [p.type_probs for p in players],
+        "action_size_per_type": [p.action_size_per_type for p in players],
+        "objectives": [p.f_index for p in players],
+        "constraints": [p.constraints for p in players],
+        "bounds": [bound for p in players for bound in p.get_full_bounds()],
+        "names": [p.name for p in players],
     }
-
-@dataclass(frozen=True)
-class JointTypeDistribution:
-    type_profiles: List[Tuple[int, ...]]
-    probabilities: List[float]
-
-    def __post_init__(self):
-        if len(self.type_profiles) != len(self.probabilities):
-            raise ValueError("Mismatch in profiles and probabilities.")
-
-        if not np.isclose(sum(self.probabilities), 1.0):
-            raise ValueError("Probabilities must sum to 1.")

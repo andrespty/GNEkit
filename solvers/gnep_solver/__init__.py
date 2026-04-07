@@ -1,39 +1,12 @@
 """
-Generalized Nash Equilibrium problems Solver
----------------------------------------------
+Generalized Nash equilibrium solver exports.
 """
-# from .GNESolverBounded import *
-# from .GNESolverUnbounded import *
-# from .core import check_NE, get_problem, get_initial_point, summary
-# from .utils import construct_vectors
-# from .misc import flatten_variables
-from solvers.schema import *
-from solvers.gnep_solver.algorithms.EnergyMethod import EnergyMethod
-from .GeneralizedGame import GeneralizedGame
 from .BasePlayer import Player
-from solvers.utils import *
+from .BaseProblem import BaseProblem
+from .GeneralizedGame import GeneralizedGame
 
 __all__ = [
-    # "check_NE",
-    # "GNEP_Solver_Unbounded",
-    # "GNEP_Solver_Bounded",
-    # "get_problem",
-    # "get_initial_point",
-    # "summary",
-    # "construct_vectors",
-    # "flatten_variables"
-    "EnergyMethod",
-    "GeneralizedGame",
     "Player",
-    "construct_vectors",
-    "flatten_variables",
-    "one_hot_encoding",
-
-    # Types
-    "VectorList",
-    "Vector",
-    "ObjFunction",
-    "ConsFunction"
+    "BaseProblem",
+    "GeneralizedGame"
 ]
-
-__version__ = "0.1.0"
