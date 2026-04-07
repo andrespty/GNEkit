@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["gne_solver*"]
+include = ["solvers*", "problems*"]
 
 [project]
 name = "gne-solver"
@@ -25,7 +25,8 @@ classifiers = [
 
 dependencies = [
   "numpy>=1.25",
-  "scipy>=1.11"
+  "scipy>=1.11",
+  "jax>=0.4.30"
 ]
 
 [project.optional-dependencies]

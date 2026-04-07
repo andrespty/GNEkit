@@ -113,7 +113,7 @@ class BaseProblem(ABC):
     def set_initial_point(self, primal_x, dual_x):
         if isinstance(primal_x, list):
             self.primal_ip = primal_x
-        if isinstance(primal_x, float):
+        elif isinstance(primal_x, float):
             n_vars = sum(p.size for p in self.players)
             self.primal_ip = [primal_x for _ in range(n_vars)]
         else:
