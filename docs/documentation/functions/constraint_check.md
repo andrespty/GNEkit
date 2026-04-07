@@ -1,1 +1,0 @@
-::: gne_solver.utils.constraint_check

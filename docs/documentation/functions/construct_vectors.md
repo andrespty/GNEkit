@@ -1,1 +1,1 @@
-::: gne_solver.utils.construct_vectors
+::: solvers.utils.construct_vectors

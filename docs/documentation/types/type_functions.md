@@ -1,1 +1,0 @@
-::: gne_solver.types.FunctionTypes

@@ -1,1 +1,0 @@
-::: gne_solver.utils.objective_check
