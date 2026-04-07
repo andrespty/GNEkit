@@ -12,7 +12,7 @@
         <link rel="prev" href="../flatten_variables/">
       
       
-        <link rel="next" href="../wrapped_function_single/">
+        <link rel="next" href="../../types/object_types/">
       
       
         
@@ -387,8 +387,6 @@
       
         
       
-        
-      
     
     
     
@@ -447,12 +445,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
       
         
       
@@ -630,90 +622,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../wrapped_function_single/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Create Single Wrapped Function
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../objective_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Objective Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../constraint_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Constraint Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -761,7 +669,7 @@
   <span class="md-ellipsis">
     
   
-    Solvers
+    Types
   
 
     
@@ -774,131 +682,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Solvers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/bounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/unbounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Unbounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Types
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1169,9 +952,9 @@
 
     <div class="doc doc-contents first">
 
-        <p>This function builds a matrix mapping each player’s action variables to the functions they are assigned
- Creates a zeros NumPy matrix and then iterates through functions mapping them to correct player's action variables</p>
-<p>and assigning them to the matrix.</p>
+        <p>Build a matrix mapping player action variables to their assigned functions.</p>
+<p>This matrix (M) has shape (sum(sizes), num_functions). If variable 'i'
+is associated with function 'j', M[i, j] = 1, otherwise 0.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1190,11 +973,12 @@
                 <code>funcs_idx</code>
             </td>
             <td>
-                  <code><span title="typing.List">List</span></code>
+                  <code><span title="typing.List">List</span>[<span title="solvers.schema.PlayerConstraint">PlayerConstraint</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of either integers or PlayerConstraint (PlayerConstraint=Union[int], None, list[None])</p>
+                <p>A list where each entry corresponds to a player and contains the
+indices of the functions they are associated with.</p>
               </div>
             </td>
             <td>
@@ -1210,7 +994,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of integers thats length needs to equal the length of funcs_idx</p>
+                <p>A list of integers specifying the number of variables each player controls.</p>
               </div>
             </td>
             <td>
@@ -1226,7 +1010,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>An integer value that indicates the number of possible functions</p>
+                <p>The total number of unique functions (columns).</p>
               </div>
             </td>
             <td>
@@ -1248,13 +1032,12 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="gne_solver.types.Matrix">Matrix</span></code>
+                  <code><span title="jax.Array">Array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Returns a matrix of shape (sum(sizes), num_functions), where
-each row represents a player's variables and each column represents
-a function.</p>
+                <p>A binary matrix of shape (sum(sizes), num_functions) representing
+the mapping.</p>
               </div>
             </td>
           </tr>
@@ -1263,13 +1046,14 @@ a function.</p>
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">funcs_idx</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">funcs_idx</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_functions</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">one_hot_encoding</span><span class="p">(</span><span class="n">funcs_idx</span><span class="p">,</span> <span class="n">sizes</span><span class="p">,</span> <span class="n">num_functions</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span>
-<span class="go">3.14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">one_hot_encoding</span><span class="p">(</span><span class="n">funcs_idx</span><span class="p">,</span> <span class="n">sizes</span><span class="p">,</span> <span class="n">num_functions</span><span class="p">)</span>
+<span class="go">Array([[1, 0, 1],</span>
+<span class="go">       [1, 0, 1],</span>
+<span class="go">       [0, 0, 0],</span>
+<span class="go">       [0, 1, 0]], dtype=int32)</span>
 </code></pre></div>
 
 

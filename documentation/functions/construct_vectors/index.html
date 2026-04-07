@@ -387,8 +387,6 @@
       
         
       
-        
-      
     
     
     
@@ -447,12 +445,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
       
         
       
@@ -630,90 +622,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../wrapped_function_single/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Create Single Wrapped Function
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../objective_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Objective Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../constraint_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Constraint Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -761,7 +669,7 @@
   <span class="md-ellipsis">
     
   
-    Solvers
+    Types
   
 
     
@@ -774,131 +682,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Solvers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/bounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/unbounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Unbounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Types
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1171,9 +954,9 @@
 
         <p>Split a concatenated action array into separate action vectors for each player.</p>
 <p>This function validates the input types and shapes, ensuring that the total
-number of rows in "actions" matches the sum of "action_sizes". It then splits
-the stacked column vector into per-player subarrays in the same order as specified
-in "action_sizes".</p>
+number of rows in <code>actions</code> matches the sum of <code>action_sizes</code>. It then
+partitions the flattened array into a list of per-player subarrays, each
+reshaped back to a column vector.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1192,12 +975,12 @@ in "action_sizes".</p>
                 <code>actions</code>
             </td>
             <td>
-                  <code>numpy.ndarray of shape (sum(action_sizes), 1)</code>
+                  <code><span title="jax.Array">Array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A 2D NumPy array containing all players' actions stacked vertically.
-The number of rows must equal the sum of all entries in <code>action_sizes</code>.</p>
+                <p>A JAX array of shape (sum(action_sizes), 1) containing all players'
+actions stacked vertically.</p>
               </div>
             </td>
             <td>
@@ -1213,47 +996,12 @@ The number of rows must equal the sum of all entries in <code>action_sizes</code
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list specifying the length of each player's action vector.
-The sum of these sizes must match the number of rows in <code>actions</code>.</p>
+                <p>A list specifying the number of decision variables for each player.
+The sum of these sizes must match the total number of elements in <code>actions</code>.</p>
               </div>
             </td>
             <td>
                 <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                  <code>Type Error</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if "actions" is not a NumPy array or if "action_sizes" is not a list
-of integers</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code>Value Error</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>If the number of rows in "actions" does not equal the sum of all
-entries in <code>action_sizes</code>.</p>
-              </div>
             </td>
           </tr>
       </tbody>
@@ -1271,12 +1019,12 @@ entries in <code>action_sizes</code>.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code>list of numpy.ndarray</code>
+                  <code>list of jax.Array</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of 2D NumPy arrays, each corresponding to one player's action vector.
-The arrays are in the same order as the players in <code>action_sizes</code>.</p>
+                <p>A list of 2D JAX arrays (column vectors), where the i-th element has
+shape (action_sizes[i], 1).</p>
               </div>
             </td>
           </tr>
@@ -1284,14 +1032,53 @@ The arrays are in the same order as the players in <code>action_sizes</code>.</p
     </table>
 
 
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="TypeError">TypeError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>actions</code> is not a JAX array or if <code>action_sizes</code> is not a
+list of integers.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the total size of <code>actions</code> does not equal the sum of
+<code>action_sizes</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>To maintain JIT compatibility, <code>action_sizes</code> should be treated as a
+static argument, as it defines the structure of the output list.</p>
+</details>
+
 <p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">]])</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">action_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">construct_vectors</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="n">action_sizes</span><span class="p">)</span>
-<span class="go">[array([[1.],</span>
-<span class="go">        [2.]]),</span>
-<span class="go"> array([[3.],</span>
-<span class="go">        [4.]])]</span>
+<span class="go">[Array([[1.], [2.]], dtype=float32), Array([[3.], [4.]], dtype=float32)]</span>
 </code></pre></div>
 
 

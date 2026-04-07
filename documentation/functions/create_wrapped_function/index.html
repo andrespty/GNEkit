@@ -387,8 +387,6 @@
       
         
       
-        
-      
     
     
     
@@ -447,12 +445,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
       
         
       
@@ -630,90 +622,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../wrapped_function_single/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Create Single Wrapped Function
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../objective_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Objective Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../constraint_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Constraint Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -761,7 +669,7 @@
   <span class="md-ellipsis">
     
   
-    Solvers
+    Types
   
 
     
@@ -774,131 +682,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Solvers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/bounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/unbounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Unbounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Types
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1169,11 +952,10 @@
 
     <div class="doc doc-contents first">
 
-        <p>Create a wrapped objective function for a single player's optimization.</p>
-<p>Fix all players' action vectors except the one at <code>player_idx</code>, and
-return a new function that accepts only this player's decision variables
-as input. The wrapped function automatically reconstructs the full list
-of action vectors and evaluates the original objective function.</p>
+        <p>Create a JAX-compatible wrapped objective function for a single player.</p>
+<p>Fixes the actions of all opponents and returns a function of only the
+specified player's variables. This is optimized for JAX's automatic
+differentiation engine.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1192,11 +974,11 @@ of action vectors and evaluates the original objective function.</p>
                 <code>original_func</code>
             </td>
             <td>
-                  <code><span title="gne_solver.types.ObjFunction">ObjFunction</span></code>
+                  <code><span title="solvers.schema.ObjFunction">ObjFunction</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The original objective function that accepts a list of action vectors.</p>
+                <p>The original payoff/cost function: f(VectorList) -&gt; float.</p>
               </div>
             </td>
             <td>
@@ -1208,12 +990,11 @@ of action vectors and evaluates the original objective function.</p>
                 <code>actions</code>
             </td>
             <td>
-                  <code><span title="gne_solver.types.VectorList">VectorList</span></code>
+                  <code><span title="solvers.schema.VectorList">VectorList</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>List of 2D NumPy arrays with shape (n, 1), representing all players'
-current actions.</p>
+                <p>List of JAX arrays representing the current state of the game.</p>
               </div>
             </td>
             <td>
@@ -1229,8 +1010,7 @@ current actions.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Index of the player whose action vector should remain variable in
-the wrapped function.</p>
+                <p>The index of the player whose actions are being varied.</p>
               </div>
             </td>
             <td>
@@ -1252,13 +1032,12 @@ the wrapped function.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="gne_solver.types.WrappedFunction">WrappedFunction</span></code>
+                  <code><span title="typing.Callable">Callable</span>[[<span title="jax.numpy.ndarray">ndarray</span>], <span title="float">float</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A function that takes the chosen player's action vector (as a list of floats),
-reshapes it into a 2D column vector with shape (n, 1), and evaluates
-<code>original_func</code> with the updated set of actions.</p>
+                <p>A function that takes a 1D or 2D JAX array for player i and returns
+ the scalar objective value.</p>
               </div>
             </td>
           </tr>
@@ -1267,13 +1046,12 @@ reshapes it into a 2D column vector with shape (n, 1), and evaluates
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">original_func</span><span class="p">(</span><span class="n">var_list</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">var_list</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">]])]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">wrapped</span> <span class="o">=</span> <span class="n">create_wrapped_function</span><span class="p">(</span><span class="n">original_func</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">player_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">wrapped</span><span class="p">([</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">])</span>
-<span class="go">33.0</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">cost_func</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span> <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">]]),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">]])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wrapped</span> <span class="o">=</span> <span class="n">create_wrapped_function</span><span class="p">(</span><span class="n">cost_func</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wrapped</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.0</span><span class="p">]))</span>
+<span class="go">27.0</span>
 </code></pre></div>
 
 

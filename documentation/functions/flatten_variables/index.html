@@ -387,8 +387,6 @@
       
         
       
-        
-      
     
     
     
@@ -447,12 +445,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
       
         
       
@@ -630,90 +622,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../wrapped_function_single/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Create Single Wrapped Function
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../objective_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Objective Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../constraint_check/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Constraint Check
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -761,7 +669,7 @@
   <span class="md-ellipsis">
     
   
-    Solvers
+    Types
   
 
     
@@ -774,131 +682,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Solvers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/bounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../solvers/unbounded/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Unbounded Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Types
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1169,7 +952,10 @@
 
     <div class="doc doc-contents first">
 
-        <p>Flatten a collection of vectors and scalars into a single list.</p>
+        <p>Flatten a collection of vectors and scalars into a single JAX array.</p>
+<p>This function concatenates a list of player action vectors and a list of
+additional scalars (such as Lagrange multipliers or slack variables) into
+a single 1D array. It is optimized for use within JIT-compiled functions.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1188,12 +974,11 @@
                 <code>vectors</code>
             </td>
             <td>
-                  <code><span title="gne_solver.types.VectorList">VectorList</span></code>
+                  <code><span title="solvers.schema.VectorList">VectorList</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>List of 2D NumPy arrays with shape (n, 1), representing column
-vectors of floats.</p>
+                <p>List of JAX arrays (usually column vectors) representing player strategies.</p>
               </div>
             </td>
             <td>
@@ -1231,11 +1016,11 @@ vectors of floats.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code>list of floats</code>
+                  <code><span title="jax.Array">Array</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Single list containing all elements from the input vectors,
+                <p>A 1D JAX array containing all elements from the input vectors,
 followed by the scalar values.</p>
               </div>
             </td>
@@ -1245,11 +1030,11 @@ followed by the scalar values.</p>
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">]])]</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]]),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">]])]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scalars</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">flatten_variables</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">scalars</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+<span class="go">Array([1.0, 2.0, 3.0, 4.0, 5.0], dtype=float32)</span>
 </code></pre></div>
 
 
