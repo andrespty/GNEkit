@@ -3,7 +3,7 @@ from typing import List, Callable
 from solvers.gnep_solver.BasePlayer import Player
 import jax
 import jax.numpy as jnp
-from solvers.gnep_solver.algorithms.EnergyMethod import EnergyMethod
+from solvers.algorithms.EnergyMethod import EnergyMethod
 from solvers.gnep_solver.GeneralizedGame import GeneralizedGame
 jax.config.update("jax_enable_x64", True)
 

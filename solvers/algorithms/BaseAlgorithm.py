@@ -1,31 +1,29 @@
-from solvers.gnep_solver import *
-from solvers.gnep_solver.BasePlayer import players_to_lists
+from abc import abstractmethod, ABC
+from scipy.optimize import basinhopping
+import timeit
 import jax
 from solvers.validation import *
-from solvers.utils import *
 from solvers.schema import *
-jax.config.update("jax_enable_x64", True)
+from solvers.gnep_solver import *
+from solvers.gnep_solver.BasePlayer import players_to_lists, Player
 
-class GeneralizedGame:
-    def __init__(
-            self,
-            obj_funcs: List[ObjFunction],
-            constraints: List[ConsFunction],
-            player_list: List[Player]
-        ):
-
-        print("GENERALIZED GAME")
-        # Extract structured info
+class BaseAlgorithm(ABC):
+    def __init__(self,
+                 obj_funcs: List[ObjFunction],
+                 constraints: List[ConsFunction],
+                 player_list: List[Player],
+                 validate = True
+                 ):
         validate_player_list(player_list)
         player_info = players_to_lists(player_list)
         self.action_sizes = player_info["sizes"]
         self.bounds = player_info["bounds"]
-        self.bounds_dual = [(0,100) for _ in constraints]
+        self.bounds_dual = [(0, 100) for _ in constraints]
         self.bounds_all = self.bounds + self.bounds_dual
 
         # Validate objective and constraint functions
-        self.obj_functions = validate_obj_funcs(obj_funcs, self.action_sizes)
-        self.const = validate_constraint_funcs(constraints)
+        self.obj_functions = validate_obj_funcs(obj_funcs, self.action_sizes) if validate else obj_funcs
+        self.const = validate_constraint_funcs(constraints) if validate else constraints
 
         # Player function indices validation
         validate_player_functions(player_list, self.obj_functions, self.const)
@@ -39,12 +37,28 @@ class GeneralizedGame:
         self.obj_derivatives = [jax.jit(jax.grad(obj)) for obj in obj_funcs]
         self.const_derivatives = [jax.jit(jax.grad(const)) for const in constraints]
 
-        # Pre-instantiate the solver once to avoid overhead in loops
-        self.solver = EnergyMethod(
+        self.player_const_idx_matrix = one_hot_encoding(
+            self.player_const_idx,
             self.action_sizes,
-            self.obj_derivatives,
-            self.const
+            len(constraints)
         )
+
+        # Pre calculations
+        action_splits = jnp.cumsum(jnp.array([0] + self.action_sizes))
+        self.action_splits = [int(x) for x in action_splits]
+        self.total_actions = sum(self.action_sizes)
+
+        # Bounds
+        lb_list = [b[0] for b in self.bounds]
+        ub_list = [b[1] for b in self.bounds]
+
+        # Store these as JAX arrays for the energy_handler to use
+        self.lb_vector = jnp.array(lb_list).reshape(-1, 1)
+        self.ub_vector = jnp.array(ub_list).reshape(-1, 1)
+
+    @abstractmethod
+    def min_func(self, x: List[float]) -> float:
+        pass
 
     def check_kkt(self, actions: jnp.ndarray, lambdas: jnp.ndarray, tol: float = 1e-6):
         """
@@ -123,6 +137,40 @@ class GeneralizedGame:
             print(f"  Complementary Slackness:   {metrics['comp_slack']:.2e}")
         print("=" * 56)
 
+    def solve(self, ip: jnp.ndarray):
+        minimizer_kwargs = dict(
+            method="SLSQP",
+            # options={"eps": 1e-6}
+            # jac=self.solver.grad_min_func,
+            bounds=self.bounds_all
+        )
+        start = timeit.default_timer()
+        result = basinhopping(
+            self.min_func,
+            ip,
+            stepsize=0.01,
+            niter=1000,
+            minimizer_kwargs=minimizer_kwargs,
+            interval=1,
+            niter_success=100,
+            disp=True,
+            # callback=stopping_criterion
+        )
+        stop = timeit.default_timer()
+        elapsed_time = stop - start
+        self.result_summary(result.x, elapsed_time)
+        return result, elapsed_time
+
+    def result_summary(self, x, time):
+        print("\nRESULT SUMMARY")
+        print("Elapsed time: ", time, " seconds")
+        print("Final function value: ", self.min_func(x))
+        primal = x[:self.total_actions]
+        dual = x[self.total_actions:]
+        print("Primal Actions: ", primal)
+        print("Dual Actions: ", dual)
+        self.check_kkt(jnp.array(primal), jnp.array(dual))
+
     def summary(self):
         print("=" * 60)
         print("GENERALIZED GAME SUMMARY")
@@ -159,11 +207,3 @@ class GeneralizedGame:
         print(f"  Constraint derivatives compiled: {len(self.const_derivatives)}")
 
         print("=" * 60)
-
-    def grad_val(self, actions: jnp.ndarray) -> List[jnp.ndarray]:
-        x = construct_vectors(jnp.array(actions), self.action_sizes)
-        grads = [df(x) for df in self.obj_derivatives]
-        return [jnp.concatenate(arr) for arr in grads]
-
-    def energy_val(self, actions: jnp.ndarray) -> float:
-        return self.solver.min_func(actions)

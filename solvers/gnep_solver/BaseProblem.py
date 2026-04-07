@@ -2,8 +2,9 @@ from abc import ABC, abstractmethod
 import jax.numpy as jnp
 from typing import List, Type
 from solvers.validation import validate_problem_functions
-from .algorithms.BaseAlgorithm import BaseAlgorithm
+from ..algorithms.BaseAlgorithm import BaseAlgorithm
 from solvers.gnep_solver import *
+from solvers.algorithms import EnergyMethod
 
 class BaseProblem(ABC):
     def __init__(self, players: List[Player] = None):
