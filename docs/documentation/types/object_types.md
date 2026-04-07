@@ -1,1 +1,1 @@
-::: gne_solver.types.Types
+::: solvers.schema
