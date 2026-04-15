@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../core_concepts/">
       
+      
+        <link rel="next" href="../dgbne_problems/">
       
       
         
@@ -21,7 +23,7 @@
     
     
       
-        <title>Standards - Generalized Nash Kit</title>
+        <title>Defining New GNE Problems - Generalized Nash Kit</title>
       
     
     
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docstring-guidelines-numpy-style" class="md-skip">
+        <a href="#defining-a-new-gne-problem" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Standards
+              Defining New GNE Problems
             
           </span>
         </div>
@@ -218,11 +220,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../guides/core_concepts/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../core_concepts/" class="md-tabs__link">
           
   
   
@@ -284,13 +288,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../development/overview/" class="md-tabs__link">
           
   
   
@@ -519,8 +521,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -536,19 +540,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -566,7 +573,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -584,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/core_concepts/" class="md-nav__link">
+      <a href="../core_concepts/" class="md-nav__link">
         
   
   
@@ -609,10 +616,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../guides/gne_problems/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Defining New GNE Problems
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -628,6 +662,125 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-this-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When To Use This Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-required-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Required Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-define-the-players" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Define The Players
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-define-the-objective-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Define The Objective Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-define-the-constraint-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Define The Constraint Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-player-indexing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Player Indexing Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Complete Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-good-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Good Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Step
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -640,7 +793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/dgbne_problems/" class="md-nav__link">
+      <a href="../dgbne_problems/" class="md-nav__link">
         
   
   
@@ -668,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/choosing_algorithm/" class="md-nav__link">
+      <a href="../choosing_algorithm/" class="md-nav__link">
         
   
   
@@ -1605,10 +1758,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1620,22 +1771,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1653,7 +1801,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1671,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../development/overview/" class="md-nav__link">
         
   
   
@@ -1696,37 +1844,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Standards
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../development/standards/" class="md-nav__link">
         
   
   
@@ -1742,154 +1863,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-general-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. General Principles
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-function-method-docstrings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Function &amp; Method Docstrings
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Function &amp; Method Docstrings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Template
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-function-method-docstrings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Function &amp; Method Docstrings
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Function &amp; Method Docstrings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#template_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Template
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-docstrings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Docstrings
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sections-to-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sections to Use
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples-style" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples Style
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples Style">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#good-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Good Example:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dos-and-donts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Do's and Don'ts
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1929,10 +1902,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-general-principles" class="md-nav__link">
+  <a href="#when-to-use-this-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. General Principles
+        When To Use This Workflow
       
     </span>
   </a>
@@ -1940,66 +1913,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-function-method-docstrings" class="md-nav__link">
+  <a href="#the-required-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Function &amp; Method Docstrings
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Function &amp; Method Docstrings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Template
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-function-method-docstrings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Function &amp; Method Docstrings
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Function &amp; Method Docstrings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#template_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Template
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-docstrings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Docstrings
+        The Required Structure
       
     </span>
   </a>
@@ -2007,10 +1924,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sections-to-use" class="md-nav__link">
+  <a href="#step-1-define-the-players" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sections to Use
+        Step 1: Define The Players
       
     </span>
   </a>
@@ -2018,38 +1935,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples-style" class="md-nav__link">
+  <a href="#step-2-define-the-objective-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Examples Style
+        Step 2: Define The Objective Functions
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Examples Style">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#good-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Good Example:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dos-and-donts" class="md-nav__link">
+  <a href="#step-3-define-the-constraint-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Do's and Don'ts
+        Step 3: Define The Constraint Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-player-indexing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Player Indexing Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Complete Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-good-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Good Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Step
       
     </span>
   </a>
@@ -2073,162 +2017,202 @@
 
 
 
-<h1 id="docstring-guidelines-numpy-style">📖 Docstring Guidelines (NumPy Style)</h1>
-<p>This document defines the <strong>standard docstring format</strong> to be used across the project.<br />
-We follow the <strong>NumPy style</strong> conventions, as supported by <a href="https://mkdocstrings.github.io">mkdocstrings</a> and rendered by <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>.</p>
-<hr />
-<h2 id="1-general-principles">1. General Principles</h2>
+<h1 id="defining-a-new-gne-problem">Defining a New GNE Problem</h1>
+<p>This guide explains how to define a new standard generalized Nash equilibrium problem in <code>GNE Solver</code>.</p>
+<p>A standard GNE problem in this library is built by subclassing <code>BaseProblem</code> and implementing three methods:</p>
 <ul>
-<li>Every <strong>public function, class, method, and module</strong> must have a docstring.  </li>
-<li>Use <strong>NumPy style sections</strong> (<code>Parameters</code>, <code>Returns</code>, <code>Raises</code>, <code>Examples</code>, etc.).  </li>
-<li>Start with a <strong>short, one-line summary</strong> in imperative mood (e.g., <em>"Compute equilibrium strategies"</em>, not <em>"This function computes..."</em>).  </li>
-<li>Follow with an <strong>extended description</strong> if necessary.  </li>
-<li>Keep line length reasonable (~79–100 chars).  </li>
-<li><strong>Private functions</strong> (starting with <code>_</code>) may have shorter docstrings, but should still explain purpose if non-trivial.  </li>
+<li><code>define_players()</code></li>
+<li><code>objectives()</code></li>
+<li><code>constraints()</code></li>
 </ul>
-<hr />
-<h2 id="2-function-method-docstrings">2. Function &amp; Method Docstrings</h2>
-<h3 id="template">Template</h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">param1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">param2</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    One-line summary of the function.</span>
-
-<span class="sd">    Extended description if necessary. Can span multiple sentences to</span>
-<span class="sd">    explain the context, usage, or algorithm.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    param1 : int</span>
-<span class="sd">        Description of the parameter. Include units if applicable.</span>
-<span class="sd">    param2 : str, optional</span>
-<span class="sd">        Description of the parameter. State the default if not obvious</span>
-<span class="sd">        from the signature.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    float</span>
-<span class="sd">        Description of the return value.</span>
-
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-<span class="sd">    ValueError</span>
-<span class="sd">        Explanation of the condition that causes this exception.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; result = function_name(5, &quot;option&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; print(result)</span>
-<span class="sd">    3.14</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-</code></pre></div>
-<h2 id="3-function-method-docstrings">3. Function &amp; Method Docstrings</h2>
-<h3 id="template_1">Template</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generalized Nash Equilibrium solver.</span>
-
-<span class="sd">    Provides algorithms to compute equilibria in generalized Nash games.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    tol : float, optional</span>
-<span class="sd">        Convergence tolerance. Default is ``1e-6``.</span>
-<span class="sd">    max_iter : int, optional</span>
-<span class="sd">        Maximum number of iterations. Default is ``1000``.</span>
-
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    tol : float</span>
-<span class="sd">        Convergence tolerance.</span>
-<span class="sd">    max_iter : int</span>
-<span class="sd">        Maximum number of iterations.</span>
-
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    create_game : Utility to create game instances.</span>
-<span class="sd">    flatten_variables : Function used internally to reshape variables.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-</code></pre></div>
-<h2 id="module-docstrings">Module Docstrings</h2>
-<p>At the top of every Python file:</p>
-<div class="highlight"><pre><span></span><code>&quot;&quot;&quot;
-Utilities for game creation.
-
-This module provides helper functions to build and initialize
-generalized Nash equilibrium problems.
-&quot;&quot;&quot;
-</code></pre></div>
-<h2 id="sections-to-use">Sections to Use</h2>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>When to Use</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Parameters</strong></td>
-<td>Always</td>
-<td>Document type, shape, and description.</td>
-</tr>
-<tr>
-<td><strong>Returns</strong></td>
-<td>If function returns something</td>
-<td>Be explicit about types and shapes.</td>
-</tr>
-<tr>
-<td><strong>Raises</strong></td>
-<td>If function can raise exceptions</td>
-<td>Name the exception and explain why.</td>
-</tr>
-<tr>
-<td><strong>Attributes</strong></td>
-<td>For classes</td>
-<td>List important public attributes.</td>
-</tr>
-<tr>
-<td><strong>See Also</strong></td>
-<td>Optional</td>
-<td>Cross-reference related functions/classes.</td>
-</tr>
-<tr>
-<td><strong>Examples</strong></td>
-<td>Strongly encouraged</td>
-<td>Use <code>&gt;&gt;&gt;</code> doctest style. Keep minimal but runnable.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="examples-style">Examples Style</h2>
+<p>These three pieces describe the full mathematical structure of the game.</p>
+<h2 id="when-to-use-this-workflow">When To Use This Workflow</h2>
+<p>Use <code>BaseProblem</code> when:</p>
 <ul>
-<li>Always use &gt;&gt;&gt; prompt.</li>
-<li>Show inputs and outputs.</li>
-<li>Keep examples small, self-contained, and copy-pasteable.</li>
-<li>Example blocks must be valid Python so they can be tested via pytest --doctest-modules.</li>
+<li>each player has a single decision vector</li>
+<li>the game is not type-dependent</li>
+<li>the problem is not modeled as a Bayesian game</li>
 </ul>
-<h3 id="good-example">Good Example:</h3>
-<div class="highlight"><pre><span></span><code>Examples
---------
-&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; vectors = [np.array([[1.0], [2.0]]), np.array([[3.0]])]
-&gt;&gt;&gt; scalars = [4.0, 5.0]
-&gt;&gt;&gt; flatten_variables(vectors, scalars)
-[1.0, 2.0, 3.0, 4.0, 5.0]
+<p>If your problem includes types, type probabilities, or per-type actions, use the Bayesian workflow instead.</p>
+<h2 id="the-required-structure">The Required Structure</h2>
+<p>A new problem class must inherit from <code>BaseProblem</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyProblem</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
 </code></pre></div>
-<h2 id="dos-and-donts">Do's and Don'ts</h2>
-<p>✅ Do:</p>
+Each method has a specific role:</p>
 <ul>
-<li>Use backticks for code (e.g., "matrix").</li>
-<li>Be explicit with shapes (array of shape (n, m)).</li>
-<li>Keep summaries short and imperative.</li>
+<li><code>define_players()</code> defines the players and their metadata</li>
+<li><code>objectives()</code> returns the list of player objective functions</li>
+<li><code>constraints()</code> returns the list of constraint functions</li>
 </ul>
-<p>❌ Don’t:</p>
+<h2 id="step-1-define-the-players">Step 1: Define The Players</h2>
+<p>Players are represented with the <code>Player</code> class.</p>
+<p>Each player typically includes:</p>
 <ul>
-<li>Repeat type hints unnecessarily: "param1 : int, an integer" is redundant.</li>
-<li>Write personal notes or informal language.</li>
-<li>Omit examples for important public functions.</li>
+<li><code>name</code>: an optional label</li>
+<li><code>size</code>: number of decision variables controlled by the player</li>
+<li><code>f_index</code>: which objective in <code>objectives()</code> belongs to that player</li>
+<li><code>constraints</code>: which constraints in <code>constraints()</code> apply to that player</li>
+<li><code>bounds</code>: optional variable bounds</li>
 </ul>
+<p>Example:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">Player</span>
+<span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">P1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="n">P2</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;P2&quot;</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">]</span>
+</code></pre></div>
+In this example:</p>
+<ul>
+<li>player <code>P1</code> controls one variable</li>
+<li>player <code>P2</code> controls one variable</li>
+<li>each player has its own objective</li>
+<li>both players are affected by constraint <code>0</code></li>
+</ul>
+<h2 id="step-2-define-the-objective-functions">Step 2: Define The Objective Functions</h2>
+<p>The <code>objectives()</code> method returns a list of functions.</p>
+<p>Each objective function must:</p>
+<ul>
+<li>Accept the full action profile as a list of vectors</li>
+<li>Return a scalar</li>
+<li>The full action profile has the form:
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">x_N</span><span class="p">]</span>
+</code></pre></div>
+where <code>x[i]</code> is the decision vector of player <code>i</code>.</li>
+</ul>
+<p>Example:
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">]</span>
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Function Signature Requirement</p>
+<p>Objective functions must accept a <strong>list of player vectors</strong> as input.</p>
+<p>Each entry corresponds to one player's variables, so <code>x[i]</code> is the vector for player <code>i</code>.</p>
+<p>Every objective function must return a <strong>scalar</strong>.</p>
+</div>
+<h2 id="step-3-define-the-constraint-functions">Step 3: Define The Constraint Functions</h2>
+<p>The <code>constraints()</code> method returns a list of constraint functions.</p>
+<p>Each constraint function must:</p>
+<ul>
+<li>Accept the full action profile as a list of vectors</li>
+<li>Return a scalar</li>
+</ul>
+<p>Example:</p>
+<p>For the inequality <span class="arithmatex">\(x_1 + x_2 \leq 3\)</span>, we code it as:
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">g1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">3.0</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">g1</span><span class="p">]</span>
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Constraint Signature Requirement</p>
+<p>Constraint functions must accept the full action profile as a <strong>list of player vectors</strong>.</p>
+<p>Each constraint function must return a <strong>scalar</strong>.</p>
+</div>
+<h2 id="how-player-indexing-works">How Player Indexing Works</h2>
+<p>The Player definitions must be consistent with the lists returned by objectives() and constraints().</p>
+<p>For example:
+<div class="highlight"><pre><span></span><code><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+<span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P2&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+</code></pre></div>
+means:</p>
+<ul>
+<li>Player 1 uses <code>objectives()[0]</code></li>
+<li>Player 2 uses <code>objectives()[1]</code></li>
+<li>Both players are affected by <code>constraints()[0]</code></li>
+</ul>
+<p>This indexing is part of the problem definition, so it is important that the returned lists and player metadata agree.</p>
+<h2 id="a-complete-example">A Complete Example</h2>
+<p>Let <span class="arithmatex">\(f_1, f_2\)</span> denote the objective functions for player 1 and 2, respectively.
+$$
+f_1(x) = (x_1 - 1)^2 + x_2 \qquad f_2(x) = (x_2 - 2)^2 + x_1
+$$
+They each control one variable and share the following constraint:
+$$
+x_1 + x_2 \leq 3, \qquad x_1, x_2 \geq 0
+$$</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span><span class="p">,</span> <span class="n">Player</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SimpleProblem</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
+            <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P2&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">g1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="k">return</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">3.0</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">g1</span><span class="p">]</span>
+
+<span class="n">problem</span> <span class="o">=</span> <span class="n">SimpleProblem</span><span class="p">()</span>
+<span class="n">problem</span><span class="o">.</span><span class="n">set_initial_point</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">primal_x</span><span class="p">,</span> <span class="n">dual_x</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">EnergyMethod</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primal:&quot;</span><span class="p">,</span> <span class="n">primal_x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dual:&quot;</span><span class="p">,</span> <span class="n">dual_x</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="a-good-checklist">A Good Checklist</h2>
+<p>Before solving a new problem, check that:</p>
+<ul>
+<li><code>define_players()</code> returns a <code>list</code> of valid <code>Player</code> objects</li>
+<li>Each player has the correct variable dimension</li>
+<li>Each f_index matches an objective in <code>objectives()</code></li>
+<li>Each constraint index matches a constraint in <code>constraints()</code></li>
+<li>Each objective function accepts a <code>list</code> of player vectors</li>
+<li>Each constraint function accepts a <code>list</code> of player vectors</li>
+<li>Every objective returns a scalar</li>
+<li>Every constraint returns a scalar</li>
+<li>The initial primal and dual points have the correct sizes</li>
+</ul>
+<h2 id="next-step">Next Step</h2>
+<p>After defining a new problem, the next useful page is <code>Choosing an Algorithm</code>, where you can decide how to solve it.</p>
 
 
 
