@@ -7,9 +7,9 @@ where = ["."]
 include = ["solvers*", "problems*"]
 
 [project]
-name = "gne-solver"
+name = "gnekit"
 version = "0.1.0"
-description = "Solvers and utilities to compute Generalized Nash Equilibrium"
+description = "Generalized Nash Kit: a Python library for modeling and solving generalized Nash equilibrium problems"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [

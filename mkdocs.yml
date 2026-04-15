@@ -1,4 +1,4 @@
-site_name: "Generalized Nash Equilibrium Solver"
+site_name: "Generalized Nash Kit"
 
 theme:
   name: material
@@ -49,18 +49,42 @@ extra_javascript:
 # https://www.mkdocs.org/user-guide/writing-your-docs/#file-layout
 nav:
   - Home: index.md
-  - Installation: installation.md
-  - Reference:
-      - Functions:
-          - Construct Vectors: documentation/functions/construct_vectors.md
-          - Created Wrapped Function: documentation/functions/create_wrapped_function.md
-          - Flatten Variables: documentation/functions/flatten_variables.md
-          - One Hot Encoding: documentation/functions/one_hot_encoding.md
-      - Types:
-          - Object Types: documentation/types/object_types.md
-          - Function Types: documentation/types/type_functions.md
+  - Getting Started: 
+    - Overview: getting_started/overview.md
+    - Installation: getting_started/installation.md
+    - Quickstart: getting_started/quick_start.md
 
-  - Examples: examples.md
+  - Guides:
+    - Core Concepts: guides/core_concepts.md
+    - Defining New GNE Problems: guides/gne_problems.md
+    - Defining New D-GBNE Problems: guides/dgbne_problems.md
+    - Choosing an Algorithm: guides/choosing_algorithm.md
+  
+  - API Reference:
+      - Overview: reference/index.md
+      - Problems:
+          - BaseProblem: reference/problems/base_problem.md
+          - BayesianProblem: reference/problems/bayesian_problem.md
+      - Players:
+          - BasePlayer: reference/players/base_player.md
+          - BayesianPlayer: reference/players/bayesian_player.md
+      - Algorithms:
+          - BaseAlgorithm: reference/algorithms/base_algorithm.md
+          - EnergyMethod: reference/algorithms/energy_method.md
+      - Utilities:
+          - construct_vectors: reference/functions/construct_vectors.md
+          - create_wrapped_function: reference/functions/create_wrapped_function.md
+          - flatten_variables: reference/functions/flatten_variables.md
+          - one_hot_encoding: reference/functions/one_hot_encoding.md
+      - Types:
+          - Object Types: reference/types/object_types.md
+          - Function Types: reference/types/type_functions.md
+
+  - Examples: 
+    - Overview: examples/examples.md
+    - Standard Example: examples/standard.md
+    - D-GBNE Example: examples/bayesian.md
+
   - Development:
       - Overview: development/overview.md
       - Standards: development/standards.md
