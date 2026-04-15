@@ -1,4 +1,7 @@
-# GNE Problems Solver
+# Generalized Nash Kit (GNEkit)
+
+`GNEkit` is a Python library for modeling and solving generalized Nash equilibrium problems.
+
 
 GNE Problems Solver is a Python package for modeling and solving Generalized Nash Equilibrium (GNE) problems, supporting both bounded and unbounded cases. It provides a flexible framework for defining multi-player optimization problems with shared and individual constraints, and includes utilities for solution analysis and Nash equilibrium verification.
 
