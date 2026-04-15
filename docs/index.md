@@ -1,61 +1,56 @@
-# Generalized Nash Kit (GNEkit)
+<div class="hero">
+  <h1>Generalized Nash Kit</h1>
+  <p>
+    A Python library for modeling and solving Generalized Nash Equilibrium problems,
+    including Bayesian variants, in a reusable and research-friendly way.
+  </p>
+</div>
 
-`GNEkit` is a Python library for modeling and solving generalized Nash equilibrium problems in a reusable, research-friendly way.
+<div class="grid cards">
 
-The library is organized around a simple workflow:
+<a href="./getting_started/installation" class="card">
+  <h3>Getting Started</h3>
+  <p>Install the package and run your first example.</p>
+</a>
 
-1. define or import a problem
-2. define the players and constraints
-3. choose an algorithm
-4. solve for the primal and dual variables
+<a href="./guides/core_concepts" class="card">
+  <h3>Guides</h3>
+  <p>Learn how to define standard and Bayesian problems.</p>
+</a>
 
-It supports both standard generalized Nash equilibrium problems and Bayesian variants built on the same core abstractions.
+<a href="./reference/" class="card">
+  <h3>API Reference</h3>
+  <p>Explore the core classes, algorithms, and utilities.</p>
+</a>
 
-## What This Library Provides
+<a href="./examples/examples" class="card">
+  <h3>Examples</h3>
+  <p>See concrete problem setups and workflows.</p>
+</a>
+</div>
 
-- Reusable abstractions for players and problems
-- Algorithms for solving equilibrium problems
-- Utilities for vector construction and solver internals
-- Built-in benchmark-style problem definitions
-- Support for Bayesian games with typed players
+## Key Features
 
-## Core Workflow
+- **Benchmark problem collection**  
+  Includes a broad collection of Generalized Nash equilibrium problems drawn from the literature, making it easier to reproduce and compare algorithmic results.
 
-A typical session looks like this:
+- **Simple problem-definition workflow**  
+  Provides a clear and reusable class structure for implementing new problems and solving them with the available algorithms.
 
-```python
-from problems.bayesian import AllocationGame
-from solvers.algorithms import EnergyMethod
+- **Algorithm experimentation**  
+  Makes it straightforward to plug in, test, and evaluate new solution algorithms against a shared problem interface.
 
-problem = AllocationGame()
-problem.set_initial_point(0.5, 0.1)
-primal_x, dual_x = problem.solve(EnergyMethod)
-```
+- **Support for D-GBNE models**  
+  Supports Discrete Generalized Bayesian Nash Equilibrium (D-GBNE) problems through dedicated Bayesian player and problem abstractions.
 
-At a high level:
+- **Utility functions for development**  
+  Includes helper functions for vector construction, indexing, flattening, and other common tasks that arise when defining problems and solver workflows.
 
-- `Player` and `BayesianPlayer` describe each participant
-- `BaseProblem` and `BayesianProblem` define the game
-- `EnergyMethod` and related algorithms solve the resulting system
 
 ## Who This is For
 This project is especially useful for:
 
-- Researchers working on generalized Nash equilibrium problems
+- Researchers working on Generalized Nash Equilibrium problems
 - Students learning equilibrium problem formulations
 - Developers building reusable game-theoretic problem classes
 - Anyone experimenting with constrained multi-player optimization
-
-## Documentation Roadmap
-If you are new to the library, start here:
-
-- Go to [`Getting Started`](./getting_started/overview.md) for installation and a first runnable example
-- Read the [`Guides`](./guides/core_concepts.md) section to understand the problem-definition workflow
-- Use [`API Reference`](./reference/index.md) for class and function details
-- Browse [`Examples`](./examples/examples.md) for concrete problem setups
-
-## Project Structure
-The codebase is centered on two main packages:
-
-- `problems/` contains reusable problem definitions
-- `solvers/` contains core abstractions, algorithms, and utilities.

@@ -2,12 +2,36 @@ site_name: "Generalized Nash Kit"
 
 theme:
   name: material
+  # palette:
+  #   primary: blue grey
   palette:
-    primary: blue grey
+  - scheme: default
+    primary: slate
+    accent: teal
+  
+  font:
+    text: IBM Plex Sans
+    code: JetBrains Mono
+   
+  # features:
+  #   - navigation.tabs
+  #   - navigation.sections
+  #   - navigation.indexes
+
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+    - search.suggest
+    - search.highlight
+    - toc.follow
+
+extra_css:
+- stylesheets/extra.css
+
 
 plugins:
   - awesome-pages
@@ -37,6 +61,7 @@ markdown_extensions:
       generic: true
   - toc
   - attr_list
+  - md_in_html
   
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -48,16 +73,23 @@ extra_javascript:
 # Global site menu
 # https://www.mkdocs.org/user-guide/writing-your-docs/#file-layout
 nav:
-  - Home: index.md
+  - Home: 
+    - Overview: index.md
+    - GNE Problems: 
+        - Model: gne_problems.md
+        - Theory: gne_theory.md
+    - D-GBNE Problems: 
+        - Model: dgbne_problems.md
+        - Theory: dgbne_theory.md
+
   - Getting Started: 
-    - Overview: getting_started/overview.md
     - Installation: getting_started/installation.md
     - Quickstart: getting_started/quick_start.md
 
   - Guides:
     - Core Concepts: guides/core_concepts.md
-    - Defining New GNE Problems: guides/gne_problems.md
-    - Defining New D-GBNE Problems: guides/dgbne_problems.md
+    - Create New GNE Problems: guides/gne_problems.md
+    - Create New D-GBNE Problems: guides/dgbne_problems.md
     - Choosing an Algorithm: guides/choosing_algorithm.md
   
   - API Reference:

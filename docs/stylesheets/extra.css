@@ -1,0 +1,93 @@
+:root {
+  --md-primary-fg-color: #16324f;
+  --md-primary-fg-color--light: #24557a;
+  --md-accent-fg-color: #0f9d8a;
+  --md-typeset-a-color: #0f9d8a;
+}
+
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+}
+
+.md-typeset p,
+.md-typeset li {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.md-typeset code {
+  border-radius: 0.35rem;
+}
+
+.md-typeset pre > code {
+  border-radius: 0.7rem;
+}
+
+.md-content__inner {
+  max-width: 900px;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0.8rem;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.06);
+}
+
+.hero {
+  padding: 3rem 0 0;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  max-width: 42rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.grid.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.grid.cards .card {
+  display: block;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.grid.cards .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.6rem 1.4rem rgba(0, 0, 0, 0.08);
+  border-color: var(--md-accent-fg-color);
+}
+
+.grid.cards .card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}
+
+.grid.cards .card p {
+  margin: 0;
+}
