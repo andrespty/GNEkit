@@ -1,0 +1,3139 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../A9a/">
+      
+      
+        <link rel="next" href="../A10a/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Problem A9b - Generalized Nash Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="slate" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#problem-a9b" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generalized Nash Kit" class="md-header__button md-logo" aria-label="Generalized Nash Kit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generalized Nash Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Problem A9b
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="slate" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting_started/installation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../guides/core_concepts/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../development/overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generalized Nash Kit" class="md-nav__button md-logo" aria-label="Generalized Nash Kit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Generalized Nash Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GNE Problems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GNE Problems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gne_problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gne_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D-GBNE Problems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    D-GBNE Problems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dgbne_problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dgbne_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/core_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/gne_problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create New GNE Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/dgbne_problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create New D-GBNE Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/creating_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating an Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Problems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/problems/base_problem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BaseProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/problems/bayesian_problem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BayesianProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Players
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Players
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/players/base_player/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BasePlayer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/players/bayesian_player/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BayesianPlayer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/algorithms/base_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BaseAlgorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/algorithms/energy_method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EnergyMethod
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Utilities
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/functions/construct_vectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    construct_vectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/functions/create_wrapped_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    create_wrapped_function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/functions/flatten_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    flatten_variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/functions/one_hot_encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    one_hot_encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Types
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/types/object_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/types/type_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Function Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GNE Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GNE Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A9a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A9a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A9b
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A9b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A10a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A10a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D-GBNE Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    D-GBNE Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bayesian/quadratic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quadratic Game
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bayesian/allocation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireless Bandwidth Allocation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bayesian/radar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multistatic Radar Power Allocation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="problem-a9b">Problem A9b</h1>
+<p>A larger instance of the telecommunications power allocation GNEP from Problem A9a, using <span class="arithmatex">\(K = 16\)</span> channels.</p>
+<p><strong>Players:</strong> <span class="arithmatex">\(N = 7\)</span>, each transmitting to a different Base Station over <span class="arithmatex">\(K = 16\)</span> channels.</p>
+<h2 id="optimization-problems">Optimization Problems</h2>
+<p>Same formulation as Problem A9a:</p>
+<div class="arithmatex">\[\min_{x^\nu}\; \sum_{i=1}^{K} x^\nu_i \qquad \text{subject to} \quad x^\nu \geq 0\]</div>
+<div class="arithmatex">\[\sum_{i=1}^{K} \log_2\\!\left(1 + \frac{h^{\nu\nu}_i\, x^\nu_i}{(\sigma^\nu_i)^2 + \displaystyle\sum_{\mu \neq \nu} h^{\nu\mu}_i\, x^\mu_i}\right) \geq L^\nu\]</div>
+<p>with <span class="arithmatex">\(\sigma^\nu_i = 0.3162\)</span> for all <span class="arithmatex">\(\nu, i\)</span> and <span class="arithmatex">\(L^\nu = 16\)</span> for all players.</p>
+<p>The <span class="arithmatex">\(7 \times 112\)</span> coefficient matrix <span class="arithmatex">\(h^{\nu\mu}_i\)</span> is given in full in Appendix A.9b of Facchinei and Kanzow (2009).</p>
+<h2 id="implementation">Implementation</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver.BaseProblem</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver.BasePlayer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Player</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ProblemA9b</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_matrix</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.0129</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0088</span><span class="p">,</span> <span class="mf">0.0048</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0037</span><span class="p">,</span> <span class="mf">0.0062</span><span class="p">,</span> <span class="mf">0.0020</span><span class="p">,</span> <span class="mf">0.0044</span><span class="p">,</span> <span class="mf">0.0043</span><span class="p">,</span> <span class="mf">0.0040</span><span class="p">,</span> <span class="mf">0.0029</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0514</span><span class="p">,</span> <span class="mf">0.0114</span><span class="p">,</span> <span class="mf">0.0024</span><span class="p">,</span> <span class="mf">0.0094</span><span class="p">,</span> <span class="mf">0.0063</span><span class="p">,</span> <span class="mf">0.0057</span><span class="p">,</span> <span class="mf">0.0045</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.1382</span><span class="p">,</span> <span class="mf">0.0087</span><span class="p">,</span> <span class="mf">0.0096</span><span class="p">,</span> <span class="mf">0.0113</span><span class="p">,</span> <span class="mf">0.0040</span><span class="p">,</span> <span class="mf">0.0144</span><span class="p">,</span> <span class="mf">0.0114</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.1824</span><span class="p">,</span> <span class="mf">0.0026</span><span class="p">,</span> <span class="mf">0.0180</span><span class="p">,</span> <span class="mf">0.0068</span><span class="p">,</span> <span class="mf">0.0054</span><span class="p">,</span> <span class="mf">0.0140</span><span class="p">,</span> <span class="mf">0.0157</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.1193</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0135</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0094</span><span class="p">,</span> <span class="mf">0.0043</span><span class="p">,</span> <span class="mf">0.0132</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0290</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0033</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0116</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0089</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0188</span><span class="p">,</span> <span class="mf">0.0020</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0075</span><span class="p">,</span> <span class="mf">0.0192</span><span class="p">,</span> <span class="mf">0.0065</span><span class="p">,</span> <span class="mf">0.0105</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0550</span><span class="p">,</span> <span class="mf">0.0074</span><span class="p">,</span> <span class="mf">0.0038</span><span class="p">,</span> <span class="mf">0.0070</span><span class="p">,</span> <span class="mf">0.0270</span><span class="p">,</span> <span class="mf">0.0076</span><span class="p">,</span> <span class="mf">0.0157</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0642</span><span class="p">,</span> <span class="mf">0.0134</span><span class="p">,</span> <span class="mf">0.0024</span><span class="p">,</span> <span class="mf">0.0020</span><span class="p">,</span> <span class="mf">0.0194</span><span class="p">,</span> <span class="mf">0.0056</span><span class="p">,</span> <span class="mf">0.0136</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0495</span><span class="p">,</span> <span class="mf">0.0166</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0052</span><span class="p">,</span> <span class="mf">0.0058</span><span class="p">,</span> <span class="mf">0.0041</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0318</span><span class="p">,</span> <span class="mf">0.0160</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0042</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0067</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0287</span><span class="p">,</span> <span class="mf">0.0098</span><span class="p">,</span> <span class="mf">0.0050</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">,</span> <span class="mf">0.0030</span><span class="p">,</span> <span class="mf">0.0050</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0585</span><span class="p">,</span> <span class="mf">0.0025</span><span class="p">,</span> <span class="mf">0.0102</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0020</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0843</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0092</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0586</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0032</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0077</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0028</span><span class="p">,</span> <span class="mf">0.0288</span><span class="p">,</span> <span class="mf">0.0208</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0066</span><span class="p">,</span> <span class="mf">0.0136</span><span class="p">,</span> <span class="mf">0.0127</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0088</span><span class="p">,</span> <span class="mf">0.0500</span><span class="p">,</span> <span class="mf">0.0094</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0039</span><span class="p">,</span> <span class="mf">0.0251</span><span class="p">,</span> <span class="mf">0.0125</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0091</span><span class="p">,</span> <span class="mf">0.0147</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0061</span><span class="p">,</span> <span class="mf">0.1168</span><span class="p">,</span> <span class="mf">0.0130</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0098</span><span class="p">,</span> <span class="mf">0.1155</span><span class="p">,</span> <span class="mf">0.0088</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0121</span><span class="p">,</span> <span class="mf">0.0029</span><span class="p">,</span> <span class="mf">0.0044</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0142</span><span class="p">,</span> <span class="mf">0.1913</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0106</span><span class="p">,</span> <span class="mf">0.4811</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0035</span><span class="p">,</span> <span class="mf">0.3142</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0131</span><span class="p">,</span> <span class="mf">0.0044</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.1289</span><span class="p">,</span> <span class="mf">0.0049</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.3551</span><span class="p">,</span> <span class="mf">0.0038</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0031</span><span class="p">,</span> <span class="mf">0.2986</span><span class="p">,</span> <span class="mf">0.0099</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0034</span><span class="p">,</span> <span class="mf">0.1287</span><span class="p">,</span> <span class="mf">0.0202</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0029</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0023</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0609</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0028</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.0588</span><span class="p">,</span> <span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0025</span><span class="p">,</span> <span class="mf">0.0071</span><span class="p">,</span> <span class="mf">0.0554</span><span class="p">,</span> <span class="mf">0.0028</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0096</span><span class="p">,</span> <span class="mf">0.1574</span><span class="p">,</span> <span class="mf">0.0099</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0045</span><span class="p">,</span> <span class="mf">0.2024</span><span class="p">,</span> <span class="mf">0.0192</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0036</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0726</span><span class="p">,</span> <span class="mf">0.0165</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0051</span><span class="p">,</span> <span class="mf">0.0025</span><span class="p">,</span> <span class="mf">0.0497</span><span class="p">,</span> <span class="mf">0.0032</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0024</span><span class="p">,</span> <span class="mf">0.0038</span><span class="p">,</span> <span class="mf">0.1986</span><span class="p">,</span> <span class="mf">0.0029</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.2281</span><span class="p">,</span> <span class="mf">0.0205</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.1334</span><span class="p">,</span> <span class="mf">0.0312</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0762</span><span class="p">,</span> <span class="mf">0.0231</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0209</span><span class="p">,</span> <span class="mf">0.0103</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0115</span><span class="p">,</span> <span class="mf">0.0042</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0043</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.1096</span><span class="p">,</span> <span class="mf">0.0032</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0041</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.1429</span><span class="p">,</span> <span class="mf">0.0034</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0026</span><span class="p">,</span> <span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0759</span><span class="p">,</span> <span class="mf">0.0028</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0492</span><span class="p">,</span> <span class="mf">0.0066</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0128</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0013</span><span class="p">,</span> <span class="mf">0.1154</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0018</span><span class="p">,</span> <span class="mf">0.1459</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0509</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0136</span><span class="p">,</span> <span class="mf">0.0077</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0487</span><span class="p">,</span> <span class="mf">0.0095</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0591</span><span class="p">,</span> <span class="mf">0.0041</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0434</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0030</span><span class="p">,</span> <span class="mf">0.0570</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0027</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.1731</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0030</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.3232</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0025</span><span class="p">,</span> <span class="mf">0.2794</span><span class="p">,</span> <span class="mf">0.0055</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0030</span><span class="p">,</span> <span class="mf">0.0914</span><span class="p">,</span> <span class="mf">0.0076</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0051</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0519</span><span class="p">,</span> <span class="mf">0.0119</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0039</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.1091</span><span class="p">,</span> <span class="mf">0.0139</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0301</span><span class="p">,</span> <span class="mf">0.0023</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0167</span><span class="p">,</span> <span class="mf">0.0070</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0018</span><span class="p">,</span> <span class="mf">0.0398</span><span class="p">,</span> <span class="mf">0.0089</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.0606</span><span class="p">,</span> <span class="mf">0.0049</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0857</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.1207</span><span class="p">,</span> <span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0936</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0217</span><span class="p">,</span> <span class="mf">0.0026</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0188</span><span class="p">,</span> <span class="mf">0.0035</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0808</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.1234</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.1248</span><span class="p">,</span> <span class="mf">0.0013</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0850</span><span class="p">,</span> <span class="mf">0.0029</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0287</span><span class="p">,</span> <span class="mf">0.0024</span><span class="p">,</span> <span class="mf">0.0022</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0210</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0432</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.1341</span><span class="p">,</span> <span class="mf">0.0150</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0027</span><span class="p">,</span> <span class="mf">0.0507</span><span class="p">,</span> <span class="mf">0.0035</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0187</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0037</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0020</span><span class="p">,</span> <span class="mf">0.0046</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0032</span><span class="p">,</span> <span class="mf">0.0153</span><span class="p">,</span> <span class="mf">0.0121</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0351</span><span class="p">,</span> <span class="mf">0.0198</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0956</span><span class="p">,</span> <span class="mf">0.0113</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.1673</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.1522</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0020</span><span class="p">,</span> <span class="mf">0.0527</span><span class="p">,</span> <span class="mf">0.0034</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0022</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0057</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0801</span><span class="p">,</span> <span class="mf">0.0051</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.2297</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.3127</span><span class="p">,</span> <span class="mf">0.0043</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.2574</span><span class="p">,</span> <span class="mf">0.0162</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0038</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0018</span><span class="p">,</span> <span class="mf">0.1630</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0024</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.0052</span><span class="p">,</span> <span class="mf">0.3698</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0035</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0053</span><span class="p">,</span> <span class="mf">0.2515</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0571</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0017</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0774</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0016</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0019</span><span class="p">,</span> <span class="mf">0.0623</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0013</span><span class="p">,</span> <span class="mf">0.0018</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0244</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0015</span><span class="p">,</span> <span class="mf">0.0054</span><span class="p">,</span> <span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.2083</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0015</span><span class="p">,</span> <span class="mf">0.0094</span><span class="p">,</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.3246</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0066</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.1571</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.0440</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.0012</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0953</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0007</span><span class="p">,</span> <span class="mf">0.0022</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mf">0.1190</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.0045</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0009</span><span class="p">,</span> <span class="mf">0.1166</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0082</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">,</span> <span class="mf">0.0703</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0004</span><span class="p">,</span> <span class="mf">0.0085</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.0008</span><span class="p">,</span> <span class="mf">0.0079</span><span class="p">]</span>
+<span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">player_vector_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)]</span>
+        <span class="n">player_objective_functions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)]</span>  <span class="c1"># change to all 0s</span>
+        <span class="n">player_constraints</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)]</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">Player</span><span class="o">.</span><span class="n">batch_create</span><span class="p">(</span>
+            <span class="n">player_vector_sizes</span><span class="p">,</span>
+            <span class="n">player_objective_functions</span><span class="p">,</span>
+            <span class="n">player_constraints</span><span class="p">,</span>
+            <span class="n">bounds</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">obj_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">obj_func</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_h_v</span><span class="p">(</span><span class="n">vu</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">vu</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cant be done&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_matrix</span>
+            <span class="c1"># padding = mu * A9a.K</span>
+            <span class="k">return</span> <span class="n">H</span><span class="p">[:,</span> <span class="n">vu</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">g0</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">K</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.3162</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="mi">16</span>
+
+            <span class="c1"># Flatten input</span>
+            <span class="n">H_all</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">get_h_v</span><span class="p">(</span><span class="n">vu</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">vu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># shape: (N, N, K)</span>
+
+            <span class="c1"># Reshape X to (N, K, 1) for broadcasting</span>
+            <span class="n">X_split</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># shape: (N, K, 1)</span>
+
+            <span class="c1"># Compute elementwise product: shape (N, N, K, 1)</span>
+            <span class="n">HX_all</span> <span class="o">=</span> <span class="n">H_all</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">X_split</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+            <span class="c1"># Split signal vs interference:</span>
+            <span class="c1"># Signal for vu is at H_all[vu, vu] * x[vu] → shape (N, K, 1)</span>
+            <span class="n">signal</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">HX_all</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)])</span>  <span class="c1"># shape (N, K, 1)</span>
+
+            <span class="c1"># Sum all players&#39; contributions (axis=1), then subtract self</span>
+            <span class="n">total_hx</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">HX_all</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># shape: (N, K, 1)</span>
+            <span class="n">interference</span> <span class="o">=</span> <span class="n">total_hx</span> <span class="o">-</span> <span class="n">signal</span>  <span class="c1"># shape: (N, K, 1)</span>
+
+            <span class="c1"># Compute constraint</span>
+            <span class="n">constraint</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">signal</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">interference</span><span class="p">)))</span> <span class="o">-</span> <span class="n">L</span>  <span class="c1"># shape: (N, K, 1)</span>
+
+            <span class="c1"># Sum over K dimensions per player</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">constraint</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">unrolled_constraints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">):</span>
+            <span class="c1"># Each lambda returns exactly ONE scalar for ONE player</span>
+            <span class="n">unrolled_constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">i</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">g0</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="n">idx</span><span class="p">],</span> <span class="p">())</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">unrolled_constraints</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+    
+  </body>
+</html>

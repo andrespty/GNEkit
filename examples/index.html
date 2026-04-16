@@ -9,16 +9,16 @@
       
       
       
-        <link rel="prev" href="../../reference/types/type_functions/">
+        <link rel="prev" href="../reference/types/type_functions/">
       
       
-        <link rel="next" href="../standard/">
+        <link rel="next" href="gne/A1/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -44,14 +44,16 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"JetBrains Mono"}</style>
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,10 +64,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="slate" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -88,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Generalized Nash Kit" class="md-header__button md-logo" aria-label="Generalized Nash Kit" data-md-component="logo">
+    <a href=".." title="Generalized Nash Kit" class="md-header__button md-logo" aria-label="Generalized Nash Kit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +120,19 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="slate" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -144,6 +160,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -180,17 +198,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
   
   
     
   
   Home
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -202,7 +223,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting_started/overview/" class="md-tabs__link">
+        <a href="../getting_started/installation/" class="md-tabs__link">
           
   
   
@@ -224,7 +245,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/core_concepts/" class="md-tabs__link">
+        <a href="../guides/core_concepts/" class="md-tabs__link">
           
   
   
@@ -246,7 +267,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../reference/" class="md-tabs__link">
+        <a href="../reference/" class="md-tabs__link">
           
   
   
@@ -292,7 +313,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../development/overview/" class="md-tabs__link">
+        <a href="../development/overview/" class="md-tabs__link">
           
   
   
@@ -328,7 +349,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Generalized Nash Kit" class="md-nav__button md-logo" aria-label="Generalized Nash Kit" data-md-component="logo">
+    <a href=".." title="Generalized Nash Kit" class="md-nav__button md-logo" aria-label="Generalized Nash Kit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -345,9 +366,36 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href=".." class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -361,7 +409,275 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GNE Problems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GNE Problems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gne_problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gne_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D-GBNE Problems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    D-GBNE Problems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dgbne_problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dgbne_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -374,8 +690,6 @@
   
     
     
-      
-        
       
         
       
@@ -433,35 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting_started/overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/installation/" class="md-nav__link">
+      <a href="../getting_started/installation/" class="md-nav__link">
         
   
   
@@ -489,7 +775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting_started/quick_start/" class="md-nav__link">
+      <a href="../getting_started/quick_start/" class="md-nav__link">
         
   
   
@@ -586,7 +872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/core_concepts/" class="md-nav__link">
+      <a href="../guides/core_concepts/" class="md-nav__link">
         
   
   
@@ -614,14 +900,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/gne_problems/" class="md-nav__link">
+      <a href="../guides/gne_problems/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Defining New GNE Problems
+    Create New GNE Problems
   
 
     
@@ -642,14 +928,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/dgbne_problems/" class="md-nav__link">
+      <a href="../guides/dgbne_problems/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Defining New D-GBNE Problems
+    Create New D-GBNE Problems
   
 
     
@@ -670,14 +956,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/choosing_algorithm/" class="md-nav__link">
+      <a href="../guides/creating_algorithm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Choosing an Algorithm
+    Creating an Algorithm
   
 
     
@@ -738,7 +1024,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/" class="md-nav__link ">
+            <a href="../reference/" class="md-nav__link ">
               
   
   
@@ -840,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/problems/base_problem/" class="md-nav__link">
+      <a href="../reference/problems/base_problem/" class="md-nav__link">
         
   
   
@@ -868,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/problems/bayesian_problem/" class="md-nav__link">
+      <a href="../reference/problems/bayesian_problem/" class="md-nav__link">
         
   
   
@@ -962,7 +1248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/players/base_player/" class="md-nav__link">
+      <a href="../reference/players/base_player/" class="md-nav__link">
         
   
   
@@ -990,7 +1276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/players/bayesian_player/" class="md-nav__link">
+      <a href="../reference/players/bayesian_player/" class="md-nav__link">
         
   
   
@@ -1084,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/algorithms/base_algorithm/" class="md-nav__link">
+      <a href="../reference/algorithms/base_algorithm/" class="md-nav__link">
         
   
   
@@ -1112,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/algorithms/energy_method/" class="md-nav__link">
+      <a href="../reference/algorithms/energy_method/" class="md-nav__link">
         
   
   
@@ -1210,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/functions/construct_vectors/" class="md-nav__link">
+      <a href="../reference/functions/construct_vectors/" class="md-nav__link">
         
   
   
@@ -1238,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/functions/create_wrapped_function/" class="md-nav__link">
+      <a href="../reference/functions/create_wrapped_function/" class="md-nav__link">
         
   
   
@@ -1266,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/functions/flatten_variables/" class="md-nav__link">
+      <a href="../reference/functions/flatten_variables/" class="md-nav__link">
         
   
   
@@ -1294,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/functions/one_hot_encoding/" class="md-nav__link">
+      <a href="../reference/functions/one_hot_encoding/" class="md-nav__link">
         
   
   
@@ -1388,7 +1674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/types/object_types/" class="md-nav__link">
+      <a href="../reference/types/object_types/" class="md-nav__link">
         
   
   
@@ -1416,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/types/type_functions/" class="md-nav__link">
+      <a href="../reference/types/type_functions/" class="md-nav__link">
         
   
   
@@ -1464,6 +1750,8 @@
     
       
         
+          
+        
       
         
       
@@ -1488,8 +1776,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
   
   
   <span class="md-ellipsis">
@@ -1503,8 +1792,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
@@ -1518,29 +1813,81 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
+  
+  
     
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
+    
       
         
       
+        
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
           
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Overview
+    GNE Examples
   
 
     
@@ -1548,160 +1895,19 @@
   
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
   
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
+    GNE Examples
   
 
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#minimal-standard-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Minimal Standard Example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#minimal-bayesian-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Minimal Bayesian Example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#intended-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Intended Workflow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reusable-problem-families" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reusable Problem Families
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Reusable Problem Families">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#standard-gnep-problems" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Standard GNEP problems
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bayesian-problems" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bayesian problems
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defining-your-own-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Defining Your Own Problem
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Defining Your Own Problem">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#standard-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Standard problem
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bayesian-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bayesian problem
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1710,14 +1916,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../standard/" class="md-nav__link">
+      <a href="gne/A1/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Standard Example
+    Problem A1
   
 
     
@@ -1738,14 +1944,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../bayesian/" class="md-nav__link">
+      <a href="gne/A2/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    D-GBNE Example
+    Problem A2
   
 
     
@@ -1754,6 +1960,645 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A9a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A9a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A9b/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A9b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A10a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A10a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gne/A18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem A18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D-GBNE Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    D-GBNE Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesian/quadratic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quadratic Game
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesian/allocation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireless Bandwidth Allocation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesian/radar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multistatic Radar Power Allocation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1831,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/overview/" class="md-nav__link">
+      <a href="../development/overview/" class="md-nav__link">
         
   
   
@@ -1859,7 +2704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/standards/" class="md-nav__link">
+      <a href="../development/standards/" class="md-nav__link">
         
   
   
@@ -1914,55 +2759,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#minimal-standard-example" class="md-nav__link">
+  <a href="#available-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Minimal Standard Example
+        Available Examples
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#minimal-bayesian-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Minimal Bayesian Example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#intended-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Intended Workflow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reusable-problem-families" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reusable Problem Families
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Reusable Problem Families">
+    <nav class="md-nav" aria-label="Available Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#standard-gnep-problems" class="md-nav__link">
+  <a href="#generalized-nash-equilibrium-problems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard GNEP problems
+        Generalized Nash Equilibrium Problems
       
     </span>
   </a>
@@ -1970,49 +2782,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bayesian-problems" class="md-nav__link">
+  <a href="#discrete-generalized-bayesian-nash-equilibrium-problems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bayesian problems
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defining-your-own-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Defining Your Own Problem
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Defining Your Own Problem">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#standard-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Standard problem
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bayesian-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bayesian problem
+        Discrete Generalized Bayesian Nash Equilibrium Problems
       
     </span>
   </a>
@@ -2042,71 +2815,42 @@
 
 
 <h1 id="examples">Examples</h1>
-<h2 id="minimal-standard-example">Minimal Standard Example</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">problems.gnep</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProblemA1</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
-
-<span class="n">problem</span> <span class="o">=</span> <span class="n">ProblemA1</span><span class="p">()</span>
-<span class="n">problem</span><span class="o">.</span><span class="n">set_initial_point</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">primal_x</span><span class="p">,</span> <span class="n">dual_x</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">EnergyMethod</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="minimal-bayesian-example">Minimal Bayesian Example</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">problems.bayesian</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllocationGame</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
-
-<span class="n">problem</span> <span class="o">=</span> <span class="n">AllocationGame</span><span class="p">()</span>
-<span class="n">problem</span><span class="o">.</span><span class="n">set_initial_point</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">primal_x</span><span class="p">,</span> <span class="n">dual_x</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">EnergyMethod</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="intended-workflow">Intended Workflow</h2>
-<p>The current intended workflow is:</p>
-<ol>
-<li>import a reusable problem class from <code>problems.gnep</code> or <code>problems.bayesian</code></li>
-<li>instantiate the problem</li>
-<li>set initial primal and dual values</li>
-<li>solve with an algorithm from <code>solvers.algorithms</code></li>
-</ol>
-<h2 id="reusable-problem-families">Reusable Problem Families</h2>
-<h3 id="standard-gnep-problems">Standard GNEP problems</h3>
-<p>Examples in <code>problems/gnep/</code> include:</p>
+<p>This page collects example problems implemented in <code>GNEkit</code>. Each example
+is taken directly from the GNEP literature and shows how to express the
+problem using the library — from defining players and objectives to computing
+equilibria.</p>
+<p>The examples are organized by problem type and grow as the library develops.
+If you have a problem from the literature you would like to see implemented,
+feel free to open an issue or contribute.</p>
+<hr />
+<h2 id="available-examples">Available Examples</h2>
+<h3 id="generalized-nash-equilibrium-problems">Generalized Nash Equilibrium Problems</h3>
 <ul>
-<li><code>ProblemA1</code></li>
-<li><code>ProblemA2</code></li>
-<li><code>ProblemA3</code></li>
-<li>...</li>
-<li><code>ProblemA18</code></li>
+<li><a href="gne/A1/">Problem A1</a></li>
+<li><a href="gne/A2/">Problem A2</a></li>
+<li><a href="gne/A3/">Problem A3</a></li>
+<li><a href="gne/A4/">Problem A4</a></li>
+<li><a href="gne/A5/">Problem A5</a></li>
+<li><a href="gne/A6/">Problem A6</a></li>
+<li><a href="gne/A7/">Problem A7</a></li>
+<li><a href="gne/A8/">Problem A8</a></li>
+<li><a href="gne/A9a/">Problem A9</a></li>
+<li><a href="gne/A10a/">Problem A10</a></li>
+<li><a href="gne/A11/">Problem A11</a></li>
+<li><a href="gne/A12/">Problem A12</a></li>
+<li><a href="gne/A13/">Problem A13</a></li>
+<li><a href="gne/A14/">Problem A14</a></li>
+<li><a href="gne/A15/">Problem A15</a></li>
+<li><a href="gne/A16/">Problem A16</a></li>
+<li><a href="gne/A17/">Problem A17</a></li>
+<li><a href="gne/A18/">Problem A18</a></li>
 </ul>
-<h3 id="bayesian-problems">Bayesian problems</h3>
-<p>Examples in <code>problems/bayesian/</code> include:</p>
+<h3 id="discrete-generalized-bayesian-nash-equilibrium-problems">Discrete Generalized Bayesian Nash Equilibrium Problems</h3>
 <ul>
-<li><code>AllocationGame</code></li>
-<li><code>QuadraticGame</code></li>
-<li><code>RadarPowerGame</code></li>
+<li><a href="bayesian/quadratic/">Quadratic Game</a></li>
+<li><a href="bayesian/allocation/">Allocation Game</a></li>
+<li><a href="bayesian/radar/">Radar Power Allocation Game</a></li>
 </ul>
-<h2 id="defining-your-own-problem">Defining Your Own Problem</h2>
-<h3 id="standard-problem">Standard problem</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyProblem</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-</code></pre></div>
-<h3 id="bayesian-problem">Bayesian problem</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyBayesianProblem</span><span class="p">(</span><span class="n">BayesianProblem</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-</code></pre></div>
-<p>The canonical runnable demonstration should remain <code>examples/main.py</code>, kept small and focused on the current public API.</p>
 
 
 
@@ -2124,8 +2868,16 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -2156,10 +2908,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
