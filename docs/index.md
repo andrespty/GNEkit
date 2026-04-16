@@ -23,7 +23,7 @@
   <p>Explore the core classes, algorithms, and utilities.</p>
 </a>
 
-<a href="./examples/examples" class="card">
+<a href="./examples/" class="card">
   <h3>Examples</h3>
   <p>See concrete problem setups and workflows.</p>
 </a>

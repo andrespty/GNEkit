@@ -1,6 +1,6 @@
 # Quickstart
 
-This page walks through the basic workflow for solving a problem with `GNE Solver`.
+Here we go through the basic workflow for solving a problem with `GNE Solver`.
 
 The standard pattern is:
 
@@ -25,6 +25,7 @@ print("Dual solution:", dual_x)
 ```
 
 ## What Happens Here
+
 - `AllocationGame()` creates a predefined problem instance
 - `set_initial_point(0.5,0.1)` initializes the primal and dual variables
 - `solve(EnergyMethod)` runs the solver with the selected algorithm
@@ -37,6 +38,7 @@ print("Dual solution:", dual_x)
 Before calling `solve(...)`, you must provide an initial point. 
 
 You can pass:
+
 - A scalar float, which will be broadcast across all variables
 - A list with one entry per variable
   
@@ -47,10 +49,9 @@ problem.set_initial_point(1.0, 0.1)
 
 Example with explicit vectors:
 ```python
-problem.set_initial_point(
-    [1.0, 1.0 ,2.0],   # This game has three primal variables
-    [0.1, 0.5]         # and two constraints     
-)
+primal_ip = [1.0, 1.0 ,2.0] # This game has three primal variables
+dual_ip = [0.1, 0.5]        # and two constraints     
+problem.set_initial_point(primal_ip, dual_ip)
 ```
 The primal vector length must match the total number of player variables, and the dual vector length must match the number of constraints in the problem.
 

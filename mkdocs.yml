@@ -62,6 +62,8 @@ markdown_extensions:
   - toc
   - attr_list
   - md_in_html
+  - pymdownx.snippets:
+      base_path: .
   
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -90,7 +92,7 @@ nav:
     - Core Concepts: guides/core_concepts.md
     - Create New GNE Problems: guides/gne_problems.md
     - Create New D-GBNE Problems: guides/dgbne_problems.md
-    - Choosing an Algorithm: guides/choosing_algorithm.md
+    - Creating an Algorithm: guides/creating_algorithm.md
   
   - API Reference:
       - Overview: reference/index.md
@@ -113,9 +115,31 @@ nav:
           - Function Types: reference/types/type_functions.md
 
   - Examples: 
-    - Overview: examples/examples.md
-    - Standard Example: examples/standard.md
-    - D-GBNE Example: examples/bayesian.md
+    - Overview: examples/index.md
+    - GNE Examples:
+        - Problem A1: examples/gne/A1.md
+        - Problem A2: examples/gne/A2.md
+        - Problem A3: examples/gne/A3.md
+        - Problem A4: examples/gne/A4.md
+        - Problem A5: examples/gne/A5.md
+        - Problem A6: examples/gne/A6.md
+        - Problem A7: examples/gne/A7.md
+        - Problem A8: examples/gne/A8.md
+        - Problem A9a: examples/gne/A9a.md
+        - Problem A9b: examples/gne/A9b.md
+        - Problem A10a: examples/gne/A10a.md
+        - Problem A11: examples/gne/A11.md
+        - Problem A12: examples/gne/A12.md
+        - Problem A13: examples/gne/A13.md
+        - Problem A14: examples/gne/A14.md
+        - Problem A15: examples/gne/A15.md
+        - Problem A16: examples/gne/A16.md
+        - Problem A17: examples/gne/A17.md
+        - Problem A18: examples/gne/A18.md
+    - D-GBNE Examples:
+        - Quadratic Game: examples/bayesian/quadratic.md
+        - Wireless Bandwidth Allocation: examples/bayesian/allocation.md
+        - Multistatic Radar Power Allocation: examples/bayesian/radar.md
 
   - Development:
       - Overview: development/overview.md
