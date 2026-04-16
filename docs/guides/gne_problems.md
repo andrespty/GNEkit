@@ -1,6 +1,6 @@
 # Defining a New GNE Problem
 
-This guide explains how to define a new standard generalized Nash equilibrium problem in `GNE Solver`.
+This guide explains how to define a new standard GNE problem in `GNEkit`.
 
 A standard GNE problem in this library is built by subclassing `BaseProblem` and implementing three methods:
 
@@ -18,7 +18,8 @@ Use `BaseProblem` when:
 - the game is not type-dependent
 - the problem is not modeled as a Bayesian game
 
-If your problem includes types, type probabilities, or per-type actions, use the Bayesian workflow instead.
+!!! note 
+    If your problem includes types, type probabilities, or per-type actions, use the [Bayesian workflow](./dgbne_problems.md) instead.
 
 ## The Required Structure
 
@@ -83,6 +84,8 @@ In this example:
 - each player has its own objective
 - both players are affected by constraint `0`
 
+!!! note
+    Players can also be defined in batch. See the [API Docs](link).
 
 ## Step 2: Define The Objective Functions
 The `objectives()` method returns a list of functions.
@@ -145,7 +148,7 @@ def constraints(self):
 
 
 ## How Player Indexing Works
-The Player definitions must be consistent with the lists returned by objectives() and constraints().
+The Player definitions must be consistent with the lists returned by `objectives()` and `constraints()`.
 
 For example:
 ```python
@@ -158,7 +161,7 @@ means:
 - Player 2 uses `objectives()[1]`
 - Both players are affected by `constraints()[0]`
   
-This indexing is part of the problem definition, so it is important that the returned lists and player metadata agree.
+This indexing is part of the problem definition, so it is important that the returned **lists and player metadata agree**.
 
 
 ## A Complete Example

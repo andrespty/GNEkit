@@ -1,6 +1,6 @@
 # Defining a New D-GBNE Problem
 
-This guide explains how to define a new Bayesian generalized Nash equilibrium problem in `GNE Solver`.
+This guide explains how to define a new Bayesian generalized Nash equilibrium problem in `GNEkit`.
 
 A D-GBNE problem in this library is built by subclassing `BayesianProblem` and implementing three methods:
 
@@ -19,7 +19,8 @@ Use `BayesianProblem` when:
 - you want to model type probabilities
 - the problem is naturally written as a Bayesian game
 
-If each player only has a single decision vector and there is no type structure, use `BaseProblem` instead.
+!!! note
+    If each player only has a single decision vector and there is no type structure, use `BaseProblem` instead.
 
 ## The Required Structure
 
