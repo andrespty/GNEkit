@@ -4,7 +4,7 @@ A Python library for modeling and solving **Generalized Nash Equilibrium (GNE)**
 
 GNEkit provides a clean class-based interface for defining multi-player games with shared constraints, a collection of benchmark problems from the literature, and a set of algorithms built on JAX automatic differentiation.
 
-📖 **[Full documentation](https://andrespty.github.io/GNEkit/)** 📖
+📖 **[`Full Documentation`](https://andrespty.github.io/GNEkit/)** 📖
 
 ---
 
@@ -150,17 +150,9 @@ And three D-GBNE problems from:
 
 > Ho, A. (2026). *Discrete Generalized Bayesian Nash Equilibrium.*
 
-The Bayesian problems are adapted from Akkarajitsakul et al. (2011) and Deligiannis & Lambotharan (2017). All problems are documented with their mathematical formulations and known solutions at [`<link>`](https://andrespty.github.io/GNEkit/examples/).
+The Bayesian problems are adapted from Akkarajitsakul et al. (2011) and Deligiannis & Lambotharan (2017). All problems are documented with their mathematical formulations and known solutions at [GNEkit](https://andrespty.github.io/GNEkit/examples/).
 
 ---
-
-## Documentation
-
-The full documentation covers installation, the problem-definition workflow for both GNE and D-GBNE problems, algorithm guides, API reference, and all benchmark problems with worked solutions.
-
-📖 **[`<link>`](https://andrespty.github.io/GNEkit/)**
----
-
 ## License
 
 MIT License. See `LICENSE` for details.
