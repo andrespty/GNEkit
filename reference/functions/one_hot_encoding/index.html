@@ -12,7 +12,7 @@
         <link rel="prev" href="../flatten_variables/">
       
       
-        <link rel="next" href="../../types/object_types/">
+        <link rel="next" href="../players_to_lists/">
       
       
         
@@ -1406,6 +1406,62 @@
   
   
   
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../algorithms/energy_method/" class="md-nav__link">
         
@@ -1436,6 +1492,14 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
               
                 
   
@@ -1446,6 +1510,10 @@
   
     
     
+      
+        
+      
+        
       
         
       
@@ -1623,6 +1691,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../players_to_lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    players_to_lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bayesian_players_to_lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bayesian_players_to_lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1639,8 +1763,6 @@
   
     
     
-      
-        
       
         
       
@@ -1707,34 +1829,6 @@
     
   
     Object Types
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../types/type_functions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Function Types
   
 
     
@@ -2788,9 +2882,9 @@
 
     <div class="doc doc-contents first">
 
-        <p>Build a matrix mapping player action variables to their assigned functions.</p>
-<p>This matrix (M) has shape (sum(sizes), num_functions). If variable 'i'
-is associated with function 'j', M[i, j] = 1, otherwise 0.</p>
+        <p>Builds a matrix that maps each player's variables to the functions they participate in.</p>
+<p>This matrix (<code>M</code>) has shape <code>(sum(sizes), num_functions)</code>. If variable <code>i</code>
+is associated with function <code>j</code>, <code>M[i, j] = 1</code>, otherwise <code>0</code>.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2874,6 +2968,29 @@ indices of the functions they are associated with.</p>
               <div class="doc-md-description">
                 <p>A binary matrix of shape (sum(sizes), num_functions) representing
 the mapping.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>funcs_idx</code> and <code>sizes</code> differ in length.</p>
               </div>
             </td>
           </tr>
