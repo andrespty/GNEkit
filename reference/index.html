@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -2847,6 +2852,82 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#players" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Players
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2863,9 +2944,44 @@
 
 
 
-  <h1>Overview</h1>
-
-<p>Reference index</p>
+<h1 id="api-reference">API Reference</h1>
+<h3 id="problems">Problems</h3>
+<ul>
+<li><a href="problems/base_problem/"><code>BaseProblem</code></a> is the base abstraction for standard GNE problems.</li>
+<li><a href="problems/bayesian_problem/"><code>BayesianProblem</code></a> extends the same workflow to discrete Bayesian settings with type-dependent actions.</li>
+</ul>
+<h3 id="players">Players</h3>
+<ul>
+<li><a href="players/base_player/"><code>Player</code></a> describes a standard player: variable size, objective index, shared constraints, and optional bounds.</li>
+<li><a href="players/bayesian_player/"><code>BayesianPlayer</code></a> adds type values, type probabilities, and per-type action structure.</li>
+</ul>
+<h3 id="algorithms">Algorithms</h3>
+<ul>
+<li><a href="algorithms/base_algorithm/"><code>BaseAlgorithm</code></a> defines the common solver interface and shared setup.</li>
+<li><a href="algorithms/energy_method/"><code>EnergyMethod</code></a> is the primary documented solver implementation and the default choice in most examples.</li>
+</ul>
+<h2 id="utility-functions">Utility Functions</h2>
+<p>These helpers support problem setup and solver internals:</p>
+<ul>
+<li><a href="functions/construct_vectors/"><code>construct_vectors</code></a> splits a stacked action vector into per-player blocks.</li>
+<li><a href="functions/flatten_variables/"><code>flatten_variables</code></a> flattens structured variables into a single solver vector.</li>
+<li><a href="functions/create_wrapped_function/"><code>create_wrapped_function</code></a> freezes opponents' actions to build single-player objective views.</li>
+<li><a href="functions/one_hot_encoding/"><code>one_hot_encoding</code></a> builds the player-to-function incidence matrix used by the solver.</li>
+<li><a href="functions/players_to_lists/"><code>players_to_lists</code></a> converts standard player objects into parallel attribute lists.</li>
+<li><a href="functions/bayesian_players_to_lists/"><code>bayesian_players_to_lists</code></a> does the same for Bayesian players.</li>
+</ul>
+<h2 id="types">Types</h2>
+<ul>
+<li><a href="types/object_types/"><code>Object Types</code></a> summarizes the main array, function, and structural type aliases used across the package.</li>
+</ul>
+<h2 id="related-guides">Related Guides</h2>
+<p>If you want implementation walkthroughs rather than API details, start here:</p>
+<ul>
+<li><a href="../guides/core_concepts/"><code>Core Concepts</code></a></li>
+<li><a href="../guides/gne_problems/"><code>Create New GNE Problems</code></a></li>
+<li><a href="../guides/dgbne_problems/"><code>Create New D-GBNE Problems</code></a></li>
+<li><a href="../guides/creating_algorithm/"><code>Creating an Algorithm</code></a></li>
+</ul>
 
 
 
