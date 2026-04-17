@@ -1,0 +1,1 @@
+::: solvers.gnep_solver.BasePlayer.players_to_lists

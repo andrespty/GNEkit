@@ -8,6 +8,32 @@ from solvers.gnep_solver import *
 from solvers.gnep_solver.BasePlayer import players_to_lists, Player
 
 class BaseAlgorithm(ABC):
+    """
+    Abstract base class for GNE-seeking algorithms.
+
+    Handles all shared setup: derivative compilation, bound extraction,
+    constraint encoding, and KKT validation. Subclasses only need to
+    implement `min_func`.
+
+    Parameters
+    ----------
+    obj_funcs : list of ObjFunction
+        Objective functions, one per objective in the problem.
+    constraints : list of ConsFunction
+        Shared constraint functions ``g(x) <= 0``.
+    player_list : list of Player
+        Players defining variable sizes, objective assignments, and
+        constraint participation.
+    validate : bool, optional
+        Whether to validate objective and constraint functions on
+        construction. Defaults to ``True``.
+
+    Notes
+    -----
+    All objective and constraint derivatives are JIT-compiled via
+    ``jax.jit(jax.grad(...))`` at construction time to avoid recompilation
+    during solving.
+    """
     def __init__(self,
                  obj_funcs: List[ObjFunction],
                  constraints: List[ConsFunction],
@@ -58,12 +84,52 @@ class BaseAlgorithm(ABC):
 
     @abstractmethod
     def min_func(self, x: List[float]) -> float:
+        """
+        Objective function minimized by the solver.
+
+        Parameters
+        ----------
+        x : list of float
+            Flattened vector of primal and dual variables.
+
+        Returns
+        -------
+        float
+            Scalar value to minimize.
+        """
         pass
 
     def check_kkt(self, actions: jnp.ndarray, lambdas: jnp.ndarray, tol: float = 1e-6):
         """
-        Computes KKT residuals where 'lambdas' is a global array of multipliers.
-        Each player.constraints contains the indices mapping into 'lambdas'.
+        Compute KKT residuals for all players at a candidate solution.
+
+        For each player, evaluates the four KKT conditions:
+
+        - **Stationarity** — norm of the Lagrangian gradient.
+        - **Primal feasibility** — maximum constraint violation ``max(0, g_j)``.
+        - **Dual feasibility** — maximum multiplier violation ``max(0, -lambda_j)``.
+        - **Complementary slackness** — norm of ``lambda_j * g_j``.
+
+        Parameters
+        ----------
+        actions : jnp.ndarray
+            Flat array of primal variables for all players.
+        lambdas : jnp.ndarray
+            Flat array of dual multipliers, indexed by constraint.
+        tol : float, optional
+            Tolerance below which a residual is considered satisfied.
+            Defaults to ``1e-6``.
+
+        Returns
+        -------
+        dict
+            A dictionary keyed by player name. Each value is a dict with:
+
+            - ``"stationarity"`` — float.
+            - ``"primal_feas"`` — float.
+            - ``"dual_feas"`` — float.
+            - ``"comp_slack"`` — float.
+            - ``"is_kkt"`` — bool, ``True`` if all residuals are below ``tol``.
         """
         x_flat = jnp.array(actions)
         x_structured = construct_vectors(x_flat, self.action_sizes)
@@ -128,6 +194,7 @@ class BaseAlgorithm(ABC):
 
     @staticmethod
     def _print_kkt_report(report):
+        """Print a formatted KKT residual table to stdout."""
         print(f"\n{'=' * 20} KKT VALIDATION {'=' * 20}")
         for name, metrics in report.items():
             print(f"PLAYER: {name}")
@@ -138,6 +205,29 @@ class BaseAlgorithm(ABC):
         print("=" * 56)
 
     def solve(self, ip: jnp.ndarray):
+        """
+        Solve the GNE problem from an initial point using basin-hopping.
+
+        Wraps ``scipy.optimize.basinhopping`` with SLSQP as the local
+        minimizer and the primal/dual bounds from the player definitions.
+
+        Parameters
+        ----------
+        ip : jnp.ndarray
+            Flat initial point containing stacked primal and dual variables.
+            Use `BaseProblem.set_initial_point` to construct this.
+
+        Returns
+        -------
+        result : OptimizeResult
+            The SciPy optimization result object.
+        elapsed_time : float
+            Wall-clock time in seconds.
+
+        See Also
+        --------
+        [`BaseProblem.solve`](../problems/base_problem.md) : Higher-level entry point that calls this method.
+        """
         minimizer_kwargs = dict(
             method="SLSQP",
             # options={"eps": 1e-6}
@@ -162,6 +252,16 @@ class BaseAlgorithm(ABC):
         return result, elapsed_time
 
     def result_summary(self, x, time):
+        """
+        Print a solution summary and run KKT validation.
+
+        Parameters
+        ----------
+        x : jnp.ndarray
+            Flat solution vector of primal and dual variables.
+        time : float
+            Elapsed solve time in seconds.
+        """
         print("\nRESULT SUMMARY")
         print("Elapsed time: ", time, " seconds")
         print("Final function value: ", self.min_func(x))
@@ -172,6 +272,7 @@ class BaseAlgorithm(ABC):
         self.check_kkt(jnp.array(primal), jnp.array(dual))
 
     def summary(self):
+        """Print a structured overview of the game and algorithm configuration."""
         print("=" * 60)
         print("GENERALIZED GAME SUMMARY")
         print("=" * 60)

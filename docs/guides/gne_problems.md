@@ -85,7 +85,7 @@ In this example:
 - both players are affected by constraint `0`
 
 !!! note
-    Players can also be defined in batch. See the [API Docs](link).
+    Players can also be defined in batch. See the [API Docs](../reference/players/base_player.md).
 
 ## Step 2: Define The Objective Functions
 The `objectives()` method returns a list of functions.
