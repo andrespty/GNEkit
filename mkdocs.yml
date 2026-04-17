@@ -8,7 +8,7 @@ theme:
   - scheme: default
     primary: slate
     accent: teal
-  
+
   font:
     text: IBM Plex Sans
     code: JetBrains Mono
@@ -50,6 +50,7 @@ plugins:
             show_source: false
             show_source_order: true
             members_order: source
+            show_if_no_docstring: true  # ← this
 
 
 markdown_extensions:
@@ -104,15 +105,17 @@ nav:
           - BayesianPlayer: reference/players/bayesian_player.md
       - Algorithms:
           - BaseAlgorithm: reference/algorithms/base_algorithm.md
-          - EnergyMethod: reference/algorithms/energy_method.md
+          - Examples: 
+            - EnergyMethod: reference/algorithms/energy_method.md
       - Utilities:
           - construct_vectors: reference/functions/construct_vectors.md
           - create_wrapped_function: reference/functions/create_wrapped_function.md
           - flatten_variables: reference/functions/flatten_variables.md
           - one_hot_encoding: reference/functions/one_hot_encoding.md
+          - players_to_lists: reference/functions/players_to_lists.md
+          - bayesian_players_to_lists: reference/functions/bayesian_players_to_lists.md
       - Types:
           - Object Types: reference/types/object_types.md
-          - Function Types: reference/types/type_functions.md
 
   - Examples: 
     - Overview: examples/index.md

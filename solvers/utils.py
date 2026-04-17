@@ -3,26 +3,32 @@ import jax.numpy as jnp
 from typing import List, Callable
 from solvers.schema import VectorList, Vector, PlayerConstraint, ObjFunction
 
-def flatten_variables(vectors: VectorList, scalars: List[float]) -> jnp.ndarray:
+def flatten_variables(vectors: VectorList, scalars: List[float]) -> jnp.ndarray:    
     """
-    Flatten a collection of vectors and scalars into a single JAX array.
+    Flatten a collection of player action vectors and scalars into a single 1D JAX array.
 
     This function concatenates a list of player action vectors and a list of
     additional scalars (such as Lagrange multipliers or slack variables) into
-    a single 1D array. It is optimized for use within JIT-compiled functions.
+    a single 1D array.
 
     Parameters
     ----------
     vectors : VectorList
-        List of JAX arrays (usually column vectors) representing player strategies.
+        List of JAX arrays representing player strategies, typically of shape (n, 1).
     scalars : List[float]
-    	A list of scalar values to append after the flattened vectors.
+        Scalar values to append after the flattened vectors, such as Lagrange
+        multipliers or dual variables.
 
     Returns
     -------
     jax.Array
         A 1D JAX array containing all elements from the input vectors,
         followed by the scalar values.
+
+    See Also
+    --------
+    [`construct_vectors`](./construct_vectors.md): The inverse operation; splits a flat 1D array back into
+        player action vectors and scalars.
 
     Examples
     --------
@@ -60,8 +66,8 @@ def construct_vectors(actions: Vector, action_sizes: List[int]) -> VectorList:
     Returns
     -------
     list of jax.Array
-        A list of 2D JAX arrays (column vectors), where the i-th element has
-        shape (action_sizes[i], 1).
+        A `list` of 2D JAX arrays (column vectors), where the i-th element has
+        shape `(action_sizes[i], 1)`.
 
     Raises
     ------
@@ -71,6 +77,11 @@ def construct_vectors(actions: Vector, action_sizes: List[int]) -> VectorList:
     ValueError
         If the total size of ``actions`` does not equal the sum of
         ``action_sizes``.
+
+    See Also
+    --------
+    [`flatten_variables`](./flatten_variables.md): The inverse operation; concatenates player action vectors
+        and scalars into a single 1D array.
 
     Notes
     -----
@@ -123,10 +134,10 @@ def one_hot_encoding(
         num_functions: int
 ) -> jnp.ndarray:
     """
-    Build a matrix mapping player action variables to their assigned functions.
+    Builds a matrix that maps each player's variables to the functions they participate in.
 
-    This matrix (M) has shape (sum(sizes), num_functions). If variable 'i'
-    is associated with function 'j', M[i, j] = 1, otherwise 0.
+    This matrix (`M`) has shape `(sum(sizes), num_functions)`. If variable `i`
+    is associated with function `j`, `M[i, j] = 1`, otherwise `0`.
 
     Parameters
     ----------
@@ -143,6 +154,11 @@ def one_hot_encoding(
     jax.Array
         A binary matrix of shape (sum(sizes), num_functions) representing
         the mapping.
+
+    Raises
+    ------
+    ValueError
+        If ``funcs_idx`` and ``sizes`` differ in length.
 
     Examples
     --------
@@ -198,22 +214,22 @@ def create_wrapped_function(
     Parameters
     ----------
     original_func : ObjFunction
-        The original payoff/cost function: f(VectorList) -> float.
+        The original payoff/cost function: `f(VectorList) -> float`.
     actions : VectorList
         List of JAX arrays representing the current state of the game.
     player_idx : int
-        The index of the player whose actions are being varied.
+        The index of the player whose actions are being varied. For example, if `player_idx=0`, the returned function will only take the first player's variables as input.
 
     Returns
     -------
     Callable[[jnp.ndarray], float]
-        A function that takes a 1D or 2D JAX array for player i and returns
+        A function that takes a 1D `(n,)` or 2D `(n, 1)` JAX array for player i and returns
          the scalar objective value.
 
     Examples
     --------
     >>> import jax.numpy as jnp
-    >>> def cost_func(xs): return jnp.sum(xs[0])**2 + jnp.sum(xs[1])
+    >>> def cost_func(x): return jnp.sum(x[0])**2 + jnp.sum(x[1])
     >>> actions = [jnp.array([[1.0]]), jnp.array([[2.0]])]
     >>> wrapped = create_wrapped_function(cost_func, actions, 0)
     >>> wrapped(jnp.array([5.0]))

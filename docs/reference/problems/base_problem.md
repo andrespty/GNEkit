@@ -5,7 +5,14 @@
         show_root_heading: false
         show_root_toc_entry: false
         inherited_members: false
+        show_source: false
+        docstring_style: numpy
         members:
+        - __init__
+        - players
+        - primal_ip
+        - dual_ip
+        - known_solution
         - define_players
         - objectives
         - constraints

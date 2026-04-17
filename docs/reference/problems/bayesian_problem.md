@@ -6,6 +6,10 @@
         show_root_toc_entry: false
         inherited_members: false
         members:
+        - __init__
+        - players
+        - primal_ip
+        - dual_ip
         - objectives
         - constraints
         - define_players

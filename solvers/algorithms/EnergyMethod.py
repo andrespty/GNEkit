@@ -9,25 +9,19 @@ from solvers.schema import Vector
 from functools import partial
 from .BaseAlgorithm import BaseAlgorithm
 
+
 class EnergyMethod(BaseAlgorithm):
+    """
+    Here we show how to implement BaseAlgorithm by coding the energy method. 
+    The key idea is to define a single scalar "energy" function that combines the primal and dual gradients, 
+    and then minimize this energy with respect to both the actions and the dual variables.
+    """
     def __init__(self, obj, const, players):
         super().__init__(obj, const, players)
         self._grad_func_jit = jax.jit(jax.grad(self._jit_min_func))
 
     def min_func(self, x: List[float]) -> float:
-        """
-        Compute the total energy of the system.
-
-        Parameters
-        ----------
-        x : Vector
-            Player action vectors stacked vertically.
-
-        Returns
-        -------
-        float
-            Total energy of the system.
-        """
+        # This is the function the solver will call to minimize.
         x_jax = jnp.asarray(x)
         return np.float64(self._jit_min_func(x_jax))
 

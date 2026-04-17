@@ -8,14 +8,14 @@ from solvers.algorithms import EnergyMethod
 
 class BaseProblem(ABC):
     """
-    Abstract base class for standard generalized Nash equilibrium problems.
+    Abstract base class for standard Generalized Nash equilibrium problems.
 
     A `BaseProblem` defines the mathematical structure of a GNE
     through three core components:
 
-    - a list of players
-    - a list of objective functions
-    - a list of constraint functions
+    - List of players
+    - List of objective functions
+    - List of constraint functions
 
     Subclasses must implement `define_players()`, `objectives()`, and
     `constraints()`.
@@ -34,6 +34,8 @@ class BaseProblem(ABC):
     def __init__(self, players: List[Player] = None):
         """
         Initialize the problem.
+
+        Add any constants or parameters to the problem definition here. See [Example 3](../../examples/gne/A3.md) 
 
         Parameters
         ----------
