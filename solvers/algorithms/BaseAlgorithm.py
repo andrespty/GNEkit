@@ -267,8 +267,8 @@ class BaseAlgorithm(ABC):
         print("Final function value: ", self.min_func(x))
         primal = x[:self.total_actions]
         dual = x[self.total_actions:]
-        print("Primal Actions: ", primal)
-        print("Dual Actions: ", dual)
+        print("Primal Actions: \n", primal)
+        print("Dual Actions: \n", dual)
         self.check_kkt(jnp.array(primal), jnp.array(dual))
 
     def summary(self):
