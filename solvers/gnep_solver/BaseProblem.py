@@ -342,8 +342,9 @@ class BaseProblem(ABC):
         constraints, and players, then solves the problem starting from the stored
         initial point.
         """
-        alg = Algorithm if Algorithm else EnergyMethod
-        algorithm = alg(self.objectives(), self.constraints(), self.players)
+        algorithm_cls = Algorithm if Algorithm else EnergyMethod
+        algorithm = algorithm_cls(self.objectives(), self.constraints(), self.players)
+        self.algorithm = algorithm
 
         ip = jnp.array(self.primal_ip + self.dual_ip)
         res, time = algorithm.solve(ip)

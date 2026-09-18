@@ -229,10 +229,17 @@ class BaseAlgorithm(ABC):
         [`BaseProblem.solve`](../problems/base_problem.md) : Higher-level entry point that calls this method.
         """
         minimizer_kwargs = dict(
-            method="SLSQP",
+            # method="SLSQP",
+            method="L-BFGS-B",
             # options={"eps": 1e-6}
-            # jac=self.solver.grad_min_func,
-            bounds=self.bounds_all
+            # jac=self.grad_min_func,
+            # jac=self._grad_func_jit,
+            bounds=self.bounds_all,
+            options={
+            #     "maxiter": 10000,
+                "ftol": 1e-15,
+                # "gtol": 1e-8
+            }
         )
         start = timeit.default_timer()
         result = basinhopping(

@@ -16,11 +16,11 @@ class QuadraticGame(BayesianProblem):
     def define_players(self):
         player_vector_sizes = [2, 2]
         player_type_values = [
-            [3.0, 7.0],  
-            [2.0, 8.0], 
+            [6.0, 10.0],  
+            [5.0, 9.0], 
         ]
         player_type_probs = [
-            [0.8, 0.2],  
+            [0.6, 0.4],  
             [0.4, 0.6],  
         ]
         player_objective_functions = [0, 1]

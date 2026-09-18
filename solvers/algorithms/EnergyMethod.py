@@ -94,6 +94,7 @@ class EnergyMethod(BaseAlgorithm):
             weighted_multipliers = self.player_const_idx_matrix * dual_actions.ravel() # (Total_actions, Num_constraints)
             constraint_contribution = jnp.sum(jacobian_matrix * weighted_multipliers, axis=1)
             result += constraint_contribution.reshape(-1, 1)
+
         return self.energy_handler(result, actions, self.lb_vector, self.ub_vector)
 
     def gradient_dual(self, actions: Vector, dual_actions: Vector) -> Vector:

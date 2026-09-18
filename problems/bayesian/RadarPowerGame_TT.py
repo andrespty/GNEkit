@@ -13,7 +13,7 @@ def make_exp_sum_nodes(R: int, x_min: float = 0.2, x_max: float = 30.0):
     # Choose s range so that exp(-t*x) is small at both endpoints
     # Need t_min * x_max to be large (say ≥ 20) → t_min ≤ 20/x_max
     # Need t_max * x_min to be large → t_max ≥ 20/x_min
-    s_min = np.log(1.0 / x_max) - 10.0   # extra margin
+    s_min = np.log(1.0 / x_max) - 20.0   # extra margin
     s_max = np.log(20.0 / x_min)
 
     s = np.linspace(s_min, s_max, R)
@@ -204,8 +204,6 @@ class RadarPowerGameTT(BayesianProblem):
     # =========================================================================
     # Verification utilities (exact computation, used after equilibrium found)
     # =========================================================================
-    
-
     def ex_ante_exact(self, i: int, actions) -> jnp.ndarray:
         """
         Exact ex-ante utility for player i, fully vectorized.
@@ -247,7 +245,6 @@ class RadarPowerGameTT(BayesianProblem):
         
         # Contract
         return jnp.sum(prob_tensor * u_tensor)
-
 
     def stationarity_residual_exact(self, i: int, actions, lambdas):
         """
@@ -302,7 +299,7 @@ class RadarPowerGameTT(BayesianProblem):
         # Build the full utility tensors (shape (T,)*N) — 3^15 entries
         a_i_grid = broadcast_axis(a[i], i)
         theta_i_grid = broadcast_axis(self.type_values_array[i], i)
-
+        
         interference_grid = jnp.zeros([self.T] * self.N)
         for j in range(self.N):
             if j == i:
@@ -313,7 +310,7 @@ class RadarPowerGameTT(BayesianProblem):
 
         denom = self.C[i] * a_i_grid + interference_grid + self.sigma
         U_true = (theta_i_grid * a_i_grid) / denom
-
+        
         # Approximate utility via exponential sum:
         # Û_i(θ) = θ_i a_i^θ_i * Σ_ℓ c_ℓ exp(-t_ℓ * denom(θ))
         # Compute by summing R rank-1 tensors
@@ -359,3 +356,59 @@ class RadarPowerGameTT(BayesianProblem):
         deriv_err = jnp.sqrt(jnp.sum((dU_true - dU_approx) ** 2))
 
         return val_err, deriv_err
+    
+    # def solve(self, ip: jnp.ndarray):
+        """
+        Solve the GNE problem from an initial point using basin-hopping.
+
+        Wraps ``scipy.optimize.basinhopping`` with SLSQP as the local
+        minimizer and the primal/dual bounds from the player definitions.
+
+        Parameters
+        ----------
+        ip : jnp.ndarray
+            Flat initial point containing stacked primal and dual variables.
+            Use `BaseProblem.set_initial_point` to construct this.
+
+        Returns
+        -------
+        result : OptimizeResult
+            The SciPy optimization result object.
+        elapsed_time : float
+            Wall-clock time in seconds.
+
+        See Also
+        --------
+        [`BaseProblem.solve`](../problems/base_problem.md) : Higher-level entry point that calls this method.
+        """
+        import timeit
+        from scipy.optimize import basinhopping
+        minimizer_kwargs = dict(
+            # method="SLSQP",
+            method="L-BFGS-B",
+            # options={"eps": 1e-6}
+            # jac=self.grad_min_func,
+            # jac=self._grad_func_jit,
+            bounds=self.bounds_all,
+            options={
+            #     "maxiter": 10000,
+                "ftol": 1e-15,
+                # "gtol": 1e-8
+            }
+        )
+        start = timeit.default_timer()
+        result = basinhopping(
+            self.min_func,
+            ip,
+            stepsize=0.01,
+            niter=1000,
+            minimizer_kwargs=minimizer_kwargs,
+            interval=1,
+            niter_success=100,
+            disp=True,
+            # callback=stopping_criterion
+        )
+        stop = timeit.default_timer()
+        elapsed_time = stop - start
+        self.result_summary(result.x, elapsed_time)
+        return result, elapsed_time
