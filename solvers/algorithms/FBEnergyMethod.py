@@ -263,7 +263,12 @@ class FBEnergyMethod(BaseAlgorithm):
             l_all = jnp.concatenate([jnp.array(p_lambdas_list).flatten(), p_mu_lb.flatten(), p_mu_ub.flatten()])
 
             # --- Residuals ---
-            stat_res = jnp.linalg.norm(grad_fi + l_grad_sum)
+            s, e = self.action_splits[i], self.action_splits[i + 1]
+            x_i = jnp.ravel(x_flat[s:e])
+            lb_i = jnp.ravel(self.lb_vector[s:e])
+            ub_i = jnp.ravel(self.ub_vector[s:e])
+            grad_L = jnp.ravel(grad_fi + l_grad_sum)
+            stat_res = jnp.linalg.norm(x_i - jnp.clip(x_i - grad_L, lb_i, ub_i))
             primal_res = jnp.max(jnp.maximum(0, g_all)) if g_all.size > 0 else 0.0
             dual_res = jnp.max(jnp.maximum(0, -l_all)) if l_all.size > 0 else 0.0
             slack_res = jnp.linalg.norm(l_all * g_all) if g_all.size > 0 else 0.0

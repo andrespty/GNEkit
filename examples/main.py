@@ -16,8 +16,12 @@ if __name__ == '__main__':
     # PAG.set_initial_point(0.5, 0.1)
     # PAG.solve(EnergyMethod)
 
-    PAG = QuadraticGame()
-    PAG.set_initial_point(0.5, 0.1)
+    # PAG = QuadraticGame()
+    # PAG.set_initial_point(0.5, 0.1)
+    # PAG.solve(EnergyMethod)
+
+    PAG = RadarPowerGameOriginal(mode="approx", R=60)
+    PAG.set_initial_point(0.3, 0.1)
     PAG.solve(EnergyMethod)
 
     # print("Radar Power Game - TT")

@@ -25,7 +25,7 @@ class QuadraticGame(BayesianProblem):
         ]
         player_objective_functions = [0, 1]
         player_constraints = [[0, 1], [2,3]]
-        bounds = [(0,1) for _ in range(2)]
+        bounds = [(0,8) for _ in range(2)]
         return BayesianPlayer.batch_create(
             player_vector_sizes,
             player_type_values,

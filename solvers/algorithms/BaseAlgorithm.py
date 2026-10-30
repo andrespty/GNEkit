@@ -167,7 +167,12 @@ class BaseAlgorithm(ABC):
 
             # Residuals
             # Stationarity: || grad_L_i ||
-            stat_res = jnp.linalg.norm(grad_fi + l_grad_sum)
+            s, e = self.action_splits[i], self.action_splits[i + 1]
+            x_i = jnp.ravel(x_flat[s:e])
+            lb_i = jnp.ravel(self.lb_vector[s:e])
+            ub_i = jnp.ravel(self.ub_vector[s:e])
+            grad_L = jnp.ravel(grad_fi + l_grad_sum)
+            stat_res = jnp.linalg.norm(x_i - jnp.clip(x_i - grad_L, lb_i, ub_i))
 
             # Primal Feasibility: max(0, g_j)
             # If 0, constraint is satisfied
@@ -229,15 +234,15 @@ class BaseAlgorithm(ABC):
         [`BaseProblem.solve`](../problems/base_problem.md) : Higher-level entry point that calls this method.
         """
         minimizer_kwargs = dict(
-            # method="SLSQP",
-            method="L-BFGS-B",
+            method="SLSQP",
+            # method="L-BFGS-B",
             # options={"eps": 1e-6}
             # jac=self.grad_min_func,
             # jac=self._grad_func_jit,
             bounds=self.bounds_all,
             options={
-            #     "maxiter": 10000,
-                "ftol": 1e-15,
+                "maxiter": 5000,
+                "ftol": 1e-20,
                 # "gtol": 1e-8
             }
         )
@@ -274,7 +279,11 @@ class BaseAlgorithm(ABC):
         print("Final function value: ", self.min_func(x))
         primal = x[:self.total_actions]
         dual = x[self.total_actions:]
-        print("Primal Actions: \n", primal)
+        for i, player in enumerate(self.players):
+            start_idx = self.action_splits[i]
+            end_idx = self.action_splits[i + 1]
+            player_actions = primal[start_idx:end_idx]
+            print(f"Player {player.name} Actions: {player_actions}")
         print("Dual Actions: \n", dual)
         self.check_kkt(jnp.array(primal), jnp.array(dual))
 

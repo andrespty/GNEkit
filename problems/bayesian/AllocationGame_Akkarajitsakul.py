@@ -6,7 +6,7 @@ import jax.numpy as jnp
 
 class AllocationGame(BayesianProblem):
     def __init__(self, players = None):
-        self.C = 1.0
+        self.C = 2.5
         self.alpha = 9.0
         self.gamma = 5.0
         self.delta = 11.0
