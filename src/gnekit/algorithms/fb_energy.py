@@ -22,7 +22,7 @@ class FBEnergyMethod(BaseAlgorithm):
 
         # Dual actions for the bounds
         self.total_dual_size = self.num_constraint_duals + 2 * self.total_actions
-        self.bounds_dual = [(0, 100) for _ in range(self.total_dual_size)]
+        self.bounds_dual = [(0, self.dual_bound) for _ in range(self.total_dual_size)]
         self.bounds_all = self.bounds + self.bounds_dual
 
     @staticmethod

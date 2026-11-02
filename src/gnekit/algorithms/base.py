@@ -1,6 +1,6 @@
 from abc import ABC
 from functools import partial
-from scipy.optimize import basinhopping
+from scipy.optimize import approx_fprime, basinhopping
 import timeit
 from typing import List
 
@@ -17,6 +17,11 @@ from gnekit.core.validation import (
     validate_player_functions,
     validate_player_list,
 )
+
+DEFAULT_MINIMIZER_OPTIONS = {
+    "SLSQP": {"ftol": 1e-16, "maxiter": 1000},
+}
+
 
 class BaseAlgorithm(ABC):
     """
@@ -47,7 +52,17 @@ class BaseAlgorithm(ABC):
         basin-hopping. Defaults to ``"SLSQP"``.
     minimizer_options : dict, optional
         ``options`` passed to the local minimizer, for example
-        ``{"ftol": 1e-20, "maxiter": 5000}``. Defaults to SciPy's defaults.
+        ``{"ftol": 1e-20, "maxiter": 5000}``. They are merged over the
+        defaults in `DEFAULT_MINIMIZER_OPTIONS` for the chosen method.
+    jac : bool, optional
+        Pass the exact gradient of the merit function, computed with JAX,
+        to the local minimizer. Entries where it is not finite, for example
+        where an objective has no second derivative on a bound, fall back
+        to finite differences. ``False`` uses finite differences
+        everywhere. Ignored when a subclass overrides `min_func`.
+        Defaults to ``True``.
+    dual_bound : float, optional
+        Upper bound on every multiplier. Defaults to ``100``.
     niter, stepsize, interval, niter_success, disp : optional
         Basin-hopping settings. Defaults: ``1000``, ``0.01``, ``1``,
         ``100``, ``True``.
@@ -82,12 +97,15 @@ class BaseAlgorithm(ABC):
                  niter_success: int = 100,
                  disp: bool = True,
                  multipliers: str = "shared",
+                 jac: bool = True,
+                 dual_bound: float = 100.0,
                  ):
         if multipliers not in ("shared", "per_player"):
             raise ValueError(
                 f"multipliers must be 'shared' or 'per_player', got {multipliers!r}"
             )
         self.multipliers = multipliers
+        self.dual_bound = dual_bound
 
         validate_player_list(player_list)
         player_info = players_to_lists(player_list)
@@ -122,7 +140,7 @@ class BaseAlgorithm(ABC):
         self.total_actions = sum(self.action_sizes)
 
         self._build_multiplier_map()
-        self.bounds_dual = [(0, 100) for _ in range(self.num_constraint_duals)]
+        self.bounds_dual = [(0, self.dual_bound) for _ in range(self.num_constraint_duals)]
         self.bounds_all = self.bounds + self.bounds_dual
 
         # Bounds
@@ -141,6 +159,8 @@ class BaseAlgorithm(ABC):
         self.interval = interval
         self.niter_success = niter_success
         self.disp = disp
+        # The exact gradient needs the lagrange_gradient/gradient_dual pair
+        self.jac = jac and type(self).min_func is BaseAlgorithm.min_func
 
         self._grad_func_jit = jax.jit(jax.grad(self._jit_min_func))
 
@@ -271,6 +291,20 @@ class BaseAlgorithm(ABC):
         """Gradient of the merit function with respect to all primal and dual variables."""
         return np.array(self._grad_func_jit(x))
 
+    def merit_jacobian(self, x) -> np.ndarray:
+        """
+        Gradient of the merit function passed to the local minimizer.
+
+        Uses the exact JAX gradient, and finite differences for the entries
+        where it is not finite.
+        """
+        x = np.asarray(x, dtype=float)
+        grad = self.grad_min_func(jnp.asarray(x))
+        bad = ~np.isfinite(grad)
+        if bad.any():
+            grad[bad] = approx_fprime(x, self.min_func)[bad]
+        return grad
+
     # ------------------------------------------------------------------
     # Building blocks shared by merit functions
     # ------------------------------------------------------------------
@@ -381,8 +415,12 @@ class BaseAlgorithm(ABC):
             method=self.method,
             bounds=self.bounds_all
         )
-        if self.minimizer_options is not None:
-            minimizer_kwargs["options"] = dict(self.minimizer_options)
+        options = {**DEFAULT_MINIMIZER_OPTIONS.get(self.method, {}),
+                   **(self.minimizer_options or {})}
+        if options:
+            minimizer_kwargs["options"] = options
+        if self.jac:
+            minimizer_kwargs["jac"] = self.merit_jacobian
         start = timeit.default_timer()
         result = basinhopping(
             self.min_func,

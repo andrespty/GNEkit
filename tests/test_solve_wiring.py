@@ -35,7 +35,8 @@ def test_default_settings_match_previous_behavior(fake_basinhopping, alg_name):
     assert call["niter_success"] == 100
     assert call["disp"] is True
     assert call["minimizer_kwargs"]["method"] == "SLSQP"
-    assert "options" not in call["minimizer_kwargs"]
+    assert call["minimizer_kwargs"]["options"] == base_module.DEFAULT_MINIMIZER_OPTIONS["SLSQP"]
+    assert callable(call["minimizer_kwargs"]["jac"])
 
     n_primal = sum(p.size for p in problem.players)
     n_constraints = len(problem.constraints())
@@ -55,7 +56,38 @@ def test_settings_are_forwarded(fake_basinhopping):
     (call,) = fake_basinhopping
     assert call["niter"] == 3
     assert call["minimizer_kwargs"]["method"] == "L-BFGS-B"
-    assert call["minimizer_kwargs"]["options"] == {"ftol": 1e-20}
+    assert call["minimizer_kwargs"]["options"] == {"ftol": 1e-20}   # no defaults for L-BFGS-B
+
+
+def test_user_options_override_the_defaults(fake_basinhopping):
+    problem = PROBLEMS["QuadraticGame"]()
+    problem.set_initial_point(0.5, 0.1)
+    problem.solve(ALGORITHMS["EnergyMethod"], minimizer_options={"ftol": 1e-20})
+
+    (call,) = fake_basinhopping
+    expected = {**base_module.DEFAULT_MINIMIZER_OPTIONS["SLSQP"], "ftol": 1e-20}
+    assert call["minimizer_kwargs"]["options"] == expected
+
+
+def test_jac_can_be_turned_off(fake_basinhopping):
+    problem = PROBLEMS["QuadraticGame"]()
+    problem.set_initial_point(0.5, 0.1)
+    problem.solve(ALGORITHMS["EnergyMethod"], jac=False)
+
+    (call,) = fake_basinhopping
+    assert "jac" not in call["minimizer_kwargs"]
+
+
+@pytest.mark.parametrize("alg_name", ["EnergyMethod", "FBEnergyMethod"])
+def test_dual_bound_sets_the_multiplier_bounds(fake_basinhopping, alg_name):
+    problem = PROBLEMS["QuadraticGame"]()
+    problem.set_initial_point(0.5, 0.1)
+    problem.solve(ALGORITHMS[alg_name], dual_bound=7.0)
+
+    (call,) = fake_basinhopping
+    n_primal = sum(p.size for p in problem.players)
+    dual_bounds = call["minimizer_kwargs"]["bounds"][n_primal:]
+    assert dual_bounds and all(b == (0, 7.0) for b in dual_bounds)
 
 
 def test_summary_prints_solution_blocks(fake_basinhopping, capsys):
