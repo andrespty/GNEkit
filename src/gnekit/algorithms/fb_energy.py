@@ -87,9 +87,6 @@ class FBEnergyMethod(BaseAlgorithm):
         vector of shape (N_d, 1)
             Dual energy, one entry per constraint and per bound.
         """
-        if not self.const:
-            return jnp.zeros((1, 1))
-
         actions_vectors = construct_vectors(actions, self.action_sizes)
         # All entries in the form g <= 0: shared constraints, lb - x, x - ub
         g_values = self.constraint_values(actions_vectors).reshape(-1, 1)

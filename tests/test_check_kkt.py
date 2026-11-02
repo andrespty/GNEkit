@@ -55,3 +55,14 @@ def test_bound_multipliers_are_used_when_present():
     lambdas = [0.0, 0.0, 2.0, 0.0]  # [mu_lb (P1, P2), mu_ub (P1, P2)]
     r = report(FBEnergyMethod, [1.0, 0.5], lambdas)
     assert r["P1"]["is_kkt"] and r["P2"]["is_kkt"]
+
+
+def test_fb_energy_includes_bound_complementarity_without_constraints():
+    # Regression: with no constraints FB skipped the bound terms entirely.
+    # P1 sits at its upper bound 1 with grad f1 = -2, so mu_ub must be 2
+    alg = FBEnergyMethod([f1, f2], [], players((0.0, 1.0)), disp=False)
+    x = [1.0, 0.5]
+    correct = jnp.array(x + [0.0, 0.0, 2.0, 0.0])  # [mu_lb (P1, P2), mu_ub (P1, P2)]
+    wrong_lb = jnp.array(x + [5.0, 0.0, 7.0, 0.0])  # stationary but mu_lb > 0 at an inactive bound
+    assert alg.min_func(correct) < 1e-6
+    assert alg.min_func(wrong_lb) > 0.1
