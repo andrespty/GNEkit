@@ -121,7 +121,6 @@ class ProblemA9b(BaseProblem):
     [0.0001, 0.0082, 0.0001, 0.0001, 0.0001, 0.0015, 0.0703],
     [0.0004, 0.0085, 0.0001, 0.0000, 0.0001, 0.0008, 0.0079]
 ])
-        print(self.h_matrix.shape)
         super().__init__()
 
     def define_players(self):
