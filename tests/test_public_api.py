@@ -32,7 +32,7 @@ MODULES = [
     "gnekit.core", "gnekit.core.problem", "gnekit.core.player", "gnekit.core.validation",
     "gnekit.bayesian", "gnekit.bayesian.problem",
     "gnekit.algorithms", "gnekit.algorithms.base", "gnekit.algorithms.energy",
-    "gnekit.algorithms.fb_energy", "gnekit.algorithms.vector_energy",
+    "gnekit.algorithms.fb_energy",
     "gnekit.problems.gnep", "gnekit.problems.bayesian",
 ]
 

@@ -139,7 +139,7 @@ gnekit/
 ├── src/gnekit/
 │   ├── core/              # BaseProblem, Player, utilities, types, validation
 │   ├── bayesian/          # BayesianProblem, BayesianPlayer
-│   ├── algorithms/        # BaseAlgorithm, EnergyMethod, FBEnergyMethod, VectorEnergyMethod
+│   ├── algorithms/        # BaseAlgorithm, EnergyMethod, FBEnergyMethod
 │   └── problems/
 │       ├── gnep/          # 18 standard GNE benchmark problems (A1–A18)
 │       └── bayesian/      # 3 D-GBNE example problems

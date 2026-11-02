@@ -11,7 +11,6 @@ from gnekit.problems.gnep import (
 from gnekit.problems.bayesian import AllocationGame, QuadraticGame, RadarPowerGame
 from gnekit.problems.bayesian.PayoffMatrixGame import PayoffMatrixGame
 from gnekit.algorithms import EnergyMethod, FBEnergyMethod
-from gnekit.algorithms.vector_energy import VectorEnergyMethod
 
 PROBLEMS = {
     "A1": ProblemA1, "A2": ProblemA2, "A3": ProblemA3, "A4": ProblemA4,
@@ -26,5 +25,4 @@ PROBLEMS = {
 ALGORITHMS = {
     "EnergyMethod": EnergyMethod,
     "FBEnergyMethod": FBEnergyMethod,
-    "VectorEnergyMethod": VectorEnergyMethod,
 }

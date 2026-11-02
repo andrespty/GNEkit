@@ -166,9 +166,6 @@
     },
     "mid": 8.416803816304808,
     "rand": 8.602613687450178
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -761,9 +758,6 @@
     },
     "mid": 2310906.4113327195,
     "rand": 1814399.3880963952
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -1525,9 +1519,6 @@
     },
     "mid": 0.8524706264075939,
     "rand": 0.577274155400795
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -1668,9 +1659,6 @@
     },
     "mid": 512.0,
     "rand": 682.5087224940042
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -1821,9 +1809,6 @@
     },
     "mid": 20.590953752321656,
     "rand": 4.600570039318212
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -2113,9 +2098,6 @@
     },
     "mid": 8.66857845264785,
     "rand": 8.898927122681343
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -2638,9 +2620,6 @@
     },
     "mid": 39791.30956725002,
     "rand": 5174.176776371736
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -2887,9 +2866,6 @@
     },
     "mid": 122.99265247682679,
     "rand": 621.3383584670778
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -3138,9 +3114,6 @@
     },
     "mid": 87763.99986473212,
     "rand": 39027.88864220524
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -3295,9 +3268,6 @@
     },
     "mid": 169.0847880908119,
     "rand": 790.1526245040728
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -3670,9 +3640,6 @@
     },
     "mid": 67.47967725491766,
     "rand": 62.428274653515935
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -4199,9 +4166,6 @@
     },
     "mid": 1955.5679576878222,
     "rand": 312442.92692848685
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -4443,9 +4407,6 @@
     },
     "mid": 2294646.256904888,
     "rand": 2958430.734232585
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -4687,9 +4648,6 @@
     },
     "mid": 162232.5366783256,
     "rand": 268251.57647101884
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -4931,9 +4889,6 @@
     },
     "mid": 1569498.750591461,
     "rand": 2352074.1734960093
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -5198,9 +5153,6 @@
     },
     "mid": 5880486.519762615,
     "rand": 7029539.70147227
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -5653,9 +5605,6 @@
     },
     "mid": 70870.49795458278,
     "rand": 71134.74106289362
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -5900,9 +5849,6 @@
     },
     "mid": 9.229562237246686,
     "rand": 9.252251271772625
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -7305,9 +7251,6 @@
     },
     "mid": 1284905.9781855864,
     "rand": 1293674.9646175858
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -8394,9 +8337,6 @@
     },
     "mid": 34.41304639026272,
     "rand": 76.44208750521884
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -8618,9 +8558,6 @@
     },
     "mid": 31251844.563163757,
     "rand": 51196829.874682754
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -8841,9 +8778,6 @@
     },
     "mid": 25.681472190642754,
     "rand": 29.269063599380914
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
@@ -9012,9 +8946,6 @@
     },
     "mid": 5.393094166010261,
     "rand": 39.94241283569832
-   },
-   "VectorEnergyMethod": {
-    "error": "TracerArrayConversionError"
    }
   },
   "problem": {
