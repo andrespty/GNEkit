@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # type hints only, avoids a circular import with gnekit.algorithms
     from gnekit.algorithms.base import BaseAlgorithm
 from gnekit.bayesian.player import BayesianPlayer
-from gnekit.core.validation import validate_problem_functions
 from gnekit.core.problem import BaseProblem
 import jax.numpy as jnp
 
@@ -250,7 +249,7 @@ class BayesianProblem(BaseProblem):
     
 
 
-    @validate_problem_functions(derivative=False)
+    @abstractmethod
     def objectives(self) -> List[Callable]:
         """
         Return the objective functions of the Bayesian problem.
@@ -269,7 +268,7 @@ class BayesianProblem(BaseProblem):
         """
         pass
 
-    @validate_problem_functions(derivative=False)
+    @abstractmethod
     def constraints(self) -> List[Callable]:
         """
         Return the constraint functions of the Bayesian problem.

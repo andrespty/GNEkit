@@ -73,53 +73,56 @@ def validate_player_functions(player_list: List[Any], obj_funcs: List[Callable],
                 )
 
 
-# BaseProblem validation wrappers
-def validate_problem_functions(derivative=False):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(self, *args, **kwargs):
-            func_list = func(*args, **kwargs)
+def _takes_one_argument(func: Callable) -> bool:
+    """True if ``func`` can be called with exactly one positional argument."""
+    try:
+        inspect.signature(func).bind(None)
+    except TypeError:
+        return False
+    except ValueError:  # no signature available (some builtins); assume callable
+        return True
+    return True
 
-            # 1. Basic List Check
-            if not isinstance(func_list, list) or len(func_list) == 0:
-                raise TypeError(f"{func.__name__} must return a non-empty list of callables.")
 
-            if not self.players:
-                return func_list  # Can't validate shapes without players
+def _validate_function_list(problem, kind: str, funcs, action_sizes: List[int], allow_empty: bool):
+    owner = type(problem).__name__
+    if not isinstance(funcs, list):
+        raise TypeError(f"{owner}.{kind}() must return a list of callables, got {type(funcs).__name__}.")
+    if not funcs and not allow_empty:
+        raise TypeError(f"{owner}.{kind}() must return a non-empty list of callables.")
+    for i, f in enumerate(funcs):
+        if not callable(f):
+            raise TypeError(f"{owner}.{kind}()[{i}] is not callable.")
+        if not _takes_one_argument(f):
+            raise ValueError(
+                f"{owner}.{kind}()[{i}] must take exactly one argument, "
+                f"the list of player action vectors."
+            )
+        try:
+            validate_scalar_output(f, action_sizes)
+        except ValueError as exc:
+            raise ValueError(f"{owner}.{kind}()[{i}]: {exc}") from None
 
-            num_players = len(self.players)
-            # We need the action sizes to check the inner shapes
-            action_sizes = [p.size for p in self.players]
 
-            for i, f in enumerate(func_list):
-                if not callable(f):
-                    raise TypeError(f"Item {i} in {func.__name__} is not callable.")
+def validate_problem(problem) -> None:
+    """
+    Check a problem definition once, when the problem is created.
 
-                # 2. Signature Check: Must take exactly 1 argument (x_structured)
-                sig = inspect.signature(f)
-                if len(sig.parameters) != 1:
-                    raise ValueError(f"Function {i} must take exactly 1 argument.")
+    Checks that ``objectives()`` returns a non-empty list and ``constraints()``
+    a list (possibly empty) of callables, that every function takes exactly
+    one argument (the list of player action vectors) and returns a scalar,
+    and that every player's objective and constraint indices exist.
 
-                # 3. Structural "Dry Run" Check
-                # Create a dummy input matching the expected structure
-                dummy_x = [jnp.zeros((size,)) for size in action_sizes]
-
-                if derivative:
-                    try:
-                        out = f(dummy_x)
-                        if not isinstance(out, (list, tuple)):
-                            raise TypeError(f"Derivative {i} must return a list/tuple of gradients.")
-
-                        if len(out) != num_players:
-                            raise ValueError(
-                                f"Derivative {i} returned {len(out)} gradient components, "
-                                f"but there are {num_players} players."
-                            )
-                    except Exception as e:
-                        raise ValueError(f"Derivative {i} failed structural validation: {e}")
-                else:
-                    validate_scalar_output(f, action_sizes)
-            return func_list
-        return wrapper
-    return decorator
-
+    Raises
+    ------
+    TypeError, ValueError
+        With a message naming the problem class and the offending function or
+        player.
+    """
+    players = problem.players
+    action_sizes = [p.size for p in players]
+    objectives = problem.objectives()
+    constraints = problem.constraints()
+    _validate_function_list(problem, "objectives", objectives, action_sizes, allow_empty=False)
+    _validate_function_list(problem, "constraints", constraints, action_sizes, allow_empty=True)
+    validate_player_functions(players, objectives, constraints)

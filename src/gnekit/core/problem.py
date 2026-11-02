@@ -1,14 +1,27 @@
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 import jax.numpy as jnp
 from typing import List, Type, Callable
 from gnekit.core.player import Player
-from gnekit.core.validation import validate_problem_functions
+from gnekit.core.validation import validate_problem
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # type hints only, avoids a circular import with gnekit.algorithms
     from gnekit.algorithms.base import BaseAlgorithm
 
-class BaseProblem(ABC):
+class _ValidatedProblemMeta(ABCMeta):
+    """Runs `BaseProblem.validate` once the whole constructor has finished.
+
+    Validating at the end of ``BaseProblem.__init__`` would be too early for
+    subclasses that set their parameters after calling ``super().__init__()``.
+    """
+    def __call__(cls, *args, **kwargs):
+        problem = super().__call__(*args, **kwargs)
+        if problem.players is not None:
+            problem.validate()
+        return problem
+
+
+class BaseProblem(metaclass=_ValidatedProblemMeta):
     """
     Abstract base class for standard Generalized Nash equilibrium problems.
 
@@ -49,11 +62,33 @@ class BaseProblem(ABC):
         -----
         The primal and dual initial points are initialized to `None`. They must be
         set before calling `solve()`.
+
+        The problem definition is validated right after construction, including
+        any attributes a subclass sets after calling ``super().__init__()``. See
+        `validate`.
         """
         self.players = players if players is not None else self.define_players()
         self.primal_ip = None
         self.dual_ip = None
         self.algorithm = None
+
+    def validate(self) -> None:
+        """
+        Check the problem definition.
+
+        Called automatically when the problem is created. Checks that
+        ``objectives()`` returns a non-empty list and ``constraints()`` a list
+        (possibly empty) of callables, that every function takes exactly one
+        argument (the list of player action vectors) and returns a scalar, and
+        that every player's objective and constraint indices exist.
+
+        Raises
+        ------
+        TypeError, ValueError
+            With a message naming the problem class and the offending function
+            or player.
+        """
+        validate_problem(self)
 
     @property
     def players(self):
@@ -203,7 +238,6 @@ class BaseProblem(ABC):
         self._dual_ip = value
 
     @abstractmethod
-    @validate_problem_functions(derivative=False)
     def objectives(self) -> List[Callable]:
         """
         Return the objective functions of the problem.
@@ -222,7 +256,6 @@ class BaseProblem(ABC):
         pass
 
     @abstractmethod
-    @validate_problem_functions(derivative=False)
     def constraints(self) -> List[Callable]:
         """
         Return the constraint functions of the problem.
