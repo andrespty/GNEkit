@@ -26,7 +26,7 @@ Use `BaseProblem` when:
 A new problem class must inherit from `BaseProblem`:
 
 ```python
-from solvers.gnep_solver import BaseProblem
+from gnekit import BaseProblem
 
 class MyProblem(BaseProblem):
     def define_players(self):
@@ -57,7 +57,7 @@ Each player typically includes:
 
 Example:
 ```python
-from solvers.gnep_solver import Player
+from gnekit import Player
 ...
 def define_players(self):
     P1 = Player(
@@ -175,8 +175,7 @@ x_1 + x_2 \leq 3, \qquad x_1, x_2 \geq 0
 $$
 
 ```python
-from solvers.gnep_solver import BaseProblem, Player
-from solvers.algorithms import EnergyMethod
+from gnekit import BaseProblem, Player, EnergyMethod
 
 class SimpleProblem(BaseProblem):
     def define_players(self):

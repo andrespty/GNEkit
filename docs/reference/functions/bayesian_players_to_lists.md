@@ -1,1 +1,1 @@
-::: solvers.dgbne_solver.BayesianPlayer.bayesian_players_to_lists
+::: gnekit.bayesian.player.bayesian_players_to_lists

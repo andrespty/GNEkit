@@ -1,1 +1,1 @@
-::: solvers.utils.flatten_variables
+::: gnekit.core.utils.flatten_variables

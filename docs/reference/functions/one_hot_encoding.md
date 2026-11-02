@@ -1,1 +1,1 @@
-::: solvers.utils.one_hot_encoding
+::: gnekit.core.utils.one_hot_encoding

@@ -119,7 +119,7 @@ Both share the same general solving pattern, which keeps the library consistent 
 
 ## Reusable Problem Classes
 
-The `problems/` package contains predefined problem classes that follow these abstractions.
+The `gnekit.problems` package contains predefined problem classes that follow these abstractions.
 
 These are useful for:
 
@@ -128,7 +128,7 @@ These are useful for:
 - Testing algorithms
 - Building new problem classes by analogy
 
-The `solvers/` package contains the reusable infrastructure that these problem classes rely on.
+The rest of `gnekit` (`gnekit.core`, `gnekit.bayesian`, `gnekit.algorithms`) contains the reusable infrastructure that these problem classes rely on.
 
 ## Mental Model
 
@@ -142,4 +142,4 @@ A helpful way to think about the package is:
 
 ## Where To Go Next
 
-After this page, a good next step is to read the [User Guide](../guides/user_guide.md) for the practical workflow, or open the [API Reference](../reference/index.md) if you want class-level details.
+After this page, a good next step is to read the [User Guide](../user_guide.md) for the practical workflow, or open the [API Reference](../reference/index.md) if you want class-level details.

@@ -13,8 +13,8 @@ The standard pattern is:
 ## Minimal Example
 
 ```python
-from problems.bayesian import AllocationGame
-from solvers.algorithms import EnergyMethod
+from gnekit.problems.bayesian import AllocationGame
+from gnekit import EnergyMethod
 
 problem = AllocationGame()
 problem.set_initial_point(0.5, 0.1)
@@ -60,7 +60,7 @@ Algorithms are passed as classes to `solve(...)`.
 
 Example:
 ```python
-from solvers.algorithms import EnergyMethod
+from gnekit import EnergyMethod
 ...
 primal_x, dual_x = problem.solve(EnergyMethod)
 ```
@@ -69,8 +69,8 @@ primal_x, dual_x = problem.solve(EnergyMethod)
 After this page, a good path is:
 
 - Read [`Core Concepts`](../guides/core_concepts.md) to understand the main abstractions
-- Read [`User Guide`](../guides/user_guide.md) for the full workflow
-- Browse [`Examples`](../examples/examples.md) for more complete problem setups
+- Read [`User Guide`](../user_guide.md) for the full workflow
+- Browse [`Examples`](../examples/index.md) for more complete problem setups
 - Use [`API Reference`](../reference/index.md) for class-level details
 
 

@@ -14,32 +14,37 @@ An algorithm then solves the resulting equilibrium problem.
 
 ## Package Layout
 
-### `solvers/`
+### `gnekit`
 
-Contains the reusable abstractions and algorithms.
+The public API is importable from the top level package:
 
-Important modules:
+```python
+from gnekit import (
+    BaseProblem, Player,
+    BayesianProblem, BayesianPlayer,
+    BaseAlgorithm, EnergyMethod, FBEnergyMethod,
+)
+```
 
-- `solvers.gnep_solver.BasePlayer`
-- `solvers.gnep_solver.BaseProblem`
-- `solvers.dgbne_solver.BayesianPlayer`
-- `solvers.dgbne_solver.BayesianProblem`
-- `solvers.algorithms.EnergyMethod`
-- `solvers.algorithms.FBEnergyMethod`
+Subpackages:
 
-### `problems/gnep/`
+- `gnekit.core`: `BaseProblem`, `Player`, utilities, types, validation
+- `gnekit.bayesian`: `BayesianProblem`, `BayesianPlayer`
+- `gnekit.algorithms`: `BaseAlgorithm`, `EnergyMethod`, `FBEnergyMethod`
+
+### `gnekit.problems.gnep`
 
 Contains standard GNEP benchmark-style problem classes.
 
-### `problems/bayesian/`
+### `gnekit.problems.bayesian`
 
 Contains Bayesian game problem classes built on the same solver workflow.
 
 ## Solving a Standard Problem
 
 ```python
-from problems.gnep import ProblemA1
-from solvers.algorithms import EnergyMethod
+from gnekit.problems.gnep import ProblemA1
+from gnekit import EnergyMethod
 
 problem = ProblemA1()
 problem.set_initial_point(1.0, 0.1)
@@ -49,8 +54,8 @@ primal_x, dual_x = problem.solve(EnergyMethod)
 ## Solving a Bayesian Problem
 
 ```python
-from problems.bayesian import AllocationGame
-from solvers.algorithms import EnergyMethod
+from gnekit.problems.bayesian import AllocationGame
+from gnekit import EnergyMethod
 
 problem = AllocationGame()
 problem.set_initial_point(0.5, 0.1)
