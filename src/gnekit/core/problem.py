@@ -322,7 +322,7 @@ class BaseProblem(ABC):
 
         return self.primal_ip, self.dual_ip
 
-    def solve(self, Algorithm:Type["BaseAlgorithm"] = None):
+    def solve(self, Algorithm:Type["BaseAlgorithm"] = None, **settings):
         """
         Solve the generalized Nash equilibrium problem.
 
@@ -331,6 +331,10 @@ class BaseProblem(ABC):
         Algorithm : type[BaseAlgorithm], optional
             Algorithm class used to solve the problem. If omitted, `EnergyMethod` is
             used by default.
+        **settings
+            Solver settings passed to the algorithm, for example
+            ``minimizer_options={"ftol": 1e-20}`` or ``niter=1``. See
+            `BaseAlgorithm` for the full list.
 
         Returns
         -------
@@ -348,7 +352,7 @@ class BaseProblem(ABC):
         from gnekit.algorithms.energy import EnergyMethod
 
         alg = Algorithm if Algorithm else EnergyMethod
-        algorithm = alg(self.objectives(), self.constraints(), self.players)
+        algorithm = alg(self.objectives(), self.constraints(), self.players, **settings)
 
         ip = jnp.array(self.primal_ip + self.dual_ip)
         res, time = algorithm.solve(ip)

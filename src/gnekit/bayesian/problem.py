@@ -308,7 +308,7 @@ class BayesianProblem(BaseProblem):
         pass
 
 
-    def solve(self, Algorithm: Type["BaseAlgorithm"]):
+    def solve(self, Algorithm: Type["BaseAlgorithm"], **settings):
         """
         Solve the Bayesian generalized Nash equilibrium problem.
 
@@ -316,6 +316,8 @@ class BayesianProblem(BaseProblem):
         ----------
         Algorithm : type[BaseAlgorithm]
             Algorithm class used to solve the problem.
+        **settings
+            Solver settings passed to the algorithm. See `BaseAlgorithm`.
 
         Returns
         -------
@@ -328,5 +330,5 @@ class BayesianProblem(BaseProblem):
         This method delegates to `BaseProblem.solve(...)` and preserves the same
         solver workflow for Bayesian problems.
         """
-        return super().solve(Algorithm)
+        return super().solve(Algorithm, **settings)
 
