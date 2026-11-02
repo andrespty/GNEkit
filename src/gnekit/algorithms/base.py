@@ -354,13 +354,22 @@ class BaseAlgorithm(ABC):
 
         For each player, evaluates the four KKT conditions:
 
-        - **Stationarity** — norm of the Lagrangian gradient.
-        - **Primal feasibility** — maximum constraint violation ``max(0, g_j)``.
+        - **Stationarity**
+        - **Primal feasibility** — maximum violation of the constraints
+          ``g_j <= 0`` and of the variable bounds.
         - **Dual feasibility** — maximum multiplier violation ``max(0, -lambda_j)``.
         - **Complementary slackness** — norm of ``lambda_j * g_j``.
 
-        When the algorithm has bound multipliers (see `split_multipliers`),
-        the bounds are treated as constraints with their own multipliers.
+        How bounds enter stationarity depends on the algorithm:
+
+        - Without bound multipliers (the default, e.g. `EnergyMethod`), the
+          bounds are handled by projection. Stationarity is the projected
+          residual ``|| x_i - clip(x_i - grad L_i, lb_i, ub_i) ||``, which is
+          zero exactly when ``grad L_i`` is zero at interior components,
+          nonnegative at the lower bound, and nonpositive at the upper bound.
+        - With bound multipliers (see `split_multipliers`, e.g.
+          `FBEnergyMethod`), the bounds are constraints with their own
+          multipliers and stationarity is ``|| grad L_i ||``.
 
         Parameters
         ----------
@@ -415,32 +424,39 @@ class BaseAlgorithm(ABC):
                     grad_gj = self.const_derivatives[c_idx](x_structured)[i]
                     l_grad_sum += l_val * grad_gj
 
+            start, end = self.action_splits[i], self.action_splits[i + 1]
+            p_actions = x_flat[start:end].reshape(-1, 1)
+            p_lb = self.lb_vector[start:end]
+            p_ub = self.ub_vector[start:end]
+
             if mu_lb is None:
-                g_all = jnp.array(g_vals)
-                l_all = jnp.array(p_lambdas)
+                g_all = jnp.array(g_vals).flatten()
+                l_all = jnp.array(p_lambdas).flatten()
+                # Bounds handled by projection: natural residual of the box constrained problem
+                grad_L = grad_fi + l_grad_sum
+                stat_res = jnp.linalg.norm(p_actions - jnp.clip(p_actions - grad_L, p_lb, p_ub))
+                bound_violation = jnp.concatenate([(p_lb - p_actions).flatten(), (p_actions - p_ub).flatten()])
             else:
                 # Bounds as constraints lb - x <= 0 and x - ub <= 0 with their own multipliers
-                start, end = self.action_splits[i], self.action_splits[i + 1]
                 p_mu_lb = mu_lb[start:end].reshape(-1, 1)
                 p_mu_ub = mu_ub[start:end].reshape(-1, 1)
 
                 # Add bound gradients: -1 for lower bound, +1 for upper bound
                 l_grad_sum += (-1.0 * p_mu_lb) + (1.0 * p_mu_ub)
 
-                p_actions = x_flat[start:end].reshape(-1, 1)
-                g_lb_vals = self.lb_vector[start:end] - p_actions
-                g_ub_vals = p_actions - self.ub_vector[start:end]
+                g_lb_vals = p_lb - p_actions
+                g_ub_vals = p_actions - p_ub
 
                 g_all = jnp.concatenate([jnp.array(g_vals).flatten(), g_lb_vals.flatten(), g_ub_vals.flatten()])
                 l_all = jnp.concatenate([jnp.array(p_lambdas).flatten(), p_mu_lb.flatten(), p_mu_ub.flatten()])
+                # Stationarity: || grad_L_i ||, bound multipliers included
+                stat_res = jnp.linalg.norm(grad_fi + l_grad_sum)
+                bound_violation = jnp.zeros(0)
 
-            # Residuals
-            # Stationarity: || grad_L_i ||
-            stat_res = jnp.linalg.norm(grad_fi + l_grad_sum)
-
-            # Primal Feasibility: max(0, g_j)
+            # Primal Feasibility: max(0, g_j) over constraints and bounds
             # If 0, constraint is satisfied
-            primal_res = jnp.max(jnp.maximum(0, g_all)) if g_all.size > 0 else 0.0
+            feas_all = jnp.concatenate([g_all, bound_violation])
+            primal_res = jnp.max(jnp.maximum(0, feas_all)) if feas_all.size > 0 else 0.0
 
             # Dual Feasibility: max(0, -lambda_j)
             # If 0, constraint is active, lambda is compensating
