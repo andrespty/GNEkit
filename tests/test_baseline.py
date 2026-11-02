@@ -17,6 +17,8 @@ RTOL, ATOL = 1e-9, 1e-12
 
 
 def assert_close(actual, expected, where):
+    if expected is None and where.endswith(".report"):
+        return  # the original code printed this KKT report without returning it
     if isinstance(expected, dict):
         assert isinstance(actual, dict) and actual.keys() == expected.keys(), where
         for k in expected:

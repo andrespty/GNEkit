@@ -4,6 +4,9 @@ No solver is run. Every number depends only on the problem definition and on
 the algorithm's merit function, so the snapshot must not change while the
 code is reorganized.
 """
+import contextlib
+import io
+
 import numpy as np
 import jax
 import jax.numpy as jnp
@@ -73,4 +76,15 @@ def algorithm_snapshot(problem, Algorithm):
     for tag, flat in _points(problem).items():
         x = np.concatenate([flat, np.full(n_dual, 0.1)])
         out[tag] = float(alg.min_func(x))
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            report = alg.check_kkt(jnp.asarray(flat), jnp.full(n_dual, 0.1))
+        # Some algorithms only print the report, so the printed text is always kept.
+        out[f"kkt_{tag}"] = {
+            "printed": buf.getvalue(),
+            "report": None if report is None else {
+                name: {k: (bool(v) if k == "is_kkt" else float(v)) for k, v in res.items()}
+                for name, res in report.items()
+            },
+        }
     return out

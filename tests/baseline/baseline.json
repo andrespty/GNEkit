@@ -2,10 +2,168 @@
  "A1": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 8.14e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P2\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P3\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P4\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P5\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P6\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P7\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P8\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\nPLAYER: P9\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.95e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.8141334252101733
+      },
+      "P1": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P2": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P3": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P4": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P5": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P6": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P7": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P8": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      },
+      "P9": {
+       "comp_slack": 0.3945000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.9450000000000003,
+       "stationarity": 0.9184273724825455
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 8.25e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P2\n  Stationarity: 9.15e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P3\n  Stationarity: 9.14e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P4\n  Stationarity: 9.37e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P5\n  Stationarity: 9.40e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P6\n  Stationarity: 9.31e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P7\n  Stationarity: 9.35e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P8\n  Stationarity: 9.29e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P9\n  Stationarity: 9.41e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.8250892849336193
+      },
+      "P1": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9215002478172651
+      },
+      "P2": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.914946568148918
+      },
+      "P3": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9142463877006113
+      },
+      "P4": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9370667321332118
+      },
+      "P5": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9399161965279342
+      },
+      "P6": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9311482967370652
+      },
+      "P7": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9346672819438142
+      },
+      "P8": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9293435384699564
+      },
+      "P9": {
+       "comp_slack": 0.4258483475806511,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.258483475806511,
+       "stationarity": 0.9405553968438979
+      }
+     }
+    },
     "mid": 316.4030690654224,
     "rand": 346.70713836644984
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 8.14e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e-02\nPLAYER: P1\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P2\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P3\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P4\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P5\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P6\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P7\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P8\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\nPLAYER: P9\n  Stationarity: 9.18e-01\n  Primal Feasibility:  3.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.01e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 8.25e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.45e-02\nPLAYER: P1\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.32e-01\nPLAYER: P2\n  Stationarity: 9.15e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.35e-01\nPLAYER: P3\n  Stationarity: 9.14e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.35e-01\nPLAYER: P4\n  Stationarity: 9.37e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.33e-01\nPLAYER: P5\n  Stationarity: 9.40e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.34e-01\nPLAYER: P6\n  Stationarity: 9.31e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.32e-01\nPLAYER: P7\n  Stationarity: 9.35e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.32e-01\nPLAYER: P8\n  Stationarity: 9.29e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.32e-01\nPLAYER: P9\n  Stationarity: 9.41e-01\n  Primal Feasibility:  4.26e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.34e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 8.416803816304808,
     "rand": 8.602613687450178
    },
@@ -467,10 +625,140 @@
  "A10a": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.28e+01\n  Primal Feasibility:  2.25e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.25e+03\nPLAYER: P1\n  Stationarity: 5.28e+01\n  Primal Feasibility:  2.25e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.25e+03\nPLAYER: P2\n  Stationarity: 9.80e+02\n  Primal Feasibility:  7.05e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.05e+00\nPLAYER: P3\n  Stationarity: 9.79e+02\n  Primal Feasibility:  7.05e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.05e+00\nPLAYER: P4\n  Stationarity: 3.37e+02\n  Primal Feasibility:  6.75e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.75e+00\nPLAYER: P5\n  Stationarity: 3.34e+02\n  Primal Feasibility:  6.75e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.75e+00\nPLAYER: P6\n  Stationarity: 3.31e+02\n  Primal Feasibility:  6.75e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.75e+00\nPLAYER: P7\n  Stationarity: 2.23e+02\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.07e-02\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 2249.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 22490.0,
+       "stationarity": 52.827549630850754
+      },
+      "P1": {
+       "comp_slack": 2248.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 22480.0,
+       "stationarity": 52.827549630850754
+      },
+      "P2": {
+       "comp_slack": 7.050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 70.5,
+       "stationarity": 980.388498249546
+      },
+      "P3": {
+       "comp_slack": 7.050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 70.5,
+       "stationarity": 979.2634515287498
+      },
+      "P4": {
+       "comp_slack": 6.75,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 67.5,
+       "stationarity": 337.1697013374719
+      },
+      "P5": {
+       "comp_slack": 6.75,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 67.5,
+       "stationarity": 334.29329562526374
+      },
+      "P6": {
+       "comp_slack": 6.75,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 67.5,
+       "stationarity": 331.42813323554776
+      },
+      "P7": {
+       "comp_slack": 0.07071067811865477,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5,
+       "stationarity": 223.4390297150433
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.75e+01\n  Primal Feasibility:  1.12e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.12e+03\nPLAYER: P1\n  Stationarity: 5.95e+01\n  Primal Feasibility:  2.87e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.87e+03\nPLAYER: P2\n  Stationarity: 9.70e+02\n  Primal Feasibility:  8.34e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   8.34e+00\nPLAYER: P3\n  Stationarity: 4.22e+02\n  Primal Feasibility:  6.64e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.64e+00\nPLAYER: P4\n  Stationarity: 6.22e+02\n  Primal Feasibility:  5.91e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.91e+00\nPLAYER: P5\n  Stationarity: 3.33e+02\n  Primal Feasibility:  8.12e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   8.12e+00\nPLAYER: P6\n  Stationarity: 3.60e+02\n  Primal Feasibility:  3.54e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.54e+00\nPLAYER: P7\n  Stationarity: 2.53e+02\n  Primal Feasibility:  4.54e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.42e-02\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 1118.7397061968857,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 11187.397061968857,
+       "stationarity": 37.49725501225476
+      },
+      "P1": {
+       "comp_slack": 2867.780878147036,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 28677.80878147036,
+       "stationarity": 59.52366978849468
+      },
+      "P2": {
+       "comp_slack": 8.344771981580582,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 83.44771981580581,
+       "stationarity": 970.0284366576063
+      },
+      "P3": {
+       "comp_slack": 6.635425551695464,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 66.35425551695464,
+       "stationarity": 421.68288949268594
+      },
+      "P4": {
+       "comp_slack": 5.913569516509923,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 59.13569516509922,
+       "stationarity": 621.6856095991078
+      },
+      "P5": {
+       "comp_slack": 8.120126795659646,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 81.20126795659645,
+       "stationarity": 332.8654558754769
+      },
+      "P6": {
+       "comp_slack": 3.539113543577979,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 35.39113543577979,
+       "stationarity": 359.61594092520454
+      },
+      "P7": {
+       "comp_slack": 0.06415972442700518,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.4536777622139554,
+       "stationarity": 253.10354181400282
+      }
+     }
+    },
     "mid": 4753172.426890091,
     "rand": 4180210.243608788
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.28e+01\n  Primal Feasibility:  2.25e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.25e+03\nPLAYER: P1\n  Stationarity: 5.28e+01\n  Primal Feasibility:  2.25e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.25e+03\nPLAYER: P2\n  Stationarity: 9.80e+02\n  Primal Feasibility:  7.05e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e+01\nPLAYER: P3\n  Stationarity: 9.79e+02\n  Primal Feasibility:  7.05e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e+01\nPLAYER: P4\n  Stationarity: 3.37e+02\n  Primal Feasibility:  6.75e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.40e+01\nPLAYER: P5\n  Stationarity: 3.34e+02\n  Primal Feasibility:  6.75e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.40e+01\nPLAYER: P6\n  Stationarity: 3.31e+02\n  Primal Feasibility:  6.75e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.40e+01\nPLAYER: P7\n  Stationarity: 2.23e+02\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.75e+01\n  Primal Feasibility:  1.12e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.12e+03\nPLAYER: P1\n  Stationarity: 5.95e+01\n  Primal Feasibility:  2.87e+04\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.87e+03\nPLAYER: P2\n  Stationarity: 9.70e+02\n  Primal Feasibility:  8.34e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.51e+01\nPLAYER: P3\n  Stationarity: 4.22e+02\n  Primal Feasibility:  6.64e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.62e+01\nPLAYER: P4\n  Stationarity: 6.22e+02\n  Primal Feasibility:  5.91e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.54e+01\nPLAYER: P5\n  Stationarity: 3.33e+02\n  Primal Feasibility:  8.12e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.57e+01\nPLAYER: P6\n  Stationarity: 3.60e+02\n  Primal Feasibility:  3.54e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.40e+01\nPLAYER: P7\n  Stationarity: 2.53e+02\n  Primal Feasibility:  4.54e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.47e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 2310906.4113327195,
     "rand": 1814399.3880963952
    },
@@ -1185,10 +1473,56 @@
  "A11": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.00e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 1.00e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.9
+      },
+      "P1": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.1
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.81e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.46e-03\nPLAYER: P1\n  Stationarity: 2.68e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.46e-03\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.007460127913174031,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.680861300285673
+      },
+      "P1": {
+       "comp_slack": 0.007460127913174031,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.2683412579778075
+      }
+     }
+    },
     "mid": 0.21770334928229668,
     "rand": 0.1470386259291121
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.00e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.07e-02\nPLAYER: P1\n  Stationarity: 1.00e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.07e-02\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.81e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.28e-02\nPLAYER: P1\n  Stationarity: 2.68e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.57e-02\n========================================================\n",
+     "report": null
+    },
     "mid": 0.8524706264075939,
     "rand": 0.577274155400795
    },
@@ -1282,10 +1616,56 @@
  "A12": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.60e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 1.60e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 16.0
+      },
+      "P1": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 16.0
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.53e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 2.12e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 15.300638585491537
+      },
+      "P1": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 21.17543816241288
+      }
+     }
+    },
     "mid": 301.1764705882353,
     "rand": 388.8330866434354
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.60e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e+00\nPLAYER: P1\n  Stationarity: 1.60e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e+00\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.53e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.45e+00\nPLAYER: P1\n  Stationarity: 2.12e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.51e+00\n========================================================\n",
+     "report": null
+    },
     "mid": 512.0,
     "rand": 682.5087224940042
    },
@@ -1375,10 +1755,70 @@
  "A13": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.54e-01\n  Primal Feasibility:  3.31e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e+01\nPLAYER: P1\n  Stationarity: 4.40e+00\n  Primal Feasibility:  3.31e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e+01\nPLAYER: P2\n  Stationarity: 8.44e-01\n  Primal Feasibility:  3.31e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 40.52186107522704,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 331.25,
+       "stationarity": 0.6541500000000001
+      },
+      "P1": {
+       "comp_slack": 40.52186107522704,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 331.25,
+       "stationarity": 4.40125
+      },
+      "P2": {
+       "comp_slack": 40.52186107522704,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 331.25,
+       "stationarity": 0.8439
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.41e-01\n  Primal Feasibility:  1.92e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.30e+01\nPLAYER: P1\n  Stationarity: 1.93e+00\n  Primal Feasibility:  1.92e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.30e+01\nPLAYER: P2\n  Stationarity: 7.00e-01\n  Primal Feasibility:  1.92e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.30e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 23.016968613124188,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 192.3599729789094,
+       "stationarity": 0.5410355895887063
+      },
+      "P1": {
+       "comp_slack": 23.016968613124188,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 192.3599729789094,
+       "stationarity": 1.9335506211392743
+      },
+      "P2": {
+       "comp_slack": 23.016968613124188,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 192.3599729789094,
+       "stationarity": 0.699586002535917
+      }
+     }
+    },
     "mid": 56421.0274309392,
     "rand": 31721.93620522722
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.54e-01\n  Primal Feasibility:  3.31e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e+01\nPLAYER: P1\n  Stationarity: 4.40e+00\n  Primal Feasibility:  3.31e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e+01\nPLAYER: P2\n  Stationarity: 8.44e-01\n  Primal Feasibility:  3.31e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e+01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.41e-01\n  Primal Feasibility:  1.92e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.41e+01\nPLAYER: P1\n  Stationarity: 1.93e+00\n  Primal Feasibility:  1.92e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.42e+01\nPLAYER: P2\n  Stationarity: 7.00e-01\n  Primal Feasibility:  1.92e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.46e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 20.590953752321656,
     "rand": 4.600570039318212
    },
@@ -1509,10 +1949,168 @@
  "A14": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P1\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P2\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P3\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P4\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P5\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P6\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P7\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P8\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\nPLAYER: P9\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.05e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P1": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P2": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P3": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P4": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P5": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P6": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P7": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P8": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      },
+      "P9": {
+       "comp_slack": 0.4050000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.050000000000001,
+       "stationarity": 0.9217821782178218
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.37e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P1\n  Stationarity: 9.27e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P2\n  Stationarity: 9.21e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P3\n  Stationarity: 9.21e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P4\n  Stationarity: 9.42e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P5\n  Stationarity: 9.45e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P6\n  Stationarity: 9.36e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P7\n  Stationarity: 9.40e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P8\n  Stationarity: 9.35e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\nPLAYER: P9\n  Stationarity: 9.45e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.45e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9371688301926087
+      },
+      "P1": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9273784771138834
+      },
+      "P2": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9212774024796914
+      },
+      "P3": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9206255773389002
+      },
+      "P4": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9418699212200495
+      },
+      "P5": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9445225981617742
+      },
+      "P6": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9363602201213017
+      },
+      "P7": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9396361799590531
+      },
+      "P8": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9346801006401061
+      },
+      "P9": {
+       "comp_slack": 0.44500432621936703,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 4.45004326219367,
+       "stationarity": 0.9451176545318206
+      }
+     }
+    },
     "mid": 326.6657341576507,
     "rand": 365.42178428513154
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P1\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P2\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P3\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P4\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P5\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P6\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P7\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P8\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\nPLAYER: P9\n  Stationarity: 9.22e-01\n  Primal Feasibility:  4.05e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.11e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.37e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.51e-01\nPLAYER: P1\n  Stationarity: 9.27e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.51e-01\nPLAYER: P2\n  Stationarity: 9.21e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.53e-01\nPLAYER: P3\n  Stationarity: 9.21e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.54e-01\nPLAYER: P4\n  Stationarity: 9.42e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.52e-01\nPLAYER: P5\n  Stationarity: 9.45e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.53e-01\nPLAYER: P6\n  Stationarity: 9.36e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.51e-01\nPLAYER: P7\n  Stationarity: 9.40e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.51e-01\nPLAYER: P8\n  Stationarity: 9.35e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.51e-01\nPLAYER: P9\n  Stationarity: 9.45e-01\n  Primal Feasibility:  4.45e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.53e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 8.66857845264785,
     "rand": 8.898927122681343
    },
@@ -1974,10 +2572,70 @@
  "A15": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.02e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 1.28e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P2\n  Stationarity: 1.48e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 40.200000000000024
+      },
+      "P1": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 127.61695861052327
+      },
+      "P2": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 147.94992883489337
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 8.33e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 3.83e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P2\n  Stationarity: 6.03e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 8.33115550440408
+      },
+      "P1": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 38.3405602541514
+      },
+      "P2": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 60.28905426137451
+      }
+     }
+    },
     "mid": 12639.211239339309,
     "rand": 5036.547585607556
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.02e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.66e+00\nPLAYER: P1\n  Stationarity: 1.28e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.67e+00\nPLAYER: P2\n  Stationarity: 1.48e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.26e+00\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 8.33e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.79e+00\nPLAYER: P1\n  Stationarity: 3.83e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.46e+00\nPLAYER: P2\n  Stationarity: 6.03e+01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   6.43e+00\n========================================================\n",
+     "report": null
+    },
     "mid": 39791.30956725002,
     "rand": 5174.176776371736
    },
@@ -2135,10 +2793,98 @@
  "A16": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.45e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.75e+01\nPLAYER: P1\n  Stationarity: 3.75e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.75e+01\nPLAYER: P2\n  Stationarity: 3.64e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.75e+01\nPLAYER: P3\n  Stationarity: 4.55e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.75e+01\nPLAYER: P4\n  Stationarity: 7.42e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.75e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 17.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 175.0,
+       "stationarity": 4.450443805902659
+      },
+      "P1": {
+       "comp_slack": 17.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 175.0,
+       "stationarity": 3.7488314232199094
+      },
+      "P2": {
+       "comp_slack": 17.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 175.0,
+       "stationarity": 3.6375231153230443
+      },
+      "P3": {
+       "comp_slack": 17.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 175.0,
+       "stationarity": 4.553019765471887
+      },
+      "P4": {
+       "comp_slack": 17.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 175.0,
+       "stationarity": 7.420317215712272
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.37e+00\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.17e+01\nPLAYER: P1\n  Stationarity: 3.01e+00\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.17e+01\nPLAYER: P2\n  Stationarity: 9.37e+00\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.17e+01\nPLAYER: P3\n  Stationarity: 1.17e+01\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.17e+01\nPLAYER: P4\n  Stationarity: 1.92e+01\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.17e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 11.720158398002567,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 117.20158398002567,
+       "stationarity": 4.368976130632235
+      },
+      "P1": {
+       "comp_slack": 11.720158398002567,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 117.20158398002567,
+       "stationarity": 3.012649667588357
+      },
+      "P2": {
+       "comp_slack": 11.720158398002567,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 117.20158398002567,
+       "stationarity": 9.374026167834351
+      },
+      "P3": {
+       "comp_slack": 11.720158398002567,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 117.20158398002567,
+       "stationarity": 11.728828194328864
+      },
+      "P4": {
+       "comp_slack": 11.720158398002567,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 117.20158398002567,
+       "stationarity": 19.173599214995626
+      }
+     }
+    },
     "mid": 18369.10059673627,
     "rand": 15041.65818865843
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.45e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.89e+01\nPLAYER: P1\n  Stationarity: 3.75e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.89e+01\nPLAYER: P2\n  Stationarity: 3.64e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.89e+01\nPLAYER: P3\n  Stationarity: 4.55e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.89e+01\nPLAYER: P4\n  Stationarity: 7.42e+00\n  Primal Feasibility:  1.75e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.89e+01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.37e+00\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.38e+01\nPLAYER: P1\n  Stationarity: 3.01e+00\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.39e+01\nPLAYER: P2\n  Stationarity: 9.37e+00\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.46e+01\nPLAYER: P3\n  Stationarity: 1.17e+01\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.47e+01\nPLAYER: P4\n  Stationarity: 1.92e+01\n  Primal Feasibility:  1.17e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 122.99265247682679,
     "rand": 621.3383584670778
    },
@@ -2340,10 +3086,56 @@
  "A17": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 2.39e+02\n  Primal Feasibility:  2.70e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.83e+01\nPLAYER: P1\n  Stationarity: 1.75e+02\n  Primal Feasibility:  2.70e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.83e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 28.3365488371467,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 270.0,
+       "stationarity": 239.03748659990552
+      },
+      "P1": {
+       "comp_slack": 28.3365488371467,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 270.0,
+       "stationarity": 175.0
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.74e+02\n  Primal Feasibility:  2.29e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.49e+01\nPLAYER: P1\n  Stationarity: 9.41e+01\n  Primal Feasibility:  2.29e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.49e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 24.892590837275804,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 229.3145610742639,
+       "stationarity": 173.70613153621673
+      },
+      "P1": {
+       "comp_slack": 24.892590837275804,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 229.3145610742639,
+       "stationarity": 94.09563591661713
+      }
+     }
+    },
     "mid": 60856.990445721545,
     "rand": 45347.9715546657
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 2.39e+02\n  Primal Feasibility:  2.70e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e+01\nPLAYER: P1\n  Stationarity: 1.75e+02\n  Primal Feasibility:  2.70e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.92e+01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.74e+02\n  Primal Feasibility:  2.29e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.70e+01\nPLAYER: P1\n  Stationarity: 9.41e+01\n  Primal Feasibility:  2.29e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.64e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 87763.99986473212,
     "rand": 39027.88864220524
    },
@@ -2451,10 +3243,56 @@
  "A18": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.19e+00\n  Primal Feasibility:  1.00e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.12e+01\nPLAYER: P1\n  Stationarity: 9.19e+00\n  Primal Feasibility:  1.00e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.12e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 11.198685438726974,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 100.0,
+       "stationarity": 9.186306357835013
+      },
+      "P1": {
+       "comp_slack": 11.198685438726974,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 100.0,
+       "stationarity": 9.186306357835013
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.69e+01\n  Primal Feasibility:  1.19e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.20e+01\nPLAYER: P1\n  Stationarity: 2.25e+01\n  Primal Feasibility:  1.20e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.45e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 12.02240789785373,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 119.40427616052187,
+       "stationarity": 16.897726538790128
+      },
+      "P1": {
+       "comp_slack": 14.523802638134907,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 120.29315824635592,
+       "stationarity": 22.4518253300436
+      }
+     }
+    },
     "mid": 31627.982007145645,
     "rand": 38278.01501763575
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 9.19e+00\n  Primal Feasibility:  1.00e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.06e+01\nPLAYER: P1\n  Stationarity: 9.19e+00\n  Primal Feasibility:  1.00e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.06e+01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.69e+01\n  Primal Feasibility:  1.19e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.33e+01\nPLAYER: P1\n  Stationarity: 2.25e+01\n  Primal Feasibility:  1.20e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.42e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 169.0847880908119,
     "rand": 790.1526245040728
    },
@@ -2668,10 +3506,168 @@
  "A2": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 7.75e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 2.62e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P2\n  Stationarity: 2.62e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P3\n  Stationarity: 2.62e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P4\n  Stationarity: 2.72e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.25e-01\nPLAYER: P5\n  Stationarity: 7.82e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.25e-01\nPLAYER: P6\n  Stationarity: 8.82e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P7\n  Stationarity: 8.82e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P8\n  Stationarity: 8.52e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P9\n  Stationarity: 8.52e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.7749999998250001
+      },
+      "P1": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 2.6234374993901564
+      },
+      "P2": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 2.6234374993901564
+      },
+      "P3": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 2.6234374993901564
+      },
+      "P4": {
+       "comp_slack": 0.42497176376790025,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 2.7234374993901564
+      },
+      "P5": {
+       "comp_slack": 0.42497176376790025,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 0.7815624998282813
+      },
+      "P6": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 0.8815624998282813
+      },
+      "P7": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 0.8815624998282813
+      },
+      "P8": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 0.8521874998135939
+      },
+      "P9": {
+       "comp_slack": 0.30000000000000004,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 0.8518749998134376
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 7.74e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 2.41e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P2\n  Stationarity: 2.24e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P3\n  Stationarity: 2.22e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P4\n  Stationarity: 2.91e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.18e-01\nPLAYER: P5\n  Stationarity: 8.00e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.18e-01\nPLAYER: P6\n  Stationarity: 8.85e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P7\n  Stationarity: 8.91e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P8\n  Stationarity: 8.49e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P9\n  Stationarity: 8.50e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 0.7738780011832517
+      },
+      "P1": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 2.4051761413651227
+      },
+      "P2": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 2.2355707713613957
+      },
+      "P3": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 2.2174505137330027
+      },
+      "P4": {
+       "comp_slack": 0.4179038794212203,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 2.908027587525162
+      },
+      "P5": {
+       "comp_slack": 0.4179038794212203,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 0.8001548086912853
+      },
+      "P6": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 0.8846160086121959
+      },
+      "P7": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 0.8908524858659496
+      },
+      "P8": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 0.8491919256047634
+      },
+      "P9": {
+       "comp_slack": 0.2950022440145809,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 2.9500224401458093,
+       "stationarity": 0.8496519311396092
+      }
+     }
+    },
     "mid": 229.4377197828826,
     "rand": 225.5540359303013
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 7.75e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e-02\nPLAYER: P1\n  Stationarity: 2.62e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P2\n  Stationarity: 2.62e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P3\n  Stationarity: 2.62e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P4\n  Stationarity: 2.72e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.31e-01\nPLAYER: P5\n  Stationarity: 7.82e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.31e-01\nPLAYER: P6\n  Stationarity: 8.82e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P7\n  Stationarity: 8.82e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P8\n  Stationarity: 8.52e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\nPLAYER: P9\n  Stationarity: 8.52e-01\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.00e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 7.74e-01\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.45e-02\nPLAYER: P1\n  Stationarity: 2.41e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.04e-01\nPLAYER: P2\n  Stationarity: 2.24e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P3\n  Stationarity: 2.22e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.08e-01\nPLAYER: P4\n  Stationarity: 2.91e+00\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.25e-01\nPLAYER: P5\n  Stationarity: 8.00e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.26e-01\nPLAYER: P6\n  Stationarity: 8.85e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.03e-01\nPLAYER: P7\n  Stationarity: 8.91e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.04e-01\nPLAYER: P8\n  Stationarity: 8.49e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\nPLAYER: P9\n  Stationarity: 8.50e-01\n  Primal Feasibility:  2.95e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.95e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 67.47967725491766,
     "rand": 62.428274653515935
    },
@@ -3137,10 +4133,70 @@
  "A3": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.75e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.06e+00\nPLAYER: P1\n  Stationarity: 1.10e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.00e-01\nPLAYER: P2\n  Stationarity: 2.33e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.00e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 2.0615528128088303,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1.7549928774784245
+      },
+      "P1": {
+       "comp_slack": 0.7000000000000001,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1.104536101718726
+      },
+      "P2": {
+       "comp_slack": 0.4,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 2.3259406699226015
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.79e+02\n  Primal Feasibility:  1.03e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.06e+00\nPLAYER: P1\n  Stationarity: 1.80e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.12e-01\nPLAYER: P2\n  Stationarity: 3.65e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.88e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 3.061878311514768,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 10.294128278204491,
+       "stationarity": 378.67098505820195
+      },
+      "P1": {
+       "comp_slack": 0.2115956225505384,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 180.44385308444205
+      },
+      "P2": {
+       "comp_slack": 0.4876348799391041,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 364.7823117817293
+      }
+     }
+    },
     "mid": 43.43355897686543,
     "rand": 20223.751477973685
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.75e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.20e+00\nPLAYER: P1\n  Stationarity: 1.10e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.12e+00\nPLAYER: P2\n  Stationarity: 2.33e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.04e+00\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.79e+02\n  Primal Feasibility:  1.03e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.10e+00\nPLAYER: P1\n  Stationarity: 1.80e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.40e+00\nPLAYER: P2\n  Stationarity: 3.65e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.27e+00\n========================================================\n",
+     "report": null
+    },
     "mid": 1955.5679576878222,
     "rand": 312442.92692848685
    },
@@ -3321,10 +4377,70 @@
  "A4": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.79e+02\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.54e-01\nPLAYER: P1\n  Stationarity: 5.10e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.25e+00\nPLAYER: P2\n  Stationarity: 1.30e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.00e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.3535533905932738,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5,
+       "stationarity": 578.6766465393259
+      },
+      "P1": {
+       "comp_slack": 1.25,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 509.5730670129653
+      },
+      "P2": {
+       "comp_slack": 0.4,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1303.6044839693518
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.03e+02\n  Primal Feasibility:  7.38e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.05e+00\nPLAYER: P1\n  Stationarity: 5.64e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.03e+00\nPLAYER: P2\n  Stationarity: 1.54e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.39e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 1.0506940303408132,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 7.382357725192023,
+       "stationarity": 503.1344975343495
+      },
+      "P1": {
+       "comp_slack": 1.0302180301477424,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 563.7782785301941
+      },
+      "P2": {
+       "comp_slack": 0.43943569597259685,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1544.90249897753
+      }
+     }
+    },
     "mid": 15446.74133271883,
     "rand": 20232.04389073656
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.79e+02\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.16e+00\nPLAYER: P1\n  Stationarity: 5.10e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.54e+00\nPLAYER: P2\n  Stationarity: 1.30e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.85e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.03e+02\n  Primal Feasibility:  7.38e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.62e+00\nPLAYER: P1\n  Stationarity: 5.64e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.49e+00\nPLAYER: P2\n  Stationarity: 1.54e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.09e+00\n========================================================\n",
+     "report": null
+    },
     "mid": 2294646.256904888,
     "rand": 2958430.734232585
    },
@@ -3505,10 +4621,70 @@
  "A5": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.43e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.00e-01\nPLAYER: P1\n  Stationarity: 1.03e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.20e+00\nPLAYER: P2\n  Stationarity: 3.61e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.00e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 142.89184721319828
+      },
+      "P1": {
+       "comp_slack": 1.2000000000000002,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 103.41769674480283
+      },
+      "P2": {
+       "comp_slack": 0.4,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 361.0919688943525
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.47e+02\n  Primal Feasibility:  7.65e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.21e+00\nPLAYER: P1\n  Stationarity: 1.32e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.56e-01\nPLAYER: P2\n  Stationarity: 4.78e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.44e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 1.21317989004247,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 7.647064139102245,
+       "stationarity": 146.73420131592678
+      },
+      "P1": {
+       "comp_slack": 0.9557978112752693,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 132.30940781768768
+      },
+      "P2": {
+       "comp_slack": 0.44381743996955203,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 477.938260377217
+      }
+     }
+    },
     "mid": 4259.906430866929,
     "rand": 7186.963518379884
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.43e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.32e+00\nPLAYER: P1\n  Stationarity: 1.03e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.56e+00\nPLAYER: P2\n  Stationarity: 3.61e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.08e+00\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.47e+02\n  Primal Feasibility:  7.65e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.83e+00\nPLAYER: P1\n  Stationarity: 1.32e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.53e+00\nPLAYER: P2\n  Stationarity: 4.78e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.20e+00\n========================================================\n",
+     "report": null
+    },
     "mid": 162232.5366783256,
     "rand": 268251.57647101884
    },
@@ -3689,10 +4865,70 @@
  "A6": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.69e+02\n  Primal Feasibility:  9.38e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.38e+01\nPLAYER: P1\n  Stationarity: 3.78e+02\n  Primal Feasibility:  1.15e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.70e+00\nPLAYER: P2\n  Stationarity: 1.05e+03\n  Primal Feasibility:  1.65e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.70e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 93.782075854411,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 937.8125,
+       "stationarity": 568.8116175413438
+      },
+      "P1": {
+       "comp_slack": 1.698528775146303,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 11.5,
+       "stationarity": 377.7963149965865
+      },
+      "P2": {
+       "comp_slack": 1.6977926846349645,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 16.5,
+       "stationarity": 1049.9960824331679
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.71e+02\n  Primal Feasibility:  1.80e+03\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.80e+02\nPLAYER: P1\n  Stationarity: 4.17e+02\n  Primal Feasibility:  1.73e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.02e+00\nPLAYER: P2\n  Stationarity: 1.36e+03\n  Primal Feasibility:  1.07e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.07e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 179.84388600195012,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 1798.4023613484324,
+       "stationarity": 570.9898113503739
+      },
+      "P1": {
+       "comp_slack": 2.0160126060635855,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 17.329043938330223,
+       "stationarity": 416.7425271326814
+      },
+      "P2": {
+       "comp_slack": 10.681601824203714,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 106.72558915271313,
+       "stationarity": 1360.7548317101719
+      }
+     }
+    },
     "mid": 109511.7928992675,
     "rand": 209642.0037988184
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.69e+02\n  Primal Feasibility:  9.38e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.38e+01\nPLAYER: P1\n  Stationarity: 3.78e+02\n  Primal Feasibility:  1.15e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.92e+00\nPLAYER: P2\n  Stationarity: 1.05e+03\n  Primal Feasibility:  1.65e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.92e+00\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.71e+02\n  Primal Feasibility:  1.80e+03\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.80e+02\nPLAYER: P1\n  Stationarity: 4.17e+02\n  Primal Feasibility:  1.73e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.28e+00\nPLAYER: P2\n  Stationarity: 1.36e+03\n  Primal Feasibility:  1.07e+02\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.07e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 1569498.750591461,
     "rand": 2352074.1734960093
    },
@@ -3882,10 +5118,84 @@
  "A7": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.19e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.00e-01\nPLAYER: P1\n  Stationarity: 1.21e+03\n  Primal Feasibility:  8.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   8.00e-01\nPLAYER: P2\n  Stationarity: 1.08e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.60e+00\nPLAYER: P3\n  Stationarity: 1.35e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.00e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.5,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1191.6118117910714
+      },
+      "P1": {
+       "comp_slack": 0.8,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 8.0,
+       "stationarity": 1211.98252462649
+      },
+      "P2": {
+       "comp_slack": 1.6,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1075.0568310559215
+      },
+      "P3": {
+       "comp_slack": 0.9,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1354.42330901384
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.28e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.51e+00\nPLAYER: P1\n  Stationarity: 1.35e+03\n  Primal Feasibility:  9.62e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.62e-01\nPLAYER: P2\n  Stationarity: 1.16e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.02e+00\nPLAYER: P3\n  Stationarity: 1.49e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.52e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 1.5079329172759417,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1278.048156089321
+      },
+      "P1": {
+       "comp_slack": 0.9621793747886184,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 9.621793747886183,
+       "stationarity": 1350.6934610280198
+      },
+      "P2": {
+       "comp_slack": 2.0200867189694662,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1161.988815760493
+      },
+      "P3": {
+       "comp_slack": 1.5225911079143701,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1489.3261402664868
+      }
+     }
+    },
     "mid": 20639.229727101683,
     "rand": 24917.223180923313
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.19e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   8.06e-01\nPLAYER: P1\n  Stationarity: 1.21e+03\n  Primal Feasibility:  8.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.02e+00\nPLAYER: P2\n  Stationarity: 1.08e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.72e+00\nPLAYER: P3\n  Stationarity: 1.35e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.10e+00\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.28e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.67e+00\nPLAYER: P1\n  Stationarity: 1.35e+03\n  Primal Feasibility:  9.62e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.19e+00\nPLAYER: P2\n  Stationarity: 1.16e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.15e+00\nPLAYER: P3\n  Stationarity: 1.49e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.67e+00\n========================================================\n",
+     "report": null
+    },
     "mid": 5880486.519762615,
     "rand": 7029539.70147227
    },
@@ -4277,10 +5587,70 @@
  "A8": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.00e+00\n  Primal Feasibility:  9.90e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.40e+01\nPLAYER: P1\n  Stationarity: 9.90e+01\n  Primal Feasibility:  9.90e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.40e+01\nPLAYER: P2\n  Stationarity: 1.48e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 14.000714267493642,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 99.0,
+       "stationarity": 1.0
+      },
+      "P1": {
+       "comp_slack": 14.000714267493642,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 99.0,
+       "stationarity": 99.0
+      },
+      "P2": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 148.0
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.00e+00\n  Primal Feasibility:  9.15e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.30e+01\nPLAYER: P1\n  Stationarity: 6.22e+01\n  Primal Feasibility:  9.15e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.30e+01\nPLAYER: P2\n  Stationarity: 1.82e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 12.997729528120786,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 91.53987208682598,
+       "stationarity": 1.0
+      },
+      "P1": {
+       "comp_slack": 12.997729528120786,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 91.53987208682598,
+       "stationarity": 62.16587420221925
+      },
+      "P2": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 182.33968968055322
+      }
+     }
+    },
     "mid": 14873.506711409396,
     "rand": 11321.493449769092
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.00e+00\n  Primal Feasibility:  9.90e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.57e+01\nPLAYER: P1\n  Stationarity: 9.90e+01\n  Primal Feasibility:  9.90e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.57e+01\nPLAYER: P2\n  Stationarity: 1.48e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.00e+00\n  Primal Feasibility:  9.15e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.49e+01\nPLAYER: P1\n  Stationarity: 6.22e+01\n  Primal Feasibility:  9.15e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.50e+01\nPLAYER: P2\n  Stationarity: 1.82e+02\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.75e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 70870.49795458278,
     "rand": 71134.74106289362
    },
@@ -4408,10 +5778,126 @@
  "A9a": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.44e-03\n  Primal Feasibility:  1.58e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.58e+00\nPLAYER: P1\n  Stationarity: 7.05e-03\n  Primal Feasibility:  2.02e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.02e+00\nPLAYER: P2\n  Stationarity: 7.22e-03\n  Primal Feasibility:  1.98e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.98e+00\nPLAYER: P3\n  Stationarity: 7.49e-03\n  Primal Feasibility:  2.38e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.38e+00\nPLAYER: P4\n  Stationarity: 7.56e-03\n  Primal Feasibility:  2.82e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.82e+00\nPLAYER: P5\n  Stationarity: 7.20e-03\n  Primal Feasibility:  2.23e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.23e+00\nPLAYER: P6\n  Stationarity: 2.84e+00\n  Primal Feasibility:  2.22e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.22e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 1.581710757667607,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 15.817107576676069,
+       "stationarity": 0.006435934770435041
+      },
+      "P1": {
+       "comp_slack": 2.020409529407512,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 20.204095294075117,
+       "stationarity": 0.007053546415051177
+      },
+      "P2": {
+       "comp_slack": 1.9834772717918996,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 19.834772717918995,
+       "stationarity": 0.007223644414047648
+      },
+      "P3": {
+       "comp_slack": 2.3820018330096886,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 23.820018330096886,
+       "stationarity": 0.007490403155908205
+      },
+      "P4": {
+       "comp_slack": 2.8177415068247083,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 28.17741506824708,
+       "stationarity": 0.0075647289791734825
+      },
+      "P5": {
+       "comp_slack": 2.2266968282186483,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 22.266968282186482,
+       "stationarity": 0.00719860184061855
+      },
+      "P6": {
+       "comp_slack": 2.2206704973670184,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 22.20670497367018,
+       "stationarity": 2.8358107754722033
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.07e-02\n  Primal Feasibility:  1.47e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.47e+00\nPLAYER: P1\n  Stationarity: 1.69e-02\n  Primal Feasibility:  1.79e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.79e+00\nPLAYER: P2\n  Stationarity: 1.01e-02\n  Primal Feasibility:  1.82e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.82e+00\nPLAYER: P3\n  Stationarity: 6.34e-03\n  Primal Feasibility:  2.69e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.69e+00\nPLAYER: P4\n  Stationarity: 8.41e-03\n  Primal Feasibility:  2.70e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.70e+00\nPLAYER: P5\n  Stationarity: 7.27e-03\n  Primal Feasibility:  2.29e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.29e+00\nPLAYER: P6\n  Stationarity: 2.84e+00\n  Primal Feasibility:  1.86e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.86e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 1.4685444288073353,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 14.685444288073352,
+       "stationarity": 0.010665545251881563
+      },
+      "P1": {
+       "comp_slack": 1.7862232715192725,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 17.862232715192725,
+       "stationarity": 0.016875331477441396
+      },
+      "P2": {
+       "comp_slack": 1.8200721516910385,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 18.200721516910384,
+       "stationarity": 0.01005173786451624
+      },
+      "P3": {
+       "comp_slack": 2.692725982918465,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 26.92725982918465,
+       "stationarity": 0.006335393434527171
+      },
+      "P4": {
+       "comp_slack": 2.7015247037694397,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 27.015247037694394,
+       "stationarity": 0.008411834373105965
+      },
+      "P5": {
+       "comp_slack": 2.287068308600073,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 22.87068308600073,
+       "stationarity": 0.007266730975454083
+      },
+      "P6": {
+       "comp_slack": 1.8608136503563566,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 18.608136503563564,
+       "stationarity": 2.8399106563592076
+      }
+     }
+    },
     "mid": 14750.468282171341,
     "rand": 14111.688267336842
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.44e-03\n  Primal Feasibility:  1.58e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.01e+01\nPLAYER: P1\n  Stationarity: 7.05e-03\n  Primal Feasibility:  2.02e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.01e+01\nPLAYER: P2\n  Stationarity: 7.22e-03\n  Primal Feasibility:  1.98e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.01e+01\nPLAYER: P3\n  Stationarity: 7.49e-03\n  Primal Feasibility:  2.38e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.01e+01\nPLAYER: P4\n  Stationarity: 7.56e-03\n  Primal Feasibility:  2.82e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.02e+01\nPLAYER: P5\n  Stationarity: 7.20e-03\n  Primal Feasibility:  2.23e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.01e+01\nPLAYER: P6\n  Stationarity: 2.84e+00\n  Primal Feasibility:  2.22e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.01e+01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.07e-02\n  Primal Feasibility:  1.47e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.26e+01\nPLAYER: P1\n  Stationarity: 1.69e-02\n  Primal Feasibility:  1.79e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.32e+01\nPLAYER: P2\n  Stationarity: 1.01e-02\n  Primal Feasibility:  1.82e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.19e+01\nPLAYER: P3\n  Stationarity: 6.34e-03\n  Primal Feasibility:  2.69e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.20e+01\nPLAYER: P4\n  Stationarity: 8.41e-03\n  Primal Feasibility:  2.70e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.19e+01\nPLAYER: P5\n  Stationarity: 7.27e-03\n  Primal Feasibility:  2.29e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.11e+01\nPLAYER: P6\n  Stationarity: 2.84e+00\n  Primal Feasibility:  1.86e+01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.28e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 9.229562237246686,
     "rand": 9.252251271772625
    },
@@ -5697,10 +7183,126 @@
  "A9b": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.19e+01\nPLAYER: P1\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.11e+01\nPLAYER: P2\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.14e+01\nPLAYER: P3\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.13e+01\nPLAYER: P4\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.20e+01\nPLAYER: P5\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.14e+01\nPLAYER: P6\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.09e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 21.87488666946038,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.008583044966326
+      },
+      "P1": {
+       "comp_slack": 21.08437668252922,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.0086385862246905
+      },
+      "P2": {
+       "comp_slack": 21.366379728349408,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.009253067728418
+      },
+      "P3": {
+       "comp_slack": 21.262528740798054,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.009116453286054
+      },
+      "P4": {
+       "comp_slack": 22.040481438300322,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.008557459601642
+      },
+      "P5": {
+       "comp_slack": 21.43760150553507,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.008112259616469
+      },
+      "P6": {
+       "comp_slack": 20.891258363269195,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.009295628597707
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.21e+01\nPLAYER: P1\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.09e+01\nPLAYER: P2\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.14e+01\nPLAYER: P3\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.18e+01\nPLAYER: P4\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.18e+01\nPLAYER: P5\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.13e+01\nPLAYER: P6\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.11e+01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 22.11663381146867,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.012088902066766
+      },
+      "P1": {
+       "comp_slack": 20.88033791405975,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.009251016630793
+      },
+      "P2": {
+       "comp_slack": 21.426980202096843,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.009631286705622
+      },
+      "P3": {
+       "comp_slack": 21.800290661611623,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.014007131881435
+      },
+      "P4": {
+       "comp_slack": 21.82869884749509,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.009086292332656
+      },
+      "P5": {
+       "comp_slack": 21.345996394173298,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.008249529445331
+      },
+      "P6": {
+       "comp_slack": 21.065580671795814,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 4.00996150477661
+      }
+     }
+    },
     "mid": 2958.49713292791,
     "rand": 3153.1960593515473
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.58e+01\nPLAYER: P1\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.53e+01\nPLAYER: P2\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.54e+01\nPLAYER: P3\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.54e+01\nPLAYER: P4\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.59e+01\nPLAYER: P5\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.55e+01\nPLAYER: P6\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.52e+01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.91e+01\nPLAYER: P1\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.73e+01\nPLAYER: P2\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.71e+01\nPLAYER: P3\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.84e+01\nPLAYER: P4\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.82e+01\nPLAYER: P5\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.86e+01\nPLAYER: P6\n  Stationarity: 4.01e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.82e+01\n========================================================\n",
+     "report": null
+    },
     "mid": 1284905.9781855864,
     "rand": 1293674.9646175858
    },
@@ -6726,10 +8328,70 @@
  "AllocationGame": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 2.99e+00\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.07e-02\nPLAYER: P1\n  Stationarity: 4.00e+00\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.07e-02\nPLAYER: P2\n  Stationarity: 3.06e+00\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.07e-02\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.07071067811865477,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5,
+       "stationarity": 2.9928707807394686
+      },
+      "P1": {
+       "comp_slack": 0.07071067811865477,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5,
+       "stationarity": 3.9963771859328907
+      },
+      "P2": {
+       "comp_slack": 0.07071067811865477,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5,
+       "stationarity": 3.055915975444939
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.76e+00\n  Primal Feasibility:  5.11e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   5.55e-02\nPLAYER: P1\n  Stationarity: 3.40e+00\n  Primal Feasibility:  3.11e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.27e-02\nPLAYER: P2\n  Stationarity: 4.37e+00\n  Primal Feasibility:  3.61e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.58e-02\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.05552340034051612,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5109738282870853,
+       "stationarity": 6.760517839122561
+      },
+      "P1": {
+       "comp_slack": 0.042653113224327924,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.311222856312678,
+       "stationarity": 3.3988676205234545
+      },
+      "P2": {
+       "comp_slack": 0.04578214350457933,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.36106763241821005,
+       "stationarity": 4.3652372233494
+      }
+     }
+    },
     "mid": 104.01340633100786,
     "rand": 60.50117143814507
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 2.99e+00\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.22e-01\nPLAYER: P1\n  Stationarity: 4.00e+00\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.22e-01\nPLAYER: P2\n  Stationarity: 3.06e+00\n  Primal Feasibility:  5.00e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.22e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 6.76e+00\n  Primal Feasibility:  5.11e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.18e-01\nPLAYER: P1\n  Stationarity: 3.40e+00\n  Primal Feasibility:  3.11e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.32e-01\nPLAYER: P2\n  Stationarity: 4.37e+00\n  Primal Feasibility:  3.61e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.25e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 34.41304639026272,
     "rand": 76.44208750521884
    },
@@ -6904,10 +8566,56 @@
  "PayoffMatrixGame": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.00e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\nPLAYER: P1\n  Stationarity: 2.50e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   0.00e+00\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 5000.0000515625
+      },
+      "P1": {
+       "comp_slack": 0.0,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 2500.368756335003
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 7.12e+03\n  Primal Feasibility:  7.54e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.07e-01\nPLAYER: P1\n  Stationarity: 6.64e+02\n  Primal Feasibility:  5.81e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   9.05e-02\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.10715222368861128,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.753999072428221,
+       "stationarity": 7124.3163784744365
+      },
+      "P1": {
+       "comp_slack": 0.09051662805932413,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.5808206531823954,
+       "stationarity": 664.035017607207
+      }
+     }
+    },
     "mid": 4998.0440595765585,
     "rand": 1386.7296388147647
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 5.00e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e-01\nPLAYER: P1\n  Stationarity: 2.50e+03\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.41e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 7.12e+03\n  Primal Feasibility:  7.54e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.95e-01\nPLAYER: P1\n  Stationarity: 6.64e+02\n  Primal Feasibility:  5.81e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.80e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 31251844.563163757,
     "rand": 51196829.874682754
    },
@@ -7081,10 +8789,56 @@
  "QuadraticGame": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.04e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.16e-01\nPLAYER: P1\n  Stationarity: 4.04e+00\n  Primal Feasibility:  3.50e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.54e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.316227766016838,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.0,
+       "stationarity": 3.0364452901377956
+      },
+      "P1": {
+       "comp_slack": 0.3535533905932738,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 3.5,
+       "stationarity": 4.044749683231337
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 2.89e+00\n  Primal Feasibility:  1.33e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.64e-01\nPLAYER: P1\n  Stationarity: 4.55e+00\n  Primal Feasibility:  4.57e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   4.92e-02\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.16358043655077764,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 1.33185038979095,
+       "stationarity": 2.893433985786901
+      },
+      "P1": {
+       "comp_slack": 0.0492136780059455,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.4565982214705362,
+       "stationarity": 4.552727189702724
+      }
+     }
+    },
     "mid": 566.328863022942,
     "rand": 141.21925755643997
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.04e+00\n  Primal Feasibility:  3.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.32e-01\nPLAYER: P1\n  Stationarity: 4.04e+00\n  Primal Feasibility:  3.50e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   3.67e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 2.89e+00\n  Primal Feasibility:  1.33e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.94e-01\nPLAYER: P1\n  Stationarity: 4.55e+00\n  Primal Feasibility:  4.57e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.35e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 25.681472190642754,
     "rand": 29.269063599380914
    },
@@ -7206,10 +8960,56 @@
  "RadarPowerGame": {
   "algorithms": {
    "EnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.85e+00\n  Primal Feasibility:  4.50e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   7.11e-02\nPLAYER: P1\n  Stationarity: 6.00e-01\n  Primal Feasibility:  1.10e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.17e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.0710633520177595,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.4500000000000002,
+       "stationarity": 1.8508391452715582
+      },
+      "P1": {
+       "comp_slack": 0.11704699910719624,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 1.0999999999999996,
+       "stationarity": 0.6000060797997091
+      }
+     }
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.45e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.95e-01\nPLAYER: P1\n  Stationarity: 1.31e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.81e-01\n========================================================\n",
+     "report": {
+      "P0": {
+       "comp_slack": 0.19461830407986155,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 3.4485016794057013
+      },
+      "P1": {
+       "comp_slack": 0.18111728157725807,
+       "dual_feas": 0.0,
+       "is_kkt": false,
+       "primal_feas": 0.0,
+       "stationarity": 1.3090653412608972
+      }
+     }
+    },
     "mid": 72.312191671121,
     "rand": 2.9367889234692206
    },
    "FBEnergyMethod": {
+    "kkt_mid": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 1.85e+00\n  Primal Feasibility:  4.50e-01\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.23e-01\nPLAYER: P1\n  Stationarity: 6.00e-01\n  Primal Feasibility:  1.10e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   1.54e-01\n========================================================\n",
+     "report": null
+    },
+    "kkt_rand": {
+     "printed": "\n==================== KKT VALIDATION ====================\nPLAYER: P0\n  Stationarity: 3.45e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.21e-01\nPLAYER: P1\n  Stationarity: 1.31e+00\n  Primal Feasibility:  0.00e+00\n  Dual Feasibility:   0.00e+00\n  Complementary Slackness:   2.20e-01\n========================================================\n",
+     "report": null
+    },
     "mid": 5.393094166010261,
     "rand": 39.94241283569832
    },
