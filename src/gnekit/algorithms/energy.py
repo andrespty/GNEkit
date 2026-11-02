@@ -71,13 +71,13 @@ class EnergyMethod(BaseAlgorithm):
         Returns
         -------
         vector of shape (N_d, 1)
-            Dual energy, one entry per constraint.
+            Dual energy, one entry per constraint multiplier.
         """
         if not self.const:
             return jnp.zeros((1, 1))
 
         actions_vectors = construct_vectors(actions, self.action_sizes)
-        g_values = jnp.array([-c(actions_vectors) for c in self.const])
+        g_values = -self.constraint_values(actions_vectors)
 
         # Ensure dual_actions is flat for the handler
         lambdas = dual_actions.ravel()

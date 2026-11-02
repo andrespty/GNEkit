@@ -128,7 +128,9 @@ primal_x, dual_x = problem.solve(
 )
 ```
 
-Available settings: `method` (local minimizer, default `"SLSQP"`), `minimizer_options`, `niter`, `stepsize`, `interval`, `niter_success`, `disp`.
+Available settings: `method` (local minimizer, default `"SLSQP"`), `minimizer_options`, `niter`, `stepsize`, `interval`, `niter_success`, `disp`, `multipliers`.
+
+By default each shared constraint has one multiplier used by every player in it, which gives a variational equilibrium. Pass `multipliers="per_player"` to give each player its own multiplier and solve the KKT system of the full GNEP.
 
 ---
 
@@ -139,7 +141,7 @@ gnekit/
 ├── src/gnekit/
 │   ├── core/              # BaseProblem, Player, utilities, types, validation
 │   ├── bayesian/          # BayesianProblem, BayesianPlayer
-│   ├── algorithms/        # BaseAlgorithm, EnergyMethod, FBEnergyMethod, VectorEnergyMethod
+│   ├── algorithms/        # BaseAlgorithm, EnergyMethod, FBEnergyMethod
 │   └── problems/
 │       ├── gnep/          # 18 standard GNE benchmark problems (A1–A18)
 │       └── bayesian/      # 3 D-GBNE example problems
