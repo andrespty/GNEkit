@@ -113,3 +113,15 @@ def test_problem_solve_forwards_the_setting():
         primal, dual = problem.solve(EnergyMethod, multipliers="per_player", niter=1, disp=False)
     assert primal.shape == (2,)
     assert dual.shape == (2,)
+
+
+@pytest.mark.parametrize("mode", ["shared", "per_player"])
+def test_fb_energy_penalizes_constraint_violation(mode):
+    # Regression: FB used to enforce g >= 0, so the infeasible point (1, 1)
+    # with zero multipliers had zero energy
+    alg = build(FBEnergyMethod, multipliers=mode)
+    n = alg.num_constraint_duals
+    infeasible = jnp.array([1.0, 1.0] + [0.0] * n + [0.0] * 4)
+    assert alg.min_func(infeasible) > 1.0
+    ve = jnp.array([0.5, 0.5] + [1.0] * n + [0.0] * 4)
+    assert alg.min_func(ve) < 1e-6

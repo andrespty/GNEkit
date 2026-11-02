@@ -91,7 +91,8 @@ class FBEnergyMethod(BaseAlgorithm):
             return jnp.zeros((1, 1))
 
         actions_vectors = construct_vectors(actions, self.action_sizes)
-        g_values = -self.constraint_values(actions_vectors).reshape(-1, 1)
+        # All entries in the form g <= 0: shared constraints, lb - x, x - ub
+        g_values = self.constraint_values(actions_vectors).reshape(-1, 1)
 
         g_lb = self.lb_vector - actions
         g_ub = actions - self.ub_vector
