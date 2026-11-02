@@ -8,7 +8,7 @@ import pathlib
 import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
-sys.path[:0] = [str(HERE.parent), str(HERE.parent.parent)]
+sys.path[:0] = [str(HERE.parent), str(HERE.parent.parent / "src")]
 
 from _compat import PROBLEMS, ALGORITHMS  # noqa: E402
 from snapshot import problem_snapshot, algorithm_snapshot  # noqa: E402

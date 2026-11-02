@@ -1,6 +1,6 @@
-from problems.bayesian import *
-from problems.gnep import *
-from solvers.algorithms import * 
+from gnekit.problems.bayesian import *
+from gnekit.problems.gnep import *
+from gnekit.algorithms import *
 
 if __name__ == '__main__':
     # print("Problem A1")

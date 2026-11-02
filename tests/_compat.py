@@ -3,15 +3,15 @@
 The baseline tests import everything through this module, so moving files
 during the restructure only requires updating the imports below.
 """
-from problems.gnep import (
+from gnekit.problems.gnep import (
     ProblemA1, ProblemA2, ProblemA3, ProblemA4, ProblemA5, ProblemA6, ProblemA7,
     ProblemA8, ProblemA9a, ProblemA9b, ProblemA10a, ProblemA11, ProblemA12,
     ProblemA13, ProblemA14, ProblemA15, ProblemA16, ProblemA17, ProblemA18,
 )
-from problems.bayesian import AllocationGame, QuadraticGame, RadarPowerGame
-from problems.bayesian.PayoffMatrixGame import PayoffMatrixGame
-from solvers.algorithms import EnergyMethod, FBEnergyMethod
-from solvers.algorithms.VectorEnergyMethod import VectorEnergyMethod
+from gnekit.problems.bayesian import AllocationGame, QuadraticGame, RadarPowerGame
+from gnekit.problems.bayesian.PayoffMatrixGame import PayoffMatrixGame
+from gnekit.algorithms import EnergyMethod, FBEnergyMethod
+from gnekit.algorithms.vector_energy import VectorEnergyMethod
 
 PROBLEMS = {
     "A1": ProblemA1, "A2": ProblemA2, "A3": ProblemA3, "A4": ProblemA4,
