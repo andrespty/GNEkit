@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -3130,7 +3130,7 @@
 </div>
 <h2 id="the-required-structure">The Required Structure</h2>
 <p>A new problem class must inherit from <code>BaseProblem</code>:</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">gnekit</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MyProblem</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3159,18 +3159,18 @@ Each method has a specific role:</p>
 <li><code>bounds</code>: optional variable bounds</li>
 </ul>
 <p>Example:
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">Player</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">gnekit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Player</span>
 <span class="o">...</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">P1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"P1"</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
             <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
             <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="n">P2</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;P2&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"P2"</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -3242,8 +3242,8 @@ where <code>x[i]</code> is the decision vector of player <code>i</code>.</li>
 <h2 id="how-player-indexing-works">How Player Indexing Works</h2>
 <p>The Player definitions must be consistent with the lists returned by <code>objectives()</code> and <code>constraints()</code>.</p>
 <p>For example:
-<div class="highlight"><pre><span></span><code><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
-<span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P2&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+<div class="highlight"><pre><span></span><code><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P1"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+<span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P2"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
 </code></pre></div>
 means:</p>
 <ul>
@@ -3261,14 +3261,13 @@ They each control one variable and share the following constraint:
 $$
 x_1 + x_2 \leq 3, \qquad x_1, x_2 \geq 0
 $$</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span><span class="p">,</span> <span class="n">Player</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">gnekit</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span><span class="p">,</span> <span class="n">Player</span><span class="p">,</span> <span class="n">EnergyMethod</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">SimpleProblem</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span>
-            <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
-            <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P2&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
+            <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P1"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
+            <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P2"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
         <span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3293,8 +3292,8 @@ $$</p>
 <span class="n">problem</span><span class="o">.</span><span class="n">set_initial_point</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">primal_x</span><span class="p">,</span> <span class="n">dual_x</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">EnergyMethod</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primal:&quot;</span><span class="p">,</span> <span class="n">primal_x</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dual:&quot;</span><span class="p">,</span> <span class="n">dual_x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Primal:"</span><span class="p">,</span> <span class="n">primal_x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Dual:"</span><span class="p">,</span> <span class="n">dual_x</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="a-good-checklist">A Good Checklist</h2>
 <p>Before solving a new problem, check that:</p>
@@ -3368,10 +3367,10 @@ $$</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

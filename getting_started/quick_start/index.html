@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -3031,15 +3031,15 @@
 <li>Solve the problem</li>
 </ol>
 <h2 id="minimal-example">Minimal Example</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">problems.bayesian</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllocationGame</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">gnekit.problems.bayesian</span><span class="w"> </span><span class="kn">import</span> <span class="n">AllocationGame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gnekit</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
 
 <span class="n">problem</span> <span class="o">=</span> <span class="n">AllocationGame</span><span class="p">()</span>
 <span class="n">problem</span><span class="o">.</span><span class="n">set_initial_point</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">primal_x</span><span class="p">,</span> <span class="n">dual_x</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">EnergyMethod</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primal solution:&quot;</span><span class="p">,</span> <span class="n">primal_x</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dual solution:&quot;</span><span class="p">,</span> <span class="n">dual_x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Primal solution:"</span><span class="p">,</span> <span class="n">primal_x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Dual solution:"</span><span class="p">,</span> <span class="n">dual_x</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="what-happens-here">What Happens Here</h2>
 <ul>
@@ -3069,7 +3069,7 @@ The primal vector length must match the total number of player variables, and th
 <h2 id="choosing-an-algorithm">Choosing an Algorithm</h2>
 <p>Algorithms are passed as classes to <code>solve(...)</code>.</p>
 <p>Example:
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">solvers.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">gnekit</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyMethod</span>
 <span class="o">...</span>
 <span class="n">primal_x</span><span class="p">,</span> <span class="n">dual_x</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">EnergyMethod</span><span class="p">)</span>
 </code></pre></div></p>
@@ -3077,8 +3077,8 @@ The primal vector length must match the total number of player variables, and th
 <p>After this page, a good path is:</p>
 <ul>
 <li>Read <a href="../../guides/core_concepts/"><code>Core Concepts</code></a> to understand the main abstractions</li>
-<li>Read <a href="../guides/user_guide.md"><code>User Guide</code></a> for the full workflow</li>
-<li>Browse <a href="../examples/examples.md"><code>Examples</code></a> for more complete problem setups</li>
+<li>Read <a href="../../user_guide/"><code>User Guide</code></a> for the full workflow</li>
+<li>Browse <a href="../../examples/"><code>Examples</code></a> for more complete problem setups</li>
 <li>Use <a href="../../reference/"><code>API Reference</code></a> for class-level details</li>
 </ul>
 
@@ -3138,10 +3138,10 @@ The primal vector length must match the total number of player variables, and th
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

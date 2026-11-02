@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -1321,7 +1321,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#solvers.gnep_solver.BasePlayer.Player.get_full_bounds" class="md-nav__link">
+  <a href="#gnekit.core.player.Player.get_full_bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
         get_full_bounds
@@ -1332,7 +1332,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#solvers.gnep_solver.BasePlayer.Player.batch_create" class="md-nav__link">
+  <a href="#gnekit.core.player.Player.batch_create" class="md-nav__link">
     <span class="md-ellipsis">
       
         batch_create
@@ -2933,7 +2933,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#solvers.gnep_solver.BasePlayer.Player.get_full_bounds" class="md-nav__link">
+  <a href="#gnekit.core.player.Player.get_full_bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
         get_full_bounds
@@ -2944,7 +2944,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#solvers.gnep_solver.BasePlayer.Player.batch_create" class="md-nav__link">
+  <a href="#gnekit.core.player.Player.batch_create" class="md-nav__link">
     <span class="md-ellipsis">
       
         batch_create
@@ -2980,6 +2980,7 @@
 
 
     <div class="doc doc-contents first">
+
 
 
         <p>Immutable description of a single player in a generalized Nash equilibrium problem.</p>
@@ -3086,7 +3087,7 @@ player's variables. If <code>None</code>, variables are unbounded.</p>
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P1"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">size</span>
 <span class="go">2</span>
 </code></pre></div>
@@ -3101,7 +3102,7 @@ player's variables. If <code>None</code>, variables are unbounded.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -3115,7 +3116,7 @@ player's variables. If <code>None</code>, variables are unbounded.</p>
 <div class="doc doc-object doc-function">
 
 
-<h2 id="solvers.gnep_solver.BasePlayer.Player.get_full_bounds" class="doc doc-heading">
+<h2 id="gnekit.core.player.Player.get_full_bounds" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">get_full_bounds</span>
 
 
@@ -3156,10 +3157,10 @@ variable. If <code>bounds</code> is <code>None</code>, each variable is assigned
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span><span class="o">.</span><span class="n">get_full_bounds</span><span class="p">()</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P1"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span><span class="o">.</span><span class="n">get_full_bounds</span><span class="p">()</span>
 <span class="go">[(0.0, 1.0), (0.0, 1.0)]</span>
 </code></pre></div>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">get_full_bounds</span><span class="p">()</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Player</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"P1"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">f_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">get_full_bounds</span><span class="p">()</span>
 <span class="go">[(-inf, inf), (-inf, inf)]</span>
 </code></pre></div>
 
@@ -3171,7 +3172,7 @@ variable. If <code>bounds</code> is <code>None</code>, each variable is assigned
 <div class="doc doc-object doc-function">
 
 
-<h2 id="solvers.gnep_solver.BasePlayer.Player.batch_create" class="doc doc-heading">
+<h2 id="gnekit.core.player.Player.batch_create" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">batch_create</span>
 
 
@@ -3412,10 +3413,10 @@ all players if omitted.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

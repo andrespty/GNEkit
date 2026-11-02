@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -3023,86 +3023,7 @@
 <p><strong>Player 2</strong> additionally:</p>
 <div class="arithmatex">\[x_7, \ldots, x_{12} \geq 0, \quad x_7+x_8+x_9 \leq 100, \quad x_{10}+x_{11}+x_{12} \leq 50\]</div>
 <h2 id="implementation">Implementation</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">VectorList</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver.BaseProblem</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseProblem</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">solvers.gnep_solver.BasePlayer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Player</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ProblemA18</span><span class="p">(</span><span class="n">BaseProblem</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">define_players</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">player_vector_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
-        <span class="n">player_objective_functions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="n">player_constraints</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
-        <span class="k">return</span> <span class="n">Player</span><span class="o">.</span><span class="n">batch_create</span><span class="p">(</span>
-            <span class="n">player_vector_sizes</span><span class="p">,</span>
-            <span class="n">player_objective_functions</span><span class="p">,</span>
-            <span class="n">player_constraints</span><span class="p">,</span>
-            <span class="n">bounds</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">obj_func_1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">obj1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">S1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">15</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">S2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">15</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">S3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">obj_func_2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">obj2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">S1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">15</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">S2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">15</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">S3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">obj2</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">return</span> <span class="p">[</span><span class="n">obj_func_1</span><span class="p">,</span> <span class="n">obj_func_2</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">g0</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">100</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">g1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="mi">50</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">g2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">100</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">g3</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="mi">50</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">g4</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">S2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">g5</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">S3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">g6</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">S3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">())</span>
-
-        <span class="k">return</span> <span class="p">[</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">S1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="mi">40</span> <span class="o">-</span> <span class="p">(</span><span class="mi">40</span> <span class="o">/</span> <span class="mi">500</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">S2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="mi">35</span> <span class="o">-</span> <span class="p">(</span><span class="mi">35</span> <span class="o">/</span> <span class="mi">400</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">S3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorList</span><span class="p">):</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="mi">32</span> <span class="o">-</span> <span class="p">(</span><span class="mi">32</span> <span class="o">/</span> <span class="mi">600</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x2</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 
 
@@ -3161,10 +3082,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

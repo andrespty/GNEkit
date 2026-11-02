@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2889,40 +2889,24 @@
 as an unconstrained minimization of a scalar energy function combining
 primal and dual gradient terms.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EnergyMethod</span><span class="p">(</span><span class="n">BaseAlgorithm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Here we show how to implement BaseAlgorithm by coding the energy method. </span>
-<span class="sd">    The key idea is to define a single scalar &quot;energy&quot; function that combines the primal and dual gradients, </span>
-<span class="sd">    and then minimize this energy with respect to both the actions and the dual variables.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">const</span><span class="p">,</span> <span class="n">players</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">const</span><span class="p">,</span> <span class="n">players</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_grad_func_jit</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jit_min_func</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Energy method for generalized Nash equilibrium problems.</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">min_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="c1"># This is the function the solver will call to minimize.</span>
-        <span class="n">x_jax</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jit_min_func</span><span class="p">(</span><span class="n">x_jax</span><span class="p">))</span>
-
-    <span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_jit_min_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">actions</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">total_actions</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">dual_actions</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">total_actions</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">primal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lagrange_gradient</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="n">dual_actions</span><span class="p">)</span>
-        <span class="n">dual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient_dual</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="n">dual_actions</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">primal</span><span class="p">)</span> <span class="o">+</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dual</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">grad_min_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_grad_func_jit</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="sd">    The key idea is to define a single scalar "energy" function that combines</span>
+<span class="sd">    the primal and dual gradients, and then minimize this energy with respect to</span>
+<span class="sd">    both the actions and the dual variables. The energy is zero exactly at a KKT</span>
+<span class="sd">    point. Bounds on the actions are handled inside the energy, so no</span>
+<span class="sd">    multipliers are introduced for them.</span>
+<span class="sd">    """</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">energy_handler</span><span class="p">(</span><span class="n">gradient</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                        <span class="n">actions</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                        <span class="n">lb</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                        <span class="n">ub</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Vectorized energy calculation using per-element lower and upper bounds.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">denom_neg</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">gradient</span>
         <span class="n">denom_pos</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">gradient</span>
 
@@ -2933,8 +2917,8 @@ primal and dual gradient terms.</p>
         <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">lagrange_gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">dual_actions</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the gradient of the Lagrangian Function.</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the primal energy from the gradient of the Lagrangian.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2946,37 +2930,17 @@ primal and dual gradient terms.</p>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        vector of shape (sum(action_sizes), 1)</span>
-<span class="sd">            Gradient of primal energy with respect to actions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">            Primal energy, one entry per action variable.</span>
+<span class="sd">        """</span>
         <span class="n">vector_actions</span> <span class="o">=</span> <span class="n">construct_vectors</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_sizes</span><span class="p">)</span> <span class="c1"># List of jnp.array shape (action_size[i], 1)</span>
-
-        <span class="n">obj_grads_by_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">der</span><span class="p">(</span><span class="n">vector_actions</span><span class="p">)</span> <span class="k">for</span> <span class="n">der</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj_derivatives</span><span class="p">]</span>
-        <span class="n">primal_grads</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">p_idx</span><span class="p">,</span> <span class="n">obj_type_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player_obj_idx</span><span class="p">):</span>
-            <span class="c1"># Pull the specific gradient for player &#39;p_idx&#39; from the correct objective logic</span>
-            <span class="n">g</span> <span class="o">=</span> <span class="n">obj_grads_by_type</span><span class="p">[</span><span class="n">obj_type_idx</span><span class="p">][</span><span class="n">p_idx</span><span class="p">]</span>
-            <span class="n">primal_grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-        <span class="c1"># Combine primal gradients into one vector</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">primal_grads</span><span class="p">)</span>
-
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective_gradient</span><span class="p">(</span><span class="n">vector_actions</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">const_derivatives</span><span class="p">:</span>
-            <span class="n">all_c_grads</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">const_der</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">const_derivatives</span><span class="p">:</span>
-                <span class="n">c_grad_list</span> <span class="o">=</span> <span class="n">const_der</span><span class="p">(</span><span class="n">vector_actions</span><span class="p">)</span>
-                <span class="c1"># Flatten to a single column for this specific constraint</span>
-                <span class="n">all_c_grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">g</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">c_grad_list</span><span class="p">]))</span>
-
-            <span class="c1"># This creates a (Total_Actions, Num_Constraints) matrix</span>
-            <span class="n">jacobian_matrix</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">all_c_grads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">weighted_multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player_const_idx_matrix</span> <span class="o">*</span> <span class="n">dual_actions</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="c1"># (Total_actions, Num_constraints)</span>
-            <span class="n">constraint_contribution</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">jacobian_matrix</span> <span class="o">*</span> <span class="n">weighted_multipliers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">result</span> <span class="o">+=</span> <span class="n">constraint_contribution</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraint_gradient</span><span class="p">(</span><span class="n">vector_actions</span><span class="p">,</span> <span class="n">dual_actions</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_handler</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb_vector</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ub_vector</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">gradient_dual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">dual_actions</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the gradient of the dual energy.</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the dual energy.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2988,27 +2952,24 @@ primal and dual gradient terms.</p>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        vector of shape (N_d, 1)</span>
-<span class="sd">            Gradient of dual energy with respect to constraints.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">            Dual energy, one entry per constraint multiplier.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">const</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
         <span class="n">actions_vectors</span> <span class="o">=</span> <span class="n">construct_vectors</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_sizes</span><span class="p">)</span>
-        <span class="n">g_values</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">c</span><span class="p">(</span><span class="n">actions_vectors</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">const</span><span class="p">])</span>
+        <span class="n">g_values</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">constraint_values</span><span class="p">(</span><span class="n">actions_vectors</span><span class="p">)</span>
 
         <span class="c1"># Ensure dual_actions is flat for the handler</span>
         <span class="n">lambdas</span> <span class="o">=</span> <span class="n">dual_actions</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
-        <span class="c1"># 3. Create vectorized bounds for the dual variables</span>
-        <span class="c1"># These match the size of the lambdas</span>
+        <span class="c1"># Bounds of the dual variables, matching the size of the lambdas</span>
         <span class="n">dual_lb</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">lambdas</span><span class="p">)</span>
-        <span class="n">dual_ub</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">lambdas</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">dual_ub</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">lambdas</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dual_bound</span><span class="p">)</span>
 
-        <span class="c1"># 4. Run the energy_handler once on the entire vector</span>
-        <span class="c1"># JAX will parallelize the &#39;where&#39; logic across all constraints</span>
+        <span class="c1"># Run the energy_handler once on the entire vector</span>
         <span class="n">grad_dual_vec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_handler</span><span class="p">(</span><span class="n">g_values</span><span class="p">,</span> <span class="n">lambdas</span><span class="p">,</span> <span class="n">dual_lb</span><span class="p">,</span> <span class="n">dual_ub</span><span class="p">)</span>
 
-        <span class="c1"># 5. Return as the expected column vector</span>
         <span class="k">return</span> <span class="n">grad_dual_vec</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
@@ -3068,10 +3029,10 @@ primal and dual gradient terms.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
