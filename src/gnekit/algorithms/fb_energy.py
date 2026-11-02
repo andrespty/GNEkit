@@ -13,14 +13,15 @@ class FBEnergyMethod(BaseAlgorithm):
 
     Bounds on the actions are treated as constraints with their own
     multipliers, and complementarity is measured with the Fischer-Burmeister
-    function. The dual variables are, in order: one multiplier per
-    constraint, one per lower bound, and one per upper bound.
+    function. The dual variables are, in order: the constraint multipliers
+    (see `BaseAlgorithm.multiplier_pairs`), one per lower bound, and one
+    per upper bound.
     """
     def __init__(self, obj_funcs, constraints, player_list, *args, **kwargs):
         super().__init__(obj_funcs, constraints, player_list, *args, **kwargs)
 
         # Dual actions for the bounds
-        self.total_dual_size = len(self.const) + 2 * self.total_actions
+        self.total_dual_size = self.num_constraint_duals + 2 * self.total_actions
         self.bounds_dual = [(0, 100) for _ in range(self.total_dual_size)]
         self.bounds_all = self.bounds + self.bounds_dual
 
@@ -59,7 +60,7 @@ class FBEnergyMethod(BaseAlgorithm):
         # [0 : N_shared] -> Shared Constraints
         # [N_shared : N_shared + Total_Actions] -> Lower Bounds
         # [N_shared + Total_Actions : ] -> Upper Bounds
-        num_const = len(self.const)
+        num_const = self.num_constraint_duals
         const_duals = dual_actions[:num_const].reshape(-1, 1)
         mu_lb = dual_actions[num_const: num_const + self.total_actions].reshape(-1, 1)
         mu_ub = dual_actions[num_const + self.total_actions:].reshape(-1, 1)
@@ -90,7 +91,7 @@ class FBEnergyMethod(BaseAlgorithm):
             return jnp.zeros((1, 1))
 
         actions_vectors = construct_vectors(actions, self.action_sizes)
-        g_values = jnp.array([-c(actions_vectors) for c in self.const]).reshape(-1, 1)
+        g_values = -self.constraint_values(actions_vectors).reshape(-1, 1)
 
         g_lb = self.lb_vector - actions
         g_ub = actions - self.ub_vector
@@ -109,15 +110,15 @@ class FBEnergyMethod(BaseAlgorithm):
         return jnp.concatenate([ip, bound_duals_ip])
 
     def split_multipliers(self, lambdas):
-        num_shared = len(self.const)
+        num_shared = self.num_constraint_duals
         shared_lambdas = lambdas[:num_shared]
         mu_lb = lambdas[num_shared: num_shared + self.total_actions]
         mu_ub = lambdas[num_shared + self.total_actions:]
         return shared_lambdas, mu_lb, mu_ub
 
     def solution_blocks(self, x):
-        dual = x[self.total_actions:self.total_actions + len(self.const)]
-        dual_bounds = x[self.total_actions + len(self.const):]
+        dual = x[self.total_actions:self.total_actions + self.num_constraint_duals]
+        dual_bounds = x[self.total_actions + self.num_constraint_duals:]
         return [
             ("Primal Actions", x[:self.total_actions]),
             ("Dual Actions", dual),

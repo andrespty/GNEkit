@@ -51,6 +51,16 @@ class BaseAlgorithm(ABC):
     niter, stepsize, interval, niter_success, disp : optional
         Basin-hopping settings. Defaults: ``1000``, ``0.01``, ``1``,
         ``100``, ``True``.
+    multipliers : {"shared", "per_player"}, optional
+        How shared constraints get multipliers. ``"shared"`` (default)
+        gives each constraint one multiplier used by every player in it,
+        which yields a variational equilibrium. ``"per_player"`` gives
+        each player its own multiplier for each constraint it is in, which
+        is the KKT system of the full GNEP. The duals are ordered as in
+        `multiplier_pairs`: one per constraint in ``"shared"`` mode, and one
+        per ``(player, constraint)`` pair, player by player, in
+        ``"per_player"`` mode. The initial point always holds one dual per
+        constraint and is expanded by `expand_initial_point`.
 
     Notes
     -----
@@ -71,13 +81,18 @@ class BaseAlgorithm(ABC):
                  interval: int = 1,
                  niter_success: int = 100,
                  disp: bool = True,
+                 multipliers: str = "shared",
                  ):
+        if multipliers not in ("shared", "per_player"):
+            raise ValueError(
+                f"multipliers must be 'shared' or 'per_player', got {multipliers!r}"
+            )
+        self.multipliers = multipliers
+
         validate_player_list(player_list)
         player_info = players_to_lists(player_list)
         self.action_sizes = player_info["sizes"]
         self.bounds = player_info["bounds"]
-        self.bounds_dual = [(0, 100) for _ in constraints]
-        self.bounds_all = self.bounds + self.bounds_dual
 
         # Validate objective and constraint functions
         self.obj_functions = validate_obj_funcs(obj_funcs, self.action_sizes) if validate else obj_funcs
@@ -106,6 +121,10 @@ class BaseAlgorithm(ABC):
         self.action_splits = [int(x) for x in action_splits]
         self.total_actions = sum(self.action_sizes)
 
+        self._build_multiplier_map()
+        self.bounds_dual = [(0, 100) for _ in range(self.num_constraint_duals)]
+        self.bounds_all = self.bounds + self.bounds_dual
+
         # Bounds
         lb_list = [b[0] for b in self.bounds]
         ub_list = [b[1] for b in self.bounds]
@@ -124,6 +143,68 @@ class BaseAlgorithm(ABC):
         self.disp = disp
 
         self._grad_func_jit = jax.jit(jax.grad(self._jit_min_func))
+
+    # ------------------------------------------------------------------
+    # Multipliers
+    # ------------------------------------------------------------------
+    def _build_multiplier_map(self):
+        """
+        Map each constraint multiplier to the constraint and players it belongs to.
+
+        Sets
+        ----
+        multiplier_pairs : list of tuple
+            ``(player, constraint)`` for each multiplier. In ``"shared"``
+            mode the player is ``None``.
+        num_constraint_duals : int
+            Number of constraint multipliers.
+        dual_constraint_idx : jax.Array of int
+            Constraint index of each multiplier.
+        multiplier_matrix : jax.Array of shape (total_actions, num_constraint_duals)
+            1 where a multiplier enters the stationarity of an action variable.
+        """
+        num_const = len(self.const)
+        if self.multipliers == "shared":
+            self.multiplier_pairs = [(None, j) for j in range(num_const)]
+            self.multiplier_matrix = self.player_const_idx_matrix
+            self._dual_lookup = {
+                (i, j): j
+                for i, player in enumerate(self.players)
+                for j in player.constraints if j is not None
+            }
+        else:
+            self.multiplier_pairs = [
+                (i, j)
+                for i, player in enumerate(self.players)
+                for j in player.constraints if j is not None
+            ]
+            matrix = np.zeros((self.total_actions, len(self.multiplier_pairs)))
+            for k, (i, _) in enumerate(self.multiplier_pairs):
+                matrix[self.action_splits[i]:self.action_splits[i + 1], k] = 1.0
+            self.multiplier_matrix = jnp.array(matrix)
+            self._dual_lookup = {pair: k for k, pair in enumerate(self.multiplier_pairs)}
+
+        self.num_constraint_duals = len(self.multiplier_pairs)
+        self.dual_constraint_idx = jnp.array(
+            [j for _, j in self.multiplier_pairs], dtype=int
+        )
+
+    def dual_index(self, player: int, constraint: int) -> int:
+        """Position of the multiplier of ``constraint`` used by ``player``."""
+        return self._dual_lookup[(player, constraint)]
+
+    def constraint_values(self, vector_actions) -> jnp.ndarray:
+        """
+        Constraint value ``g_j(x)`` for each multiplier.
+
+        Returns
+        -------
+        jax.Array of shape (num_constraint_duals,)
+        """
+        if not self.const:
+            return jnp.zeros(0)
+        g = jnp.array([c(vector_actions) for c in self.const])
+        return g[self.dual_constraint_idx]
 
     # ------------------------------------------------------------------
     # Merit function
@@ -224,8 +305,8 @@ class BaseAlgorithm(ABC):
         ----------
         vector_actions : list of jax.Array
             Player action vectors, as returned by `construct_vectors`.
-        constraint_duals : vector of shape (num_constraints, 1)
-            One multiplier per constraint.
+        constraint_duals : vector of shape (num_constraint_duals, 1)
+            Constraint multipliers, ordered as in `multiplier_pairs`.
 
         Returns
         -------
@@ -238,8 +319,8 @@ class BaseAlgorithm(ABC):
             all_c_grads.append(jnp.concatenate([g.ravel() for g in c_grad_list]))
 
         # This creates a (Total_Actions, Num_Constraints) matrix
-        jacobian_matrix = jnp.stack(all_c_grads, axis=1)
-        weighted_multipliers = self.player_const_idx_matrix * constraint_duals.ravel() # (Total_actions, Num_constraints)
+        jacobian_matrix = jnp.stack(all_c_grads, axis=1)[:, self.dual_constraint_idx]  # (Total_actions, Num_duals)
+        weighted_multipliers = self.multiplier_matrix * constraint_duals.ravel() # (Total_actions, Num_duals)
         constraint_contribution = jnp.sum(jacobian_matrix * weighted_multipliers, axis=1)
         return constraint_contribution.reshape(-1, 1)
 
@@ -255,6 +336,20 @@ class BaseAlgorithm(ABC):
         """
         return ip
 
+    def expand_initial_point(self, ip: jnp.ndarray) -> jnp.ndarray:
+        """
+        Turn one dual per constraint into one dual per multiplier.
+
+        In ``"per_player"`` mode each player's multiplier for constraint
+        ``j`` starts at the value given for ``j``. In ``"shared"`` mode
+        ``ip`` is returned unchanged.
+        """
+        if self.multipliers == "shared":
+            return ip
+        ip = jnp.asarray(ip)
+        primal, duals = ip[:self.total_actions], ip[self.total_actions:]
+        return jnp.concatenate([primal, duals[self.dual_constraint_idx]])
+
     def solve(self, ip: jnp.ndarray):
         """
         Solve the GNE problem from an initial point using basin-hopping.
@@ -266,8 +361,9 @@ class BaseAlgorithm(ABC):
         Parameters
         ----------
         ip : jnp.ndarray
-            Flat initial point containing stacked primal and dual variables.
-            Use `BaseProblem.set_initial_point` to construct this.
+            Flat initial point containing stacked primal variables and one
+            dual per constraint. Use `BaseProblem.set_initial_point` to
+            construct this.
 
         Returns
         -------
@@ -280,7 +376,7 @@ class BaseAlgorithm(ABC):
         --------
         [`BaseProblem.solve`](../problems/base_problem.md) : Higher-level entry point that calls this method.
         """
-        ip = self.extend_initial_point(ip)
+        ip = self.extend_initial_point(self.expand_initial_point(ip))
         minimizer_kwargs = dict(
             method=self.method,
             bounds=self.bounds_all
@@ -412,8 +508,8 @@ class BaseAlgorithm(ABC):
 
             for c_idx in player.constraints:
                 if c_idx is not None:
-                    # Get the specific multiplier for this constraint
-                    l_val = shared_lambdas[c_idx]
+                    # Get the multiplier player i uses for this constraint
+                    l_val = shared_lambdas[self.dual_index(i, c_idx)]
                     p_lambdas.append(l_val)
 
                     # Get the constraint value

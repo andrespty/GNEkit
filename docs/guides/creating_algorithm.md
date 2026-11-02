@@ -65,13 +65,22 @@ After construction, the following attributes are available:
 
 - `self.objective_gradient(vector_actions)`: each player's gradient of its own objective, stacked into a `(total_actions, 1)` vector
 - `self.constraint_gradient(vector_actions, dual_actions)`: multiplier-weighted constraint gradients, restricted to the players in each constraint, as a `(total_actions, 1)` vector
+- `self.constraint_values(vector_actions)`: the value `g_j(x)` for each multiplier, as a `(num_constraint_duals,)` vector
+
+**Multipliers:**
+
+- `self.num_constraint_duals`: number of constraint multipliers
+- `self.multiplier_pairs`: the `(player, constraint)` pair of each multiplier. In `"shared"` mode the player is `None`
+- `self.dual_index(player, constraint)`: position of the multiplier a player uses for a constraint
+
+Use `constraint_values` and `num_constraint_duals` instead of `self.const` and `len(self.const)` so your algorithm works in both multiplier modes.
 
 Their sum is the gradient of the Lagrangian.
 
 **Bounds:**
 
 - `self.bounds`: list of `(lb, ub)` tuples for primal variables
-- `self.bounds_dual`: list of `(0, 100)` tuples for dual variables, one per constraint
+- `self.bounds_dual`: list of `(0, 100)` tuples for dual variables, one per constraint multiplier
 - `self.bounds_all`: `self.bounds + self.bounds_dual`, passed directly to the optimizer
 - `self.lb_vector`, `self.ub_vector`: primal bounds as JAX column vectors
 
@@ -80,7 +89,7 @@ Their sum is the gradient of the Lagrangian.
 Both `lagrange_gradient` and `gradient_dual` receive:
 
 - `actions`: the stacked primal variables of all players, shape `(total_actions, 1)`
-- `dual_actions`: the constraint multipliers, shape `(num_constraints, 1)`
+- `dual_actions`: the constraint multipliers, shape `(num_constraint_duals, 1)`
 
 To split the primal vector into per-player vectors, use `construct_vectors`:
 
@@ -116,6 +125,7 @@ primal_x, dual_x = problem.solve(
 | `interval` | `1` | Iterations between step size updates |
 | `niter_success` | `100` | Stop after this many iterations without improvement |
 | `disp` | `True` | Print basin-hopping progress |
+| `multipliers` | `"shared"` | `"shared"`: one multiplier per constraint (variational equilibrium). `"per_player"`: one per player and constraint (full GNEP) |
 
 !!! tip
     Merit functions that are quadratic in the KKT residual reach small values long before the residual is small. Tighten `ftol` in `minimizer_options` when you need an accurate equilibrium.
@@ -144,7 +154,7 @@ class StationarityMethod(BaseAlgorithm):
         if not self.const:
             return jnp.zeros((1, 1))
         vector_actions = construct_vectors(actions, self.action_sizes)
-        g = jnp.array([c(vector_actions) for c in self.const]).reshape(-1, 1)
+        g = self.constraint_values(vector_actions).reshape(-1, 1)
         return (dual_actions * g) ** 2
 ```
 
