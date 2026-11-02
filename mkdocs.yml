@@ -49,7 +49,6 @@ plugins:
             show_submodules: false
             show_bases: false
             show_source: false
-            show_source_order: true
             members_order: source
             show_if_no_docstring: true  # ← this
 
