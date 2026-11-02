@@ -1,6 +1,6 @@
 from gnekit.problems.bayesian import *
 from gnekit.problems.gnep import *
-from gnekit.algorithms import *
+from gnekit import EnergyMethod
 
 if __name__ == '__main__':
     # print("Problem A1")
