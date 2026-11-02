@@ -80,7 +80,7 @@ Their sum is the gradient of the Lagrangian.
 **Bounds:**
 
 - `self.bounds`: list of `(lb, ub)` tuples for primal variables
-- `self.bounds_dual`: list of `(0, 100)` tuples for dual variables, one per constraint multiplier
+- `self.bounds_dual`: list of `(0, dual_bound)` tuples for dual variables, one per constraint multiplier
 - `self.bounds_all`: `self.bounds + self.bounds_dual`, passed directly to the optimizer
 - `self.lb_vector`, `self.ub_vector`: primal bounds as JAX column vectors
 
@@ -119,16 +119,18 @@ primal_x, dual_x = problem.solve(
 | Setting | Default | Meaning |
 |---------|---------|---------|
 | `method` | `"SLSQP"` | Local minimizer passed to `scipy.optimize.minimize` |
-| `minimizer_options` | `None` | `options` dict for the local minimizer |
+| `minimizer_options` | `None` | `options` dict for the local minimizer, merged over the defaults (for SLSQP: `ftol=1e-16`, `maxiter=1000`) |
 | `niter` | `1000` | Basin-hopping iterations |
 | `stepsize` | `0.01` | Basin-hopping step size |
 | `interval` | `1` | Iterations between step size updates |
 | `niter_success` | `100` | Stop after this many iterations without improvement |
 | `disp` | `True` | Print basin-hopping progress |
+| `jac` | `True` | Pass the exact JAX gradient of the merit function. Non-finite entries fall back to finite differences. `False` uses finite differences everywhere |
+| `dual_bound` | `100` | Upper bound on every multiplier |
 | `multipliers` | `"shared"` | `"shared"`: one multiplier per constraint (variational equilibrium). `"per_player"`: one per player and constraint (full GNEP) |
 
 !!! tip
-    Merit functions that are quadratic in the KKT residual reach small values long before the residual is small. Tighten `ftol` in `minimizer_options` when you need an accurate equilibrium.
+    Merit functions that are quadratic in the KKT residual reach small values long before the residual is small, so the default `ftol` is much tighter than SciPy's `1e-6`. Raise it in `minimizer_options` for faster, rougher solves.
 
 You do not need to override `solve`. If you want a different optimizer altogether, override `solve(self, ip)` and return `(result, elapsed_time)`, where `result.x` is the flat solution vector.
 

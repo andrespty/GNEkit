@@ -128,7 +128,7 @@ primal_x, dual_x = problem.solve(
 )
 ```
 
-Available settings: `method` (local minimizer, default `"SLSQP"`), `minimizer_options`, `niter`, `stepsize`, `interval`, `niter_success`, `disp`, `multipliers`.
+Available settings: `method` (local minimizer, default `"SLSQP"`), `minimizer_options`, `niter`, `stepsize`, `interval`, `niter_success`, `disp`, `multipliers`, `jac` (exact merit gradient, default `True`), `dual_bound` (multiplier cap, default `100`). SLSQP defaults to `ftol=1e-16` and `maxiter=1000`.
 
 By default each shared constraint has one multiplier used by every player in it, which gives a variational equilibrium. Pass `multipliers="per_player"` to give each player its own multiplier and solve the KKT system of the full GNEP.
 

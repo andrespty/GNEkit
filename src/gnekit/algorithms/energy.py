@@ -84,7 +84,7 @@ class EnergyMethod(BaseAlgorithm):
 
         # Bounds of the dual variables, matching the size of the lambdas
         dual_lb = jnp.zeros_like(lambdas)
-        dual_ub = jnp.full_like(lambdas, 100)
+        dual_ub = jnp.full_like(lambdas, self.dual_bound)
 
         # Run the energy_handler once on the entire vector
         grad_dual_vec = self.energy_handler(g_values, lambdas, dual_lb, dual_ub)
