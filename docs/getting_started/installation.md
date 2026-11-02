@@ -25,6 +25,7 @@ pip install -e .
 
 ## Notes
 
-- The active solver stack in `solvers/` imports `jax` directly, so `jax` must be installed.
-- The reusable problem definitions live in `problems/`.
-- Using `pip install -e .` is the cleanest way to make both `solvers` and `problems` importable while developing.
+- The algorithms import `jax` directly, so `jax` must be installed.
+- The source lives in `src/gnekit/`, and the benchmark problems in `src/gnekit/problems/`.
+- Using `pip install -e .` makes `gnekit` importable while developing.
+- Run the test suite with `pytest` from the repository root.

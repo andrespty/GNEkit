@@ -1,5 +1,5 @@
 # BayesianPlayer
-::: solvers.dgbne_solver.BayesianPlayer.BayesianPlayer
+::: gnekit.bayesian.player.BayesianPlayer
     options:
         show_root_heading: false
         show_root_toc_entry: false

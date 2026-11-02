@@ -27,7 +27,7 @@ Use `BayesianProblem` when:
 A new problem class must inherit from `BayesianProblem`:
 
 ```python
-from solvers.dgbne_solver import BayesianProblem
+from gnekit import BayesianProblem
 
 class MyBayesianProblem(BayesianProblem):
     def define_players(self):
@@ -66,7 +66,7 @@ size = len(type_values) * action_size_per_type
 
 Example:
 ``` python
-from solvers.dgbne_solver import BayesianPlayer
+from gnekit import BayesianPlayer
 ...
 def define_players(self):
     P1 = BayesianPlayer(
@@ -223,8 +223,7 @@ This indexing is part of the problem definition, so it is important that the ret
 Let each player have two types, with equal probabilities. Their objective functions depend on their own type-contingent actions and on the expected action of the other player.
 ```python
 import jax.numpy as jnp
-from solvers.dgbne_solver import BayesianProblem, BayesianPlayer
-from solvers.algorithms import EnergyMethod
+from gnekit import BayesianProblem, BayesianPlayer, EnergyMethod
 
 class SimpleBayesianProblem(BayesianProblem):
     def define_players(self):

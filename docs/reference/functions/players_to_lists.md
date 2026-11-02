@@ -1,1 +1,1 @@
-::: solvers.gnep_solver.BasePlayer.players_to_lists
+::: gnekit.core.player.players_to_lists

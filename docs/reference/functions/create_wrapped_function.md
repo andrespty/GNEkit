@@ -1,1 +1,1 @@
-::: solvers.utils.create_wrapped_function
+::: gnekit.core.utils.create_wrapped_function

@@ -1,6 +1,6 @@
 # BaseProblem
 
-::: solvers.gnep_solver.BaseProblem.BaseProblem
+::: gnekit.core.problem.BaseProblem
     options:
         show_root_heading: false
         show_root_toc_entry: false
@@ -22,8 +22,7 @@
 ## Example
 
 ```python
-from solvers.gnep_solver import BaseProblem, Player
-from solvers.algorithms import EnergyMethod
+from gnekit import BaseProblem, Player, EnergyMethod
 
 class SimpleProblem(BaseProblem):
     def define_players(self):

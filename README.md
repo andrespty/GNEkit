@@ -46,8 +46,8 @@ pip install -r requirements.txt
 The standard workflow is: import a problem, set an initial point, choose an algorithm, solve.
 
 ```python
-from problems.gnep import ProblemA1
-from solvers.algorithms import EnergyMethod
+from gnekit.problems.gnep import ProblemA1
+from gnekit import EnergyMethod
 
 problem = ProblemA1()
 problem.set_initial_point(0.5, 0.1)
@@ -60,8 +60,8 @@ print("Dual solution:", dual_x)
 The same workflow applies to Bayesian problems:
 
 ```python
-from problems.bayesian import AllocationGame
-from solvers.algorithms import EnergyMethod
+from gnekit.problems.bayesian import AllocationGame
+from gnekit import EnergyMethod
 
 problem = AllocationGame()
 problem.set_initial_point(0.5, 0.1)
@@ -77,7 +77,7 @@ primal_x, dual_x = problem.solve(EnergyMethod)
 Subclass `BaseProblem` and implement three methods:
 
 ```python
-from solvers.gnep_solver import BaseProblem, Player
+from gnekit import BaseProblem, Player
 
 class MyProblem(BaseProblem):
     def define_players(self):
@@ -116,7 +116,19 @@ For Bayesian problems with discrete private types, subclass `BayesianProblem` in
 | `EnergyMethod` | Energy function minimization with primal-dual structure |
 | `FBEnergyMethod` | Forward-backward variant of the energy method |
 
-All algorithms inherit from `BaseAlgorithm`, which handles player validation, JAX derivative compilation, and the `basinhopping` + SLSQP optimization loop. To implement a custom algorithm, subclass `BaseAlgorithm` and define `min_func`. See the [creating an algorithm guide](https://andrespty.github.io/GNEkit/guides/creating_algorithm/).
+All algorithms inherit from `BaseAlgorithm`, which handles player validation, JAX derivative compilation, the `basinhopping` optimization loop, and the KKT check. To implement a custom algorithm, subclass `BaseAlgorithm` and define `lagrange_gradient` and `gradient_dual` (or override `min_func` directly). See the [creating an algorithm guide](https://andrespty.github.io/GNEkit/guides/creating_algorithm/).
+
+Solver settings are passed through `solve`:
+
+```python
+primal_x, dual_x = problem.solve(
+    EnergyMethod,
+    minimizer_options={"ftol": 1e-20, "maxiter": 5000},
+    niter=200,
+)
+```
+
+Available settings: `method` (local minimizer, default `"SLSQP"`), `minimizer_options`, `niter`, `stepsize`, `interval`, `niter_success`, `disp`.
 
 ---
 
@@ -124,16 +136,14 @@ All algorithms inherit from `BaseAlgorithm`, which handles player validation, JA
 
 ```
 gnekit/
-├── solvers/
+├── src/gnekit/
+│   ├── core/              # BaseProblem, Player, utilities, types, validation
+│   ├── bayesian/          # BayesianProblem, BayesianPlayer
 │   ├── algorithms/        # BaseAlgorithm, EnergyMethod, FBEnergyMethod, VectorEnergyMethod
-│   ├── gnep_solver/       # BaseProblem, Player
-│   ├── dgbne_solver/      # BayesianProblem, BayesianPlayer
-│   ├── utils.py           # construct_vectors, flatten_variables, one_hot_encoding
-│   ├── schema.py          # Type definitions (Vector, ObjFunction, ConsFunction)
-│   └── validation.py      # Input validators
-├── problems/
-│   ├── gnep/              # 18 standard GNE benchmark problems (A1–A18)
-│   └── bayesian/          # 3 D-GBNE example problems
+│   └── problems/
+│       ├── gnep/          # 18 standard GNE benchmark problems (A1–A18)
+│       └── bayesian/      # 3 D-GBNE example problems
+├── tests/                 # pytest suite (run with `pytest`)
 ├── docs/                  # MkDocs documentation source
 └── examples/              # Runnable example scripts
 ```

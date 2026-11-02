@@ -1,1 +1,1 @@
-::: solvers.algorithms.BaseAlgorithm.BaseAlgorithm
+::: gnekit.algorithms.base.BaseAlgorithm

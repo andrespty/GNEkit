@@ -1,6 +1,6 @@
 # BayesianProblem
 
-::: solvers.dgbne_solver.BayesianProblem.BayesianProblem
+::: gnekit.bayesian.problem.BayesianProblem
     options:
         show_root_heading: false
         show_root_toc_entry: false

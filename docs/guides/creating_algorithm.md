@@ -2,185 +2,169 @@
 
 This guide explains how to implement a custom algorithm that works with `GNEkit`'s problem and solver infrastructure.
 
-Every algorithm in this library is a subclass of `BaseAlgorithm`. The base class handles all the bookkeeping — loading players, compiling derivatives, managing bounds — so you only need to define one thing: the **merit function** that the optimizer minimizes.
+Every algorithm in this library is a subclass of `BaseAlgorithm`. The base class handles the bookkeeping (loading players, compiling derivatives, managing bounds, running the optimizer, checking the KKT conditions), so you only need to define the **merit function** that the optimizer minimizes.
 
 ## The Required Structure
 
-A new algorithm must inherit from `BaseAlgorithm` and implement the `min_func` method:
+A merit function in `GNEkit` has a primal part and a dual part. A new algorithm implements one method for each:
 
 ```python
-from solvers.algorithms import BaseAlgorithm
+from gnekit import BaseAlgorithm
 
 class MyAlgorithm(BaseAlgorithm):
-    def __init__(self, obj, const, players):
-        super().__init__(obj, const, players)
-
-    def min_func(self, x):
+    def lagrange_gradient(self, actions, dual_actions):
         ...
-        return scalar_value
+        return primal_terms   # shape (total_actions, 1)
+
+    def gradient_dual(self, actions, dual_actions):
+        ...
+        return dual_terms     # shape (num_constraints, 1)
 ```
 
-The `__init__` signature must match exactly: `obj`, `const`, `players`. Calling `super().__init__()` triggers validation and pre-compilation, and populates all the attributes you'll use inside `min_func`.
+The merit function minimized by the solver is
+
+```
+sum(lagrange_gradient(actions, dual_actions)) + sum(gradient_dual(actions, dual_actions))
+```
+
+and it is JIT-compiled with JAX, so both methods must use `jax.numpy` and avoid Python side effects.
+
+You do not need to write `__init__`. If you do, forward all arguments to the base class so that solver settings keep working:
+
+```python
+class MyAlgorithm(BaseAlgorithm):
+    def __init__(self, obj, const, players, *args, my_param=1.0, **kwargs):
+        super().__init__(obj, const, players, *args, **kwargs)
+        self.my_param = my_param
+```
+
+!!! note
+    If your merit function does not split into a primal and a dual part, override `min_func(self, x)` instead. It receives the flat vector `x = [primal | dual]` and must return a Python `float`.
 
 ## What `BaseAlgorithm` Provides
 
-After calling `super().__init__()`, the following attributes are available:
+After construction, the following attributes are available:
 
 **Problem structure:**
 
-- `self.total_actions` — total number of primal variables across all players
-- `self.action_sizes` — list of action vector sizes per player, e.g. `[2, 3, 2]`
-- `self.action_splits` — cumulative split indices for slicing the flat primal vector
-- `self.player_obj_idx` — which objective function index belongs to each player
-- `self.player_const_idx` — which constraint indices apply to each player
-- `self.player_const_idx_matrix` — a `(total_actions, num_constraints)` one-hot matrix encoding which player is responsible for each constraint
+- `self.total_actions`: total number of primal variables across all players
+- `self.action_sizes`: list of action vector sizes per player, e.g. `[2, 3, 2]`
+- `self.action_splits`: cumulative split indices for slicing the flat primal vector
+- `self.player_obj_idx`: which objective function index belongs to each player
+- `self.player_const_idx`: which constraint indices apply to each player
+- `self.player_const_idx_matrix`: a `(total_actions, num_constraints)` one-hot matrix encoding which player is responsible for each constraint
 
 **Functions and derivatives:**
 
-- `self.obj_functions` — validated list of objective functions
-- `self.const` — validated list of constraint functions
-- `self.obj_derivatives` — JIT-compiled gradients of each objective (via `jax.grad`)
-- `self.const_derivatives` — JIT-compiled gradients of each constraint (via `jax.grad`)
+- `self.obj_functions`: validated list of objective functions
+- `self.const`: validated list of constraint functions
+- `self.obj_derivatives`: JIT-compiled gradients of each objective (via `jax.grad`)
+- `self.const_derivatives`: JIT-compiled gradients of each constraint (via `jax.grad`)
+
+**Building blocks:**
+
+- `self.objective_gradient(vector_actions)`: each player's gradient of its own objective, stacked into a `(total_actions, 1)` vector
+- `self.constraint_gradient(vector_actions, dual_actions)`: multiplier-weighted constraint gradients, restricted to the players in each constraint, as a `(total_actions, 1)` vector
+
+Their sum is the gradient of the Lagrangian.
 
 **Bounds:**
 
-- `self.bounds` — list of `(lb, ub)` tuples for primal variables
-- `self.bounds_dual` — list of `(0, 100)` tuples for dual variables, one per constraint
-- `self.bounds_all` — `self.bounds + self.bounds_dual`, passed directly to the optimizer
-- `self.lb_vector`, `self.ub_vector` — primal bounds as JAX column vectors
+- `self.bounds`: list of `(lb, ub)` tuples for primal variables
+- `self.bounds_dual`: list of `(0, 100)` tuples for dual variables, one per constraint
+- `self.bounds_all`: `self.bounds + self.bounds_dual`, passed directly to the optimizer
+- `self.lb_vector`, `self.ub_vector`: primal bounds as JAX column vectors
 
-## What `min_func` Receives
+## What the Methods Receive
 
-`min_func` is called by the optimizer with a **single flat array** `x`:
+Both `lagrange_gradient` and `gradient_dual` receive:
 
-```
-x = [ primal variables ... | dual variables ... ]
-```
-
-The first `self.total_actions` entries are the stacked primal action variables (all players concatenated). The remaining entries are the dual variables (Lagrange multipliers), one per constraint.
-
-To work with them:
-
-```python
-def min_func(self, x):
-    x_jax = jnp.asarray(x)
-    actions = x_jax[:self.total_actions]       # primal part
-    duals   = x_jax[self.total_actions:]       # dual part
-    ...
-```
+- `actions`: the stacked primal variables of all players, shape `(total_actions, 1)`
+- `dual_actions`: the constraint multipliers, shape `(num_constraints, 1)`
 
 To split the primal vector into per-player vectors, use `construct_vectors`:
 
 ```python
-from solvers.utils import construct_vectors
+from gnekit.core.utils import construct_vectors
 
-vector_actions = construct_vectors(actions.reshape(-1, 1), self.action_sizes)
+vector_actions = construct_vectors(actions, self.action_sizes)
 # vector_actions[i] is player i's action as a column vector
 ```
 
-## What `min_func` Must Return
-
-`min_func` must return a single Python `float`. The optimizer minimizes this value, so a return of zero (or near zero) should correspond to equilibrium.
-
-```python
-def min_func(self, x) -> float:
-    ...
-    return float(some_scalar)
-```
-
-!!! warning
-    The optimizer (`basinhopping` + `SLSQP`) expects a Python `float`, not a JAX array. Use `np.float64(...)` or `float(...)` to convert.
-
-## Computing Gradients
-
-The base class pre-compiles a JAX gradient for each objective and each constraint. You can call them directly inside `min_func`:
-
-```python
-# Gradient of objective k with respect to all players' actions
-# Returns a list of arrays, one per player
-grad = self.obj_derivatives[k](vector_actions)
-
-# Gradient for player i specifically
-grad_i = grad[i]
-
-# Similarly for constraints
-c_grad = self.const_derivatives[k](vector_actions)
-```
-
-If your merit function depends on the Lagrangian, you can assemble it from these pieces manually, or follow the pattern used in `EnergyMethod`.
-
 ## How `solve` Works
 
-`BaseAlgorithm.solve(ip)` takes an initial point `ip` (a flat array over all primal and dual variables) and runs `basinhopping` with `SLSQP` as the local minimizer, using `self.bounds_all` to enforce variable bounds. It calls `self.min_func` at each iteration.
+`problem.solve(MyAlgorithm)` builds the algorithm from the problem's objectives, constraints and players, then calls `BaseAlgorithm.solve(ip)` with the stored initial point. This runs `scipy.optimize.basinhopping` with a local minimizer (SLSQP by default) and `self.bounds_all` as the variable bounds.
 
-When it finishes, it prints a result summary and runs `check_kkt` automatically to verify the equilibrium conditions.
+When it finishes, it prints a result summary and runs `check_kkt` to verify the equilibrium conditions.
 
-You do not need to override `solve`. Implementing `min_func` is sufficient.
+Solver settings are passed as keyword arguments to `problem.solve`:
 
-!!! note
-    In the standard workflow, `solve` is the function called on a problem instance — `problem.solve(MyAlgorithm)`. This means `solve` is the entry point for the entire optimization run. If you want to use a different optimizer altogether (e.g. a gradient-based method, a Newton step, or a custom iterative scheme), you can override `solve` in your subclass instead of — or in addition to — `min_func`.
+```python
+primal_x, dual_x = problem.solve(
+    MyAlgorithm,
+    minimizer_options={"ftol": 1e-20, "maxiter": 5000},
+    niter=200,
+)
+```
+
+| Setting | Default | Meaning |
+|---------|---------|---------|
+| `method` | `"SLSQP"` | Local minimizer passed to `scipy.optimize.minimize` |
+| `minimizer_options` | `None` | `options` dict for the local minimizer |
+| `niter` | `1000` | Basin-hopping iterations |
+| `stepsize` | `0.01` | Basin-hopping step size |
+| `interval` | `1` | Iterations between step size updates |
+| `niter_success` | `100` | Stop after this many iterations without improvement |
+| `disp` | `True` | Print basin-hopping progress |
+
+!!! tip
+    Merit functions that are quadratic in the KKT residual reach small values long before the residual is small. Tighten `ftol` in `minimizer_options` when you need an accurate equilibrium.
+
+You do not need to override `solve`. If you want a different optimizer altogether, override `solve(self, ip)` and return `(result, elapsed_time)`, where `result.x` is the flat solution vector.
 
 ## A Complete Example
 
-The following is a minimal algorithm that uses the KKT stationarity residual as its merit function. At equilibrium, the gradient of the Lagrangian with respect to each player's actions should be zero, so minimizing the squared norm of these residuals drives the solver toward a Nash equilibrium.
+The following algorithm uses the squared KKT residual as its merit function. The primal part is the squared gradient of the Lagrangian, and the dual part is the squared complementarity `(λ g(x))²`. Both vanish at a KKT point of an interior solution.
 
 ```python
-import numpy as np
 import jax.numpy as jnp
-from solvers.algorithms import BaseAlgorithm
-from solvers.utils import construct_vectors
+from gnekit import BaseAlgorithm
+from gnekit.core.utils import construct_vectors
 
 
 class StationarityMethod(BaseAlgorithm):
-    def __init__(self, obj, const, players):
-        super().__init__(obj, const, players)
-
-    def min_func(self, x):
-        x_jax = jnp.asarray(x)
-        actions = x_jax[:self.total_actions].reshape(-1, 1)
-        duals   = x_jax[self.total_actions:].reshape(-1, 1)
-
+    def lagrange_gradient(self, actions, dual_actions):
         vector_actions = construct_vectors(actions, self.action_sizes)
+        grad = self.objective_gradient(vector_actions)
+        if self.const_derivatives:
+            grad += self.constraint_gradient(vector_actions, dual_actions)
+        return grad ** 2
 
-        # Precompute all objective and constraint gradients
-        obj_grads  = [d(vector_actions) for d in self.obj_derivatives]
-        cons_grads = [d(vector_actions) for d in self.const_derivatives]
-
-        total = 0.0
-        for p_idx, obj_idx in enumerate(self.player_obj_idx):
-            # Gradient of player's objective w.r.t. their own actions
-            grad = obj_grads[obj_idx][p_idx].ravel()
-
-            # Add weighted constraint gradients
-            for c_idx in self.players[p_idx].constraints:
-                lam = float(duals[c_idx])
-                grad = grad + lam * cons_grads[c_idx][p_idx].ravel()
-
-            total += float(jnp.sum(grad ** 2))
-
-        return total
+    def gradient_dual(self, actions, dual_actions):
+        if not self.const:
+            return jnp.zeros((1, 1))
+        vector_actions = construct_vectors(actions, self.action_sizes)
+        g = jnp.array([c(vector_actions) for c in self.const]).reshape(-1, 1)
+        return (dual_actions * g) ** 2
 ```
 
-To use it, pass the class name to `problem.solve`:
+To use it, pass the class to `problem.solve`:
 
 ```python
-from problems.gnep import MyProblem
+from gnekit.problems.gnep import ProblemA1
 
-problem = MyProblem()
+problem = ProblemA1()
 problem.set_initial_point(1.0, 0.1)
-result, elapsed = problem.solve(StationarityMethod)
+primal_x, dual_x = problem.solve(StationarityMethod, niter=50)
 ```
+
+This example ignores the variable bounds and the sign of `g`, so it is only a starting point. See `EnergyMethod` for a merit function that handles both.
 
 ## A Good Checklist
 
 Before using a custom algorithm, check that:
 
-- `__init__` accepts exactly `(self, obj, const, players)` and calls `super().__init__()`
-- `min_func` accepts a single flat array and returns a Python `float`
-- the primal slice is `x[:self.total_actions]` and the dual slice is `x[self.total_actions:]`
-- JAX arrays are converted to Python floats before returning
-- the merit function returns values close to zero at equilibrium
-
-## Next Step
-
-After implementing an algorithm, the `Choosing an Algorithm` guide describes when to prefer one approach over another and what convergence behaviour to expect from each.
+- it subclasses `BaseAlgorithm` and implements `lagrange_gradient` and `gradient_dual` (or `min_func`)
+- both methods use `jax.numpy` and return column vectors
+- any custom `__init__` forwards `*args, **kwargs` to `super().__init__()`
+- the merit function is zero exactly at equilibrium
