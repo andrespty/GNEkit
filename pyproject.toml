@@ -44,3 +44,6 @@ dev = [
 [project.urls]
 "Homepage" = "https://github.com/yourusername/game-theory-solver"
 "Bug Tracker" = "https://github.com/yourusername/game-theory-solver/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
